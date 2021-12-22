@@ -1,0 +1,140 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    /* font-family: "Lora", Georgia, serif; */
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+/* info */
+.info{
+    display: flex;
+    background-color: #82ae46 !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* Navbar before scroll*/
+.navbar-bf{
+    background-color: #fff;
+    z-index: 3;
+    box-shadow: 0px 1px #a9bea2;
+}
+
+.navbar-brand{
+    color: #82ae46 !important;
+    font-size: 30px;
+    text-shadow: 1px 0 0 black;
+}
+
+.navbar-brand:hover{
+    color: tomato !important;
+    transition: 0.6s;
+}
+
+.nav-link{
+    justify-content: space-around;
+    margin-left: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    color: black !important;
+    text-shadow: 1px 0 0 white;
+    display: inline-block;
+}
+.nav-link:hover{
+    color: tomato !important;
+}
+
+.nav-link::after{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    content: "";
+    height: 5px;
+    width: 0px;
+    background-color: tomato;
+}
+
+.nav-link:hover::after{
+    width: 50%;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(100%);
+}
+
+.dropdown-menu{
+    margin-top: 0.8rem !important;
+    padding: 0;
+    border-radius: 0.5rem;
+    border: 0 2px 2px 2px solid #ebebeb;
+}
+
+.dropdown-item{
+    padding: 0px;
+}
+
+.dropdown-item:hover{
+    background-color: #ccc;
+
+}
+
+/* navbar after scroll */
+.navbar-at{
+    background-color: #82ae46;
+    box-shadow: 0px 1px #a9bea2;
+}
+
+.navbar-brand-at{
+    font-size: 28px;
+    transition: ease-in-out 0.6s;
+    color: #fff !important;
+}
+
+.navLink-at{
+    color: #fff !important;
+    text-shadow: none;
+}
+
+
+/* footer */
+
+.footer{
+    /* background-color: blanchedalmond; */
+    background-color: #f7f6f2;
+    font-size: 16px;
+    padding: 7em 0;
+    color: black;
+    position: relative;
+    line-height: 44px;
+}
+
+.footer .mouse{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -32px;
+}
+
+.footer .mouse .mouse-icon{
+    font-size: 60px;
+    color: #82ae46 ;
+    cursor: pointer;
+    animation: move 1s infinite;
+    position: relative;
+}
+
+@keyframes move{
+    from {bottom: -4px;}
+    to {bottom: 4px;}
+}
+
+.footer .footer-content .media-icon{
+    font-size: 32px;
+}
+
+.footer .footer-copyright{
+    font-size: 14px;
+}

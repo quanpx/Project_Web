@@ -1,0 +1,25 @@
+.list-jobs .card{
+    margin: 20px 8px;
+}
+
+.list-jobs .card .card-body{
+    background-color: #f9f9f9;
+}
+
+.list-jobs .card:hover{
+    box-shadow: 1px 1px 5px 1px #c0bebe;
+}
+
+.list-jobs .detail-btn{
+    margin-right: 20px;
+}
+
+.list-jobs .btn, .modal-footer .btn{
+    background: #82ae46;
+    color: #fff;
+    border-color: #82ae46;
+}
+
+.jobs-content{
+    margin-bottom: 5em;
+}
