@@ -4,11 +4,19 @@ import { BsFillSuitHeartFill,BsList } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
 import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
+import ListCarts from "../Cart/ListCarts";
+import Cookies from 'universal-cookie';
+import axios from "axios";
+
 
 function Shop(){
     // list product
     const [Items, setItems] = useState(ListProducts);
 
+    //product in cart
+    const [Carts,setCarts]=useState(ListCarts);
+
+      const cookies = new Cookies();
     // tab active
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
@@ -29,12 +37,22 @@ function Shop(){
         });
         setItems(updateItem);
     } 
-    
     // load more
     const [currentElm, setCurrentElm] = useState(8);
     const loadItems = Items.slice(0, currentElm);
     const loadMore = () => {
         setCurrentElm(currentElm + 4);
+    }
+
+
+    const addToCart=(id)=>
+    {
+        const product=Items.filter(item=>item.id==id);
+        setCarts(Carts=>[...Carts,product]);
+      
+        cookies.set("mycarts",JSON.stringify(Carts));
+        localStorage.setItem("carts",JSON.stringify(Carts));
+        console.log(JSON.parse(localStorage.getItem("carts")));
     }
 
     return(
@@ -93,7 +111,7 @@ function Shop(){
                                                         <a href="#" className='add-to-card d-flex justify-content-center align-items-center text-center'>
                                                             <BsList />
                                                         </a>
-                                                        <a href="#" className='buy-now d-flex justify-content-center align-items-center text-center'>
+                                                        <a href="#" onClick={()=>addToCart(id)} className='buy-now d-flex justify-content-center align-items-center text-center'>
                                                             <FaShoppingCart />
                                                         </a>
                                                         <a href="#" className='like d-flex justify-content-center align-items-center text-center'>

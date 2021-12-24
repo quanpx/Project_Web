@@ -5,10 +5,15 @@ import { MdOutlineContentPaste, MdOutlineAttachMoney, MdOutlineAccessTime } from
 import { GiPositionMarker } from 'react-icons/gi';
 import "./Job.css";
 import ListJobs from "./ListJobs";
+const axios=require('axios').default;
 
 function Job(){
     // list jobs
     const [Items, setItems] = useState(ListJobs);
+    const url="http://localhost:8080/api/v1/user/farmer"
+    const [products,setProducts]=useState([]);
+
+    axios.get(url).then(res=>setProducts(res.data));                                                                                                                                                                                        
 
     // show model
     const [show, setShow] = useState(false);
