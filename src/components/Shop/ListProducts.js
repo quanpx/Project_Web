@@ -6,7 +6,9 @@ const ListProducts = [
         category: "vegetables",
         name: "bell peper",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 2,
@@ -15,7 +17,9 @@ const ListProducts = [
         category: "fruits",
         name: "STRAWBERRY",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 3,
@@ -24,7 +28,9 @@ const ListProducts = [
         category: "vegetables",
         name: "GREEN BEANS",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 4,
@@ -33,7 +39,9 @@ const ListProducts = [
         category: "vegetables",
         name: "PURPLE CABBAGE",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 5,
@@ -42,7 +50,9 @@ const ListProducts = [
         category: "fruits",
         name: "TOMATOE",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 6,
@@ -51,7 +61,9 @@ const ListProducts = [
         category: "vegetables",
         name: "BROCOLLI",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 7,
@@ -60,7 +72,9 @@ const ListProducts = [
         category: "vegetables",
         name: "CARROTS",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 8,
@@ -69,7 +83,9 @@ const ListProducts = [
         category: "juice",
         name: "FRUIT JUICE",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 9,
@@ -78,7 +94,9 @@ const ListProducts = [
         category: "vegetables",
         name: "ONION",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 10,
@@ -87,7 +105,9 @@ const ListProducts = [
         category: "fruits",
         name: "APPLE",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 11,
@@ -96,7 +116,9 @@ const ListProducts = [
         category: "vegetables",
         name: "GARLIC",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     },
     {
         id: 12,
@@ -105,7 +127,9 @@ const ListProducts = [
         category: "vegetables",
         name: "CHILLI",
         price: "$120.00",
-        sale_price: "$80.00"
+        sale_price: "$80.00",
+        expiration_date: "25/12/2021",
+        quantity: "10"
     }
 ]
 

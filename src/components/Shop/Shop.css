@@ -26,11 +26,13 @@
 
 .shop-title .shop-content{
     position: absolute;
-    top: 30%;
-    right: 20%;
-    left: 20%;
+    right: 15%;
+    top: 10em;
+    left: 15%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
     color: #fff;
-    text-transform: uppercase;
+    text-align: center;
 }
 
 .shop-title .shop-content h3{
@@ -99,11 +101,36 @@
     border-radius: 8px 0px 8px 0px;
 }
 
+.agri-item .agri-img{
+    position: relative;
+}
+
+.agri-item .agri-img .detail{
+    position: absolute;
+    right: 35%;
+    top: 35%;
+    left: 35%;
+    padding: 25px 0px;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 80px;
+    text-align: center;
+    background-color: #86b34880;
+    border-color: #82ae46;
+    opacity: 0;
+}
+
+.agri-item .agri-img:hover .detail{
+    opacity: 1;
+    transition: 0.3s ease-out;
+}
+
 .agri-item .agri-img img{
     margin-left: 5%;
     margin-top: 5%;
     width: 90%;
 }
+
 
 .agri-item .agri-img:hover img{
     -webkit-transform: scale(1.1);

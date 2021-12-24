@@ -85,6 +85,7 @@ function App() {
                         <Nav className="me-auto">
                         </Nav>
                         <Nav>
+                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={""}></Nav.Link>
                         <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
                         <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
                         <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
@@ -96,6 +97,9 @@ function App() {
             {/* </div> */}
             <div className="content">
                 <Routes>
+                    <Route path=""
+                        element={<Home />}
+                    />
                     <Route path="/home"
                         element={<Home />}
                     />
