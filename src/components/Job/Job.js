@@ -97,4 +97,4 @@ function Job(){
     )
 };
 
-export default Job;
+export default React.memo(Job);

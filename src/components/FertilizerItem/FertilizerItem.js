@@ -20,4 +20,4 @@ function FertilizerItem(){
     )
 }
 
-export default FertilizerItem;
+export default React.memo(FertilizerItem);

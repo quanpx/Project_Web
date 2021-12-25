@@ -16,7 +16,7 @@ const ListJobs = [
         image: "./images/product-2.jpg",
         name: "Gặt lúa",
         description: "Cần tuyển người đi Gặt lúa",
-        address: "Thửa ruộng nhà anh A",
+        address: "Thửa ruộng nhà anh B",
         salary: "500.000",
         time: "20/12/2021",
         contact: "anh A",
@@ -28,7 +28,7 @@ const ListJobs = [
         image: "./images/product-3.jpg",
         name: "Gặt lúa",
         description: "Cần tuyển người đi Gặt lúa",
-        address: "Thửa ruộng nhà anh A",
+        address: "Thửa ruộng nhà anh C",
         salary: "500.000",
         time: "20/12/2021",
         contact: "anh A",
@@ -64,7 +64,7 @@ const ListJobs = [
         image: "./images/product-6.jpg",
         name: "Gặt lúa",
         description: "Cần tuyển người đi Gặt lúa",
-        address: "Thửa ruộng nhà anh A",
+        address: "Thửa ruộng nhà anh F",
         salary: "500.000",
         time: "20/12/2021",
         contact: "anh A",
@@ -74,3 +74,4 @@ const ListJobs = [
 ]
 
 export default ListJobs;
+
