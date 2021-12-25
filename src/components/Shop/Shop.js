@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { Container, Modal, Button } from 'react-bootstrap';
 import { BsFillSuitHeartFill,BsList } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
+import { AiOutlineMoneyCollect } from 'react-icons/ai';
+import { MdOutlineCategory,MdPriceCheck,MdOutlineDescription,MdOutlineAttachMoney,MdProductionQuantityLimits,MdOutlineDateRange } from 'react-icons/md';
 import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
 
@@ -39,8 +41,17 @@ function Shop(){
 
     // show detail modal
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setShow(false);
+        setActiveModal(null);
+    }
+    const handleShow = () => {
+        setShow(true);
+    }
+    const [activeModal, setActiveModal] = useState(null);
+    const clickHandler= (e, index) => {
+        setActiveModal(index);
+    }
 
     return(
         <div>
@@ -78,18 +89,18 @@ function Shop(){
                     
                     <div className="shop-products row">
                         {
-                            loadItems.map((element) => {
-                                const {id, image, sale, category, name, price, sale_price, expiration_date, quantity} = element;
+                            loadItems.map((element, index) => {
+                                const {id, image, discount, category, name, price, sale_price, expiration_date, quantity,description} = element;
                                 return (
                                     <div key={id} className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
                                         <div className='agri-item'>
                                             <div className='agri-img'>
                                                 <img className='img-fluid' src={image} alt="agri-img"/>
-                                                <span className='sale'>{sale}</span>
-                                                <div className="detail btn btn-primary" onClick={() => handleShow()}>
+                                                <span className='sale'>{discount}</span>
+                                                <div className="detail btn btn-primary" onClick={(e) => clickHandler(e,index)}>
                                                     Detail
                                                 </div>
-                                                <Modal show={show} onHide={handleClose} centered>
+                                                <Modal show={activeModal === index} onHide={handleClose} centered>
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>{name}</Modal.Title>
                                                     </Modal.Header>
@@ -99,12 +110,13 @@ function Shop(){
                                                                 <img src={image} alt="job-img" style={{width: "100%"}}/>
                                                             </div>
                                                             <div className="col-md-6">
-                                                                <div>{category}</div>
-                                                                <div>{price}</div>
-                                                                <div>{sale}</div>
-                                                                <div>{sale_price}</div>
-                                                                <div>{quantity}</div>
-                                                                <div>{expiration_date}</div>
+                                                                <div><MdOutlineCategory /> Category: {category}</div>
+                                                                <div><MdOutlineDescription/> Description: {description}</div>
+                                                                <div><MdPriceCheck />Price: {price}</div>
+                                                                <div><AiOutlineMoneyCollect /> Discount: {discount}</div>
+                                                                <div><MdOutlineAttachMoney/> Sale price: {sale_price}</div>
+                                                                <div><MdProductionQuantityLimits /> Quantity: {quantity}</div>
+                                                                <div><MdOutlineDateRange /> Expiration date: {expiration_date}</div>
                                                             </div>
                                                         </div>
                                                     </Modal.Body>
