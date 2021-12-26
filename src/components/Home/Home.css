@@ -77,7 +77,9 @@ body{
 .carousel-caption h1{
     font-size: 8vw;
     line-height: 1.3;
-    font-family: "Amatic SC", cursive;
+    font-weight: 400;
+    color: #fff;
+    font-family: "Amatic SC", cursive;;
 }
 
 .carousel-caption .btn{

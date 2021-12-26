@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: linear-gradient(to bottom right,green, #82ae46);
+}
+
+.username , .password input::after{
+    content: "*";
+}
