@@ -169,14 +169,14 @@ function Home(){
                     <div className='row list-agri'>
                         {
                             Items.map((element,i) => {
-                                const {id, image, sale, category, name, price, sale_price} = element;
+                                const {id, image, discount, category, name, price, sale_price} = element;
                                 if(i < 8){
                                     return (
-                                        <div className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
+                                        <div key={id} className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
                                             <div className='agri-item'>
                                                 <div className='agri-img'>
                                                     <img className='img-fluid' src={image} alt="agri-img"/>
-                                                    <span className='sale'>{sale}</span>
+                                                    <span className='sale'>{discount}</span>
                                                 </div>
                                                 <div className='text text-center px-3 py-3 pb-4'>
                                                     <h3>{name}</h3>

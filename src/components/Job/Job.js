@@ -19,7 +19,7 @@ function Job(){
         <>
             <div className="shop-title">
                 <div className="shop-img">
-                    <img src="./images/slider-1.jpg" alt="shop-img"></img>
+                    <img src="./images/slider-2.jpg" alt="shop-img"></img>
                 </div>
                 <div className="shop-content"  data-aos="fade-up" data-aos-duration="1000">
                     <div className="container content-detail text-center">
