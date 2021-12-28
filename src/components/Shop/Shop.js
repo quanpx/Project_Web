@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import { Container, Modal, Button } from 'react-bootstrap';
-import { BsFillSuitHeartFill,BsList } from 'react-icons/bs';
+import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
-import { AiOutlineMoneyCollect } from 'react-icons/ai';
-import { MdOutlineCategory,MdPriceCheck,MdOutlineDescription,MdOutlineAttachMoney,MdProductionQuantityLimits,MdOutlineDateRange } from 'react-icons/md';
+import { MdPriceCheck,MdOutlineDescription,MdProductionQuantityLimits} from 'react-icons/md';
 import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
 
 function Shop(){
     // list product
-    const [Items, setItems] = useState(ListProducts);
+    const [data, setData] = useState(ListProducts);
 
     // tab active
     const $ = document.querySelector.bind(document);
@@ -29,12 +28,12 @@ function Shop(){
         const updateItem = ListProducts.filter((curEle) => {
             return curEle.category === cateItem;
         });
-        setItems(updateItem);
+        setData(updateItem);
     } 
     
     // load more
     const [currentElm, setCurrentElm] = useState(8);
-    const loadItems = Items.slice(0, currentElm);
+    const loadData = data.slice(0, currentElm);
     const loadMore = () => {
         setCurrentElm(currentElm + 4);
     }
@@ -45,12 +44,39 @@ function Shop(){
         setShow(false);
         setActiveModal(null);
     }
-    const handleShow = () => {
-        setShow(true);
-    }
+    // const handleShow = () => {
+    //     setShow(true);
+    // }
     const [activeModal, setActiveModal] = useState(null);
     const clickHandler= (e, index) => {
         setActiveModal(index);
+    }
+
+    // Add product to cart
+    let cart = [];
+
+    const getProductById = (id) => {
+        for(let i = 0; i < data.length; i++){
+            if(data[i].id === id)
+                return data[i];
+        }
+    }
+
+    const addToCard = async (id) => {
+        let storage = localStorage.getItem('cart');
+        if(storage){
+            cart = JSON.parse(storage);
+        }
+
+        let product = await getProductById(id);
+
+        let item = cart.find(c => c.product.id === id);
+        if(item){
+            item.boughtQuantity += 1;
+        }else{
+            cart.push({product, boughtQuantity: 1});
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
     }
 
     return(
@@ -72,7 +98,7 @@ function Shop(){
                         <div className=" text-center">
                             <ul className="products-category">
                                 <li>
-                                    <div onClick={() => setItems(ListProducts)} className="tabItem active">All</div>
+                                    <div onClick={() => setData(ListProducts)} className="tabItem active">All</div>
                                 </li>
                                 <li>
                                     <div onClick={() => filterItem('vegetables')} className="tabItem">Vegetables</div>
@@ -89,34 +115,29 @@ function Shop(){
                     
                     <div className="shop-products row">
                         {
-                            loadItems.map((element, index) => {
-                                const {id, image, discount, category, name, price, sale_price, expiration_date, quantity,description} = element;
+                            loadData.map((element, index) => {
                                 return (
-                                    <div key={id} className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
+                                    <div key={element.id} className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
                                         <div className='agri-item'>
                                             <div className='agri-img'>
-                                                <img className='img-fluid' src={image} alt="agri-img"/>
-                                                <span className='sale'>{discount}</span>
+                                                <img className='img-fluid' src={element.image} alt="agri-img"/>
+                                                <span className='sale'>{element.discount}</span>
                                                 <div className="detail btn btn-primary" onClick={(e) => clickHandler(e,index)}>
                                                     Detail
                                                 </div>
                                                 <Modal show={activeModal === index} onHide={handleClose} centered>
                                                     <Modal.Header closeButton>
-                                                        <Modal.Title>{name}</Modal.Title>
+                                                        <Modal.Title>{element.name}</Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>
                                                         <div className="row">
                                                             <div className="col-md-6">
-                                                                <img src={image} alt="job-img" style={{width: "100%"}}/>
+                                                                <img src={element.image} alt="job-img" style={{width: "100%"}}/>
+                                                                <div><MdPriceCheck />Price: {element.price}</div>
+                                                                <div><MdProductionQuantityLimits /> Quantity: {element.quantity}</div>
                                                             </div>
                                                             <div className="col-md-6">
-                                                                <div><MdOutlineCategory /> Category: {category}</div>
-                                                                <div><MdOutlineDescription/> Description: {description}</div>
-                                                                <div><MdPriceCheck />Price: {price}</div>
-                                                                <div><AiOutlineMoneyCollect /> Discount: {discount}</div>
-                                                                <div><MdOutlineAttachMoney/> Sale price: {sale_price}</div>
-                                                                <div><MdProductionQuantityLimits /> Quantity: {quantity}</div>
-                                                                <div><MdOutlineDateRange /> Expiration date: {expiration_date}</div>
+                                                                <div><MdOutlineDescription/> Description: {element.description}</div>
                                                             </div>
                                                         </div>
                                                     </Modal.Body>
@@ -128,22 +149,21 @@ function Shop(){
                                                 </Modal>
                                             </div>
                                             <div className='text text-center px-3 py-3 pb-4'>
-                                                <h3>{name}</h3>
+                                                <h3>{element.name}</h3>
                                                 <div className='price d-lex '>
-                                                    <span className='price-dc'>{price}</span>
-                                                    <span className='price-sale'>{sale_price}</span>
+                                                    <span className='price-dc'>{element.price}</span>
+                                                    <span className='price-sale'>{element.sale_price}</span>
                                                 </div>
                                                 <div className='bottom-area d-flex px-3'>
                                                     <div className='m-auto d-flex'>
-                                                        <a href="#" className='add-to-card d-flex justify-content-center align-items-center text-center'>
-                                                            <BsList />
-                                                        </a>
-                                                        <a href="#" className='buy-now d-flex justify-content-center align-items-center text-center'>
+                                                        <div className='buy-now d-flex justify-content-center align-items-center text-center'
+                                                            onClick={ () => addToCard(element.id) }
+                                                        >
                                                             <FaShoppingCart />
-                                                        </a>
-                                                        <a href="#" className='like d-flex justify-content-center align-items-center text-center'>
+                                                        </div>
+                                                        <div className='like d-flex justify-content-center align-items-center text-center'>
                                                             <BsFillSuitHeartFill />
-                                                        </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

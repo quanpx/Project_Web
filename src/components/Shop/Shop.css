@@ -36,12 +36,13 @@
 }
 
 .shop-title .shop-content h3{
-    color: #e9e9e9;;
-    font-size: 12px;
+    color: #e9e9e9;
+    font-size: 16px;
 }
 
 .shop-title .shop-content h1{
     font-weight: bold;
+    color: #fff;
 }
 
 /* shop content */
@@ -178,13 +179,21 @@
     transition: all 0.3s ease;
 }
 
-.agri-item .text .bottom-area a{
+.agri-item .text .bottom-area .buy-now,
+.agri-item .text .bottom-area .like{
     color: #fff;
     background: #82ae46;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     margin: 0 2px;
+}
+.buy-now:hover, .like:hover{
+    cursor: pointer;
+}
+
+.like:active{
+    background-color: pink;
 }
 
 .agri-item:hover{
@@ -198,6 +207,7 @@
 .agri-item:hover .text .bottom-area{
     opacity: 1;
 }
+
 
 /* load more btn */
 .load-more-btn{

@@ -1,0 +1,18 @@
+.cart-content{
+    margin: 6em 0;
+}
+
+.cart-content .ant-table-thead > tr > th{
+    background-color: #82ae46;
+    color: #fff;
+}
+
+.delete-icon{
+    font-size: 20px;
+}
+
+.delete-icon:hover{
+    background-color: #82ae46;
+    cursor: pointer;
+    color: #fff;
+}
