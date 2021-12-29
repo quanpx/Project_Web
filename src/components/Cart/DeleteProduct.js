@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Modal, Space, notification } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
@@ -6,6 +6,11 @@ import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 
 const DeleteProduct = (props) => {
+    // refresh component
+    const [value, setValue] = useState();
+    const refresh = ()=>{
+        setValue({});
+    }
     const { confirm } = Modal;
 
     const openNotificationSuccess = () => {

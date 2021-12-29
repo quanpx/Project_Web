@@ -8,8 +8,11 @@ import "./Cart.css";
 import DeleteProduct from "./DeleteProduct";
 
 const Cart = () => {
-    const [countDecrease, setCountDecrease] = useState(0);
-    const [countIncrease, setCountIncrease] = useState(0);
+    // refresh component
+    const [value, setValue] = useState();
+    const refresh = ()=>{
+        setValue({});
+    }
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
@@ -18,7 +21,7 @@ const Cart = () => {
                 if(item.product.id === id){
                     if(item.boughtQuantity > 0){
                         item.boughtQuantity -= 1;
-                        setCountDecrease(item.boughtQuantity);
+                        refresh();
                     }else{
                         <DeleteProduct />
                     }
@@ -34,7 +37,7 @@ const Cart = () => {
         storage.find(item => {
                 if(item.product.id === id)
                     item.boughtQuantity += 1;
-                    setCountIncrease(item.boughtQuantity);
+                    refresh();
             }
         )
         localStorage.setItem('cart',JSON.stringify(storage));
