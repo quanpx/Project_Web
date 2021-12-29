@@ -14,30 +14,36 @@ const DeleteProduct = (props) => {
         duration: 3
         });
     }
-
     function showDeleteConfirm() {
         confirm({
-          title: 'Xóa sản phẩm khỏi giỏ hàng',
-          icon: <ExclamationCircleOutlined />,
-          content: 'Bạn có chắc xóa sản phẩm này khỏi giỏ hàng chứ？',
-          okText: 'Đồng ý',
-          okType: 'danger',
-          cancelText: 'Không',
-          onOk() {
-            console.log('OK');
-            // deleteProduct(props.record.id);
-            openNotificationSuccess();
-          },
-          onCancel() {
-            console.log('Cancel');
-          },
+            title: 'Xóa sản phẩm khỏi giỏ hàng',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Bạn có chắc xóa sản phẩm này khỏi giỏ hàng chứ？',
+            okText: 'Đồng ý',
+            okType: 'danger',
+            cancelText: 'Không',
+            onOk() {
+                console.log('OK');
+                console.log(props.record);
+
+                // delete by id
+                let storage = JSON.parse(localStorage.getItem('cart'));
+                storage = storage.filter(item => item.product.id !== props.record.id);
+                localStorage.setItem('cart',JSON.stringify(storage));
+                
+                // success notice
+                openNotificationSuccess();
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
         });
     }
 
     return(
         <div>
             <Space>
-              <AiOutlineCloseSquare onClick={showDeleteConfirm} className='delete-icon'/>
+                <AiOutlineCloseSquare onClick={showDeleteConfirm} className='delete-icon'/>
             </Space>
         </div>
     );

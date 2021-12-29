@@ -1,5 +1,7 @@
 import React from "react";
 import { Container } from 'react-bootstrap';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import "./Cart.css";
@@ -12,9 +14,12 @@ const Cart = () => {
             dataIndex: 'delete',
             width: 50,
             align: "center",
-            render: (record) => (
-                <DeleteProduct record={record}/>
-            )
+            render: (record) => {
+                return(
+                    // console.log(record),
+                    <DeleteProduct record={record}/> 
+                )
+            }          
         },
         {
             title: 'Product Image',
@@ -48,22 +53,26 @@ const Cart = () => {
         },
     ];
 
-    var data = [];
+    var d = [];
     const storage = localStorage.getItem('cart');
     if(storage){
-        data = JSON.parse(storage);
-        console.log(data);
+        d = JSON.parse(storage);
     }else{
         console.log("Giỏ hàng rỗng");
     }
-    for (let i = 0; i < data.length; i++) {
+    var data = [];
+    for (let i = 0; i < d.length; i++) {
         data.push({
-            key: data[i].id,
-            product_img: `King ${i}`,
-            product_name: `Edward King ${i}`,
-            price: 50000,
-            quantity: data.quantity,
-            total: 250
+            key: d[i].product.id,
+            product_img: <img src={d[i].product.image} alt="product-img" width="75" height="75"></img>,
+            product_name: d[i].product.name,
+            price: d[i].product.price,
+            quantity: <div>
+                <AiOutlineMinus className="reduce-product"/> &nbsp; &nbsp;
+                {d[i].boughtQuantity} &nbsp; &nbsp;
+                <AiOutlinePlus className="increase-product"/>
+            </div>,
+            total: Math.imul(d[i].product.price,d[i].boughtQuantity)
         });
     }
 

@@ -5,6 +5,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { MdPriceCheck,MdOutlineDescription,MdProductionQuantityLimits} from 'react-icons/md';
 import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
+import { notification } from 'antd';
 
 function Shop(){
     // list product
@@ -53,7 +54,7 @@ function Shop(){
     }
 
     // Add product to cart
-    let cart = [];
+    var cart = [];
 
     const getProductById = (id) => {
         for(let i = 0; i < data.length; i++){
@@ -77,6 +78,14 @@ function Shop(){
             cart.push({product, boughtQuantity: 1});
         }
         localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // notification add to cart success
+    const openNotificationSuccess = (name) => {
+        notification.success({
+            message: `Sản phẩm ${name} đã được thêm vào giỏ hàng`,
+            duration: 3
+        });
     }
 
     return(
@@ -157,7 +166,7 @@ function Shop(){
                                                 <div className='bottom-area d-flex px-3'>
                                                     <div className='m-auto d-flex'>
                                                         <div className='buy-now d-flex justify-content-center align-items-center text-center'
-                                                            onClick={ () => addToCard(element.id) }
+                                                            onClick={ () => {addToCard(element.id); openNotificationSuccess(element.name)} }
                                                         >
                                                             <FaShoppingCart />
                                                         </div>
