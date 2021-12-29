@@ -17,6 +17,6 @@
     color: #fff;
 }
 
-.reduce-product, .increase-product:hover{
+.decrease-product, .increase-product:hover{
     cursor: pointer;
 }

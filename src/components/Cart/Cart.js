@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Container } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -8,6 +8,39 @@ import "./Cart.css";
 import DeleteProduct from "./DeleteProduct";
 
 const Cart = () => {
+    const [countDecrease, setCountDecrease] = useState(0);
+    const [countIncrease, setCountIncrease] = useState(0);
+
+    // decrease product quantity
+    const decreaseQuantity = (id) => {
+        let storage = JSON.parse(localStorage.getItem('cart'));
+        storage.find(item => {
+                if(item.product.id === id){
+                    if(item.boughtQuantity > 0){
+                        item.boughtQuantity -= 1;
+                        setCountDecrease(item.boughtQuantity);
+                    }else{
+                        <DeleteProduct />
+                    }
+                }
+            }
+        )
+        localStorage.setItem('cart',JSON.stringify(storage));
+        
+    }
+    // increase product quantity
+    const increaseQuantity = (id) => {
+        let storage = JSON.parse(localStorage.getItem('cart'));
+        storage.find(item => {
+                if(item.product.id === id)
+                    item.boughtQuantity += 1;
+                    setCountIncrease(item.boughtQuantity);
+            }
+        )
+        localStorage.setItem('cart',JSON.stringify(storage));
+        // document.location.reload();
+    }
+
     const columns = [
         {
             title: '',
@@ -68,9 +101,9 @@ const Cart = () => {
             product_name: d[i].product.name,
             price: d[i].product.price,
             quantity: <div>
-                <AiOutlineMinus className="reduce-product"/> &nbsp; &nbsp;
+                <AiOutlineMinus className="decrease-product" onClick={ () => decreaseQuantity(d[i].product.id) }/> &nbsp; &nbsp;
                 {d[i].boughtQuantity} &nbsp; &nbsp;
-                <AiOutlinePlus className="increase-product"/>
+                <AiOutlinePlus className="increase-product" onClick={ () => increaseQuantity(d[i].product.id) }/>
             </div>,
             total: Math.imul(d[i].product.price,d[i].boughtQuantity)
         });
