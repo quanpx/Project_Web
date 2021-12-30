@@ -16,7 +16,7 @@ function Shop(props){
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     let headers = {
-        'Authentication': "Bearer "+authenticated.token,
+        'Authorization': "Bearer "+authenticated.token,
         'Content-Type': 'application/json'
     };
 
