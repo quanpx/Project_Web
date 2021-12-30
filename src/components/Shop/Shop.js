@@ -7,7 +7,7 @@ import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
 import { notification } from 'antd';
 
-function Shop(){
+function Shop(props){
     // list product
     const [data, setData] = useState(ListProducts);
 
@@ -77,7 +77,10 @@ function Shop(){
         }else{
             cart.push({product, boughtQuantity: 1});
         }
+
+        
         localStorage.setItem('cart', JSON.stringify(cart));
+        props.handleIncreaseCart();
     }
 
     // notification add to cart success
