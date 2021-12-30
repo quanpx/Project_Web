@@ -1,17 +1,18 @@
 
-import React,{ useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { AiOutlineUser, AiFillCaretDown } from 'react-icons/ai';
-import { BsFillCartCheckFill,BsTelephone,BsFillArrowUpCircleFill,BsGeoAltFill,BsFillTelephoneFill,BsEnvelopeFill,BsTwitter,BsInstagram,BsFillSuitHeartFill } from "react-icons/bs";
-import { FaRegPaperPlane,FaFacebook } from 'react-icons/fa';
+import { BsFillCartCheckFill, BsTelephone, BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
+import { FaRegPaperPlane, FaFacebook } from 'react-icons/fa';
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    useNavigate
 } from "react-router-dom";
 import { Avatar } from 'antd';
 // import 'antd/dist/antd.css';
@@ -27,17 +28,23 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 
 function App() {
+
+    
     //create aos effect (fade up) when scroll
+
+    const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
+    const [storage,setStorage]=useState(JSON.parse(localStorage.getItem('cart')));
     useEffect(() => {
+
         AOS.init();
     });
 
     //change nav color when scroll
     const [navColor, setNavColor] = useState(false);
     const changeNavColor = () => {
-        if(window.scrollY >= 60){
+        if (window.scrollY >= 60) {
             setNavColor(true)
-        }else{
+        } else {
             setNavColor(false)
         }
     }
@@ -45,28 +52,43 @@ function App() {
     window.addEventListener('scroll', changeNavColor)
 
     // get quantity of product in cart
-    const storage = JSON.parse(localStorage.getItem('cart'));
+   // const storage = JSON.parse(localStorage.getItem('cart'));
+    // if(storage.length==null)
+    // {
+    //     storage.length=0;   
+    // }
 
     //scroll to top
     const [visible, setVisible] = useState(false)
-  
+
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        if (scrolled > 300){
-        setVisible(true)
-        } 
-        else if (scrolled <= 300){
-        setVisible(false)
+        if (scrolled > 300) {
+            setVisible(true)
+        }
+        else if (scrolled <= 300) {
+            setVisible(false)
         }
     };
-    
-    const scrollToTop = () =>{
+
+    const scrollToTop = () => {
         window.scrollTo({
-            top: 0, 
+            top: 0,
             behavior: 'smooth'
         });
     };
-    
+    const handleLogout = () => {
+        localStorage.removeItem("authenticated");
+        setAuthenticated(null);
+        
+    }
+    const onLogined =(newAuth)=>{
+        setAuthenticated(newAuth);
+    }
+    const handleIncreaseCart = ()=>{
+        setStorage(JSON.parse(localStorage.getItem('cart')));
+    }
+
     window.addEventListener('scroll', toggleVisible);
 
     // handle increase cart
@@ -87,8 +109,8 @@ function App() {
                 </div>
             </div>
             {/* <div > */}
-                <Navbar expand="lg" sticky="top" className={navColor ? "navbar-bf navbar-at" : "navbar-bf"}>
-                    <Container>
+            <Navbar expand="lg" sticky="top" className={navColor ? "navbar-bf navbar-at" : "navbar-bf"}>
+                <Container>
                     <Navbar.Brand className={navColor ? " navbar-brand-at" : ""} as={Link} to={"/shop"}> <b>Vegefoods</b></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -98,22 +120,29 @@ function App() {
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage ? storage.length : "0"}]</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage != null ? storage.length : 0}]</Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
-                                <div>
-                                    <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />}/> 
-                                </div>
+
+                                {
+                                    authenticated != null ?
+                                        <div>
+                                            <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp; 
+                                            <span>{authenticated.user.name}</span>
+                                        </div> :
+                                        <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
+                                }
+
                             </Nav.Link>
                             <NavDropdown className='log-dropdown'>
                                 <NavDropdown.Item as={Link} to={"/user"}>User</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to={"/logout"}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={"/"} onClick={handleLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
-                    </Container>
-                </Navbar>
+                </Container>
+            </Navbar>
             {/* </div> */}
             <div className="content">
                 <Routes>
@@ -124,7 +153,7 @@ function App() {
                         element={<Home />}
                     />
                     <Route path="/shop"
-                        element={<Shop />}
+                        element={<Shop handleIncreaseCart={handleIncreaseCart}/>}
                     />
                     <Route path="/job"
                         element={<Job />}
@@ -136,11 +165,12 @@ function App() {
                         element={<User />}
                     />
                     <Route path="/login"
-                        element={<Login />}
+                        element={<Login action={onLogined}/>}
                     />
                     <Route path="/register"
                         element={<Register />}
                     />
+
                 </Routes>
             </div>
 
@@ -149,8 +179,8 @@ function App() {
                 <Container>
                     <div className="mouse text-center">
                         <div className="mouse-icon">
-                            <BsFillArrowUpCircleFill onClick={scrollToTop} 
-                                style={{display: visible ? 'inline' : 'none'}} 
+                            <BsFillArrowUpCircleFill onClick={scrollToTop}
+                                style={{ display: visible ? 'inline' : 'none' }}
                             />
                         </div>
                     </div>
