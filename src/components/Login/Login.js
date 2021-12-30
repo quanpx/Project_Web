@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Container } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import "./Login.css";
 import Register from "../Register/Register";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const axios = require('axios');
 
-const Login = () => {
-    
-    let [authenticated, setAuthenticated] = useState(null);
+const Login = (props) => {
+
+    const navigate = useNavigate();
+    let [authenticated, setAuthenticated] = useState({});
+
+
+    useEffect(() => {
+        let authenticated = localStorage.getItem("authenticated");
+        if (authenticated == null) {
+            localStorage.setItem("authenticated", authenticated);
+        }
+    }, []);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1"
+
     const login = async () => {
         var username = document.getElementById("basic_username").value;
         var password = document.getElementById("basic_password").value;
@@ -25,8 +35,15 @@ const Login = () => {
             .then(res => res.data)
             .then(data => {
                 setAuthenticated(data.data);
-            });
-        localStorage.setItem("authenticated", JSON.stringify(authenticated));
+                localStorage.setItem("authenticated", JSON.stringify(data.data));
+                props.action(data.data);
+                navigate("/");
+            })
+
+
+
+
+
     }
 
     const onFinish = (values) => {
