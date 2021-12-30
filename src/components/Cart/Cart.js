@@ -6,6 +6,7 @@ import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import "./Cart.css";
 import DeleteProduct from "./DeleteProduct";
+import axios from "axios";
 
 const Cart = () => {
     // refresh component
@@ -44,6 +45,7 @@ const Cart = () => {
         // document.location.reload();
     }
 
+    // render table
     const columns = [
         {
             title: '',
@@ -111,7 +113,34 @@ const Cart = () => {
             total: Math.imul(d[i].product.price,d[i].boughtQuantity)
         });
     }
+    
+    // sum payment
+    var sum = 0;
+    for(let i = 0; i < data.length; i++){
+        sum += data[i].total;
+    }
 
+    // send payment
+    const paymentHandle = () => {
+        const storage = JSON.parse(localStorage.getItem('cart'));
+        var cart = [];
+        if(storage){
+            for(let i = 0; i < d.length; i ++){
+                cart.push({
+                    product_id: d[i].product.id,
+                    quantity: d[i].boughtQuantity
+                })
+            }
+            var paymentData = {
+                total_amount: sum,
+                cart: cart
+            }
+            console.log(paymentData);
+        }else{
+            alert("Giỏ hàng đang rỗng");
+        }
+        // axios.post('',paymentData, header={'Authorization':token});
+    }
 
     return(
         <div >
@@ -121,23 +150,37 @@ const Cart = () => {
                 </div>
                 <div className="shop-content"  data-aos="fade-up" data-aos-duration="1000">
                     <div className="container content-detail text-center">
-                        <h3>Home products</h3>
-                        <h1>Products</h1>
+                        <h3>Cart</h3>
+                        <h1>Cart</h1>
                     </div>
                 </div>
             </div>
             <Container>
                 <div className="cart-content">
-                <Table 
-                    columns={columns} 
-                    dataSource={data} 
-                    pagination={{
-                        position: ["bottomCenter"],
-                        showSizeChanger: true,
-                        pageSizeOptions: ["5", "10", "20"]
-                    }}
-                    scroll={{ y: 480 }} 
-                />
+                    <Table 
+                        columns={columns} 
+                        dataSource={data} 
+                        pagination={
+                            // position: ["bottomCenter"],
+                            // showSizeChanger: true,
+                            // pageSizeOptions: ["5", "10", "20"]
+                            false
+                        }
+                        scroll={{ y: 480 }} 
+                    />
+                </div>
+                <div className="payment row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6 col-sm-8 text-end payment-text">
+                        Tổng tiền ({d.length} sản phẩm): 
+                        <span className="sum"> ₫{sum}</span> 
+                        &nbsp; &nbsp;
+                    </div>
+                    <div className="col-md-3 col-sm-4">
+                        <button className="btn btn-primary pay-btn" onClick={ paymentHandle }>
+                            Mua hàng
+                        </button>
+                    </div>
                 </div>
             </Container>
         </div>

@@ -91,6 +91,8 @@ function App() {
 
     window.addEventListener('scroll', toggleVisible);
 
+    // handle increase cart
+
     return (
         <Router >
             <div className="info py-1 bg-primary">
@@ -120,7 +122,6 @@ function App() {
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage != null ? storage.length : 0}]</Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
-
 
                                 {
                                     authenticated != null ?

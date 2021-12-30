@@ -215,4 +215,4 @@ function Shop(props){
     );
 };
 
-export default Shop;
+export default React.memo(Shop);
