@@ -136,7 +136,10 @@ function App() {
                             <NavDropdown className='log-dropdown'>
                                 <NavDropdown.Item as={Link} to={"/user"}>User</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>
+                                {authenticated==null?
+                                <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>:
+                                 <NavDropdown.Item as={Link} to={"/yourJobs"}>Your Jobs</NavDropdown.Item>
+                                 }
                                 <NavDropdown.Item as={Link} to={"/"} onClick={handleLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
