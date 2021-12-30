@@ -1,9 +1,10 @@
 
 import React,{ useState,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { AiOutlineUser, AiFillCaretDown } from 'react-icons/ai';
 import { BsFillCartCheckFill,BsTelephone,BsFillArrowUpCircleFill,BsGeoAltFill,BsFillTelephoneFill,BsEnvelopeFill,BsTwitter,BsInstagram,BsFillSuitHeartFill } from "react-icons/bs";
 import { FaRegPaperPlane,FaFacebook } from 'react-icons/fa';
 import {
@@ -12,6 +13,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Avatar } from 'antd';
+// import 'antd/dist/antd.css';
 
 import './App.css';
 
@@ -19,7 +22,9 @@ import Home from './components/Home/Home';
 import Job from './components/Job/Job';
 import Cart from './components/Cart/Cart';
 import Shop from './components/Shop/Shop';
-
+import User from './components/User/User';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 function App() {
     //create aos effect (fade up) when scroll
@@ -38,6 +43,9 @@ function App() {
     }
 
     window.addEventListener('scroll', changeNavColor)
+
+    // get quantity of product in cart
+    const storage = JSON.parse(localStorage.getItem('cart'));
 
     //scroll to top
     const [visible, setVisible] = useState(false)
@@ -85,11 +93,21 @@ function App() {
                         <Nav className="me-auto">
                         </Nav>
                         <Nav>
-                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={""}></Nav.Link>
-                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
-                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
-                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
-                        <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill></BsFillCartCheckFill>[0]</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage.length}]</Nav.Link>
+                            <Nav.Link as={Link} to={"/user"}>
+                                <div>
+                                    <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />}/> 
+                                </div>
+                            </Nav.Link>
+                            <NavDropdown className='log-dropdown'>
+                                <NavDropdown.Item as={Link} to={"/user"}>User</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={"/logout"}>Logout</NavDropdown.Item>
+                            </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
                     </Container>
@@ -111,6 +129,15 @@ function App() {
                     />
                     <Route path="/cart"
                         element={<Cart />}
+                    />
+                    <Route path="/user"
+                        element={<User />}
+                    />
+                    <Route path="/login"
+                        element={<Login />}
+                    />
+                    <Route path="/register"
+                        element={<Register />}
                     />
                 </Routes>
             </div>

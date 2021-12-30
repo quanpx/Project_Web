@@ -172,7 +172,7 @@ function Home(){
                                 const {id, image, sale, category, name, price, sale_price} = element;
                                 if(i < 8){
                                     return (
-                                        <div className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
+                                        <div key={id} className='col-md-6 col-lg-3'  data-aos="fade-up" data-aos-duration="1000">
                                             <div className='agri-item'>
                                                 <div className='agri-img'>
                                                     <img className='img-fluid' src={image} alt="agri-img"/>

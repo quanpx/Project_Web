@@ -37,14 +37,16 @@ body{
 
 .nav-link{
     justify-content: space-around;
-    margin-left: 2rem;
+    margin-left: 3rem;
     text-transform: uppercase;
     font-weight: bold;
     position: relative;
     color: black !important;
     text-shadow: 1px 0 0 white;
     display: inline-block;
+    margin-top: 6px;
 }
+
 .nav-link:hover{
     color: tomato !important;
 }
@@ -65,20 +67,25 @@ body{
     transform: translateX(100%);
 }
 
-.dropdown-menu{
-    margin-top: 0.8rem !important;
-    padding: 0;
-    border-radius: 0.5rem;
-    border: 0 2px 2px 2px solid #ebebeb;
+/* log dropdown */
+.log-dropdown > a{
+    height: 24px;
+    width: 24px;
+    margin-top: 10px;
+    font-size: 32px;
 }
 
-.dropdown-item{
-    padding: 0px;
+.log-dropdown > a:hover{
+    color: black;
 }
 
-.dropdown-item:hover{
-    background-color: #ccc;
+.log-dropdown .nav-link::after{
+    background-color: transparent;
+    height: 10px;
+}
 
+.log-dropdown .nav-link:hover::after{
+    content: none;
 }
 
 /* navbar after scroll */

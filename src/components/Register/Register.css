@@ -1,0 +1,26 @@
+.register{
+    height: 50em;
+}
+
+.register-form{
+    margin-top: 6em !important;
+    padding: 2em !important;
+    border: 1px solid #f7f6f2;
+    background-color: #f7f6f2 !important;
+}
+
+.register-title{
+    font-weight: bold;
+    margin-bottom: 2em;
+    font-size: 20px;
+}
+
+.register-btn{
+    background: #82ae46 !important;
+    border-color: #82ae46 !important;
+    border-radius: 16px !important;
+}
+
+.register-btn:hover{
+    background: #538a06 !important;
+}
