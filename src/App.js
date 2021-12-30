@@ -46,6 +46,10 @@ function App() {
 
     // get quantity of product in cart
     const storage = JSON.parse(localStorage.getItem('cart'));
+    // if(storage.length==null)
+    // {
+    //     storage.length=0;   
+    // }
 
     //scroll to top
     const [visible, setVisible] = useState(false)
@@ -96,7 +100,7 @@ function App() {
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage.length}]</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage!=null?storage.length:0}]</Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
                                 <div>
                                     <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />}/> 

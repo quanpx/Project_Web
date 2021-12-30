@@ -8,34 +8,35 @@ import Register from "../Register/Register";
 const axios = require('axios');
 
 const Login = () => {
-    // let [logins,setLogins]=useState([]);
-    // const login = () => {
-    //     var username = document.getElementById("username").value;
-    //     var password = document.getElementById("password").value;
+    
+    let [authenticated, setAuthenticated] = useState(null);
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1"
+    const login = async () => {
+        var username = document.getElementById("basic_username").value;
+        var password = document.getElementById("basic_password").value;
 
 
-    //     var myHeaders = new Headers();
-    //     myHeaders.append("Content-type", "application/json");
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        let body = { username, password };
 
-       
-    //     const headers = {
-    //        'Authorization': 'Bearer '+logins[0].token,
-    //         'Content-Type':'application/json'
-    //     };
-    //     let body = { username, password };
-
-    //     axios.post("http://localhost:8080/api/v1/login", body)
-    //         .then(res => setLogins(res.data.data));   
-    // }
+        await axios.post(base_url + "/login", body, headers)
+            .then(res => res.data)
+            .then(data => {
+                setAuthenticated(data.data);
+            });
+        localStorage.setItem("authenticated", JSON.stringify(authenticated));
+    }
 
     const onFinish = (values) => {
         console.log('Success:', values);
     };
-    
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    
+
     return (
         <Container className="login ">
             <Form
@@ -59,46 +60,46 @@ const Login = () => {
                     label="Username"
                     name="username"
                     rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                        },
                     ]}
                 >
                     <Input />
                 </Form.Item>
-            
+
                 <Form.Item
                     label="Password"
                     name="password"
                     rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!',
-                    },
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
                     ]}
                 >
                     <Input.Password />
                 </Form.Item>
-            
+
                 <Form.Item
                     name="remember"
                     valuePropName="checked"
                     wrapperCol={{
-                    offset: 6,
-                    span: 14,
+                        offset: 6,
+                        span: 14,
                     }}
                 >
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
-            
+
                 <Form.Item
                     wrapperCol={{
-                    offset: 6,
-                    span: 14,
+                        offset: 6,
+                        span: 14,
                     }}
                 >
-                    <Button type="primary" htmlType="submit" className="login-btn">
+                    <Button type="primary" htmlType="submit" className="login-btn" onClick={login}>
                         Login
                     </Button>
                     <Button type="primary" className="register-btn" href="./register">
