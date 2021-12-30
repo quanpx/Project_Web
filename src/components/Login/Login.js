@@ -13,14 +13,14 @@ const Login = (props) => {
     const navigate = useNavigate();
     let [authenticated, setAuthenticated] = useState({});
 
-
     useEffect(() => {
         let authenticated = localStorage.getItem("authenticated");
         if (authenticated == null) {
             localStorage.setItem("authenticated", authenticated);
         }
     }, []);
-    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1"
+
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     const login = async () => {
         var username = document.getElementById("basic_username").value;
