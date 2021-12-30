@@ -111,6 +111,11 @@ const Cart = () => {
             total: Math.imul(d[i].product.price,d[i].boughtQuantity)
         });
     }
+    
+    var sum = 0;
+    for(let i = 0; i < data.length; i++){
+        sum += data[i].total;
+    }
 
 
     return(
@@ -121,23 +126,27 @@ const Cart = () => {
                 </div>
                 <div className="shop-content"  data-aos="fade-up" data-aos-duration="1000">
                     <div className="container content-detail text-center">
-                        <h3>Home products</h3>
-                        <h1>Products</h1>
+                        <h3>Cart</h3>
+                        <h1>Cart</h1>
                     </div>
                 </div>
             </div>
             <Container>
                 <div className="cart-content">
-                <Table 
-                    columns={columns} 
-                    dataSource={data} 
-                    pagination={{
-                        position: ["bottomCenter"],
-                        showSizeChanger: true,
-                        pageSizeOptions: ["5", "10", "20"]
-                    }}
-                    scroll={{ y: 480 }} 
-                />
+                    <Table 
+                        columns={columns} 
+                        dataSource={data} 
+                        pagination={
+                            // position: ["bottomCenter"],
+                            // showSizeChanger: true,
+                            // pageSizeOptions: ["5", "10", "20"]
+                            false
+                        }
+                        scroll={{ y: 480 }} 
+                    />
+                </div>
+                <div>
+                    Tong tien: {sum}
                 </div>
             </Container>
         </div>

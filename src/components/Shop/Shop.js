@@ -194,4 +194,4 @@ function Shop(){
     );
 };
 
-export default Shop;
+export default React.memo(Shop);
