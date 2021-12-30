@@ -122,7 +122,7 @@ function Home(){
                                     <div className='text text-center'>
                                         <h2>Vegetables</h2>
                                         <p>Protect the health of every home</p>
-                                        <p  className='btn btn-primary'>Shop now</p>
+                                        <a href="/Shop" className='btn btn-primary'>Shop now</a>
                                     </div>
                                 </div>
                                 <div className='col-md-6'>
