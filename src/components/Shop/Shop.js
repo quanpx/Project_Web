@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 import { Container, Modal, Button } from 'react-bootstrap';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -6,11 +6,29 @@ import { MdPriceCheck,MdOutlineDescription,MdProductionQuantityLimits} from 'rea
 import "./Shop.css";
 import ListProducts from "../Shop/ListProducts";
 import { notification } from 'antd';
+import axios from "axios";
 
 function Shop(props){
     // list product
-    const [data, setData] = useState(ListProducts);
+    const [data, setData] = useState([]);
+    const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
 
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+
+    let headers = {
+        'Authorization': "Bearer "+authenticated.token,
+        'Content-Type': 'application/json'
+    };
+
+
+    useEffect(async () => {
+      await  axios.get(base_url + "/product")
+            .then(res => res.data)
+            .then(data => {
+                setData(data.data);
+               
+            });
+    }, [])
     // tab active
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
