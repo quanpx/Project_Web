@@ -1,5 +1,6 @@
 .cart-content{
-    margin: 6em 0;
+    margin-top: 6em;
+    margin-bottom: 3em;
 }
 
 .cart-content .ant-table-thead > tr > th{
@@ -19,4 +20,31 @@
 
 .decrease-product, .increase-product:hover{
     cursor: pointer;
+}
+
+/* thanh toán tiền */
+.payment{
+    margin-bottom: 4em;
+    font-size: 20px;
+}
+
+.payment .sum{
+    color: red;
+}
+
+.payment .payment-text{
+    margin-top: 8px;
+}
+
+.pay-btn{
+    background: #82ae46;
+    color: #fff;
+    width: 120px;
+    border-color: #82ae46;
+    font-size: 16px;
+}
+
+.pay-btn:hover{
+    background: #3c6602;
+    border-color: #82ae46;
 }

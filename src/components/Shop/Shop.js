@@ -1,16 +1,36 @@
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 import { Container, Modal, Button } from 'react-bootstrap';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
 import { MdPriceCheck,MdOutlineDescription,MdProductionQuantityLimits} from 'react-icons/md';
 import "./Shop.css";
-import ListProducts from "../Shop/ListProducts";
 import { notification } from 'antd';
+import axios from "axios";
+import PageContent from "../PageContent/PageContent";
 
-function Shop(){
+function Shop(props){
     // list product
-    const [data, setData] = useState(ListProducts);
+    const [data, setData] = useState([]);
+    const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
 
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+
+    const [currentElm, setCurrentElm] = useState(8);
+    const [loadData,setLoadData] = useState([]);
+
+    let headers = {
+        'Authorization': "Bearer "+authenticated.token,
+        'Content-Type': 'application/json'
+    };
+
+    useEffect(async () => {
+        await  axios.get(base_url + "/product")
+            .then(res => res.data)
+            .then(data => {
+                setData(data.data); 
+                setLoadData(data.data.slice(0, currentElm));       
+            });
+    }, [])
     // tab active
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
@@ -26,15 +46,14 @@ function Shop(){
     
     // filter products
     const filterItem = (cateItem) => {
-        const updateItem = ListProducts.filter((curEle) => {
+        const updateItem = data.filter((curEle) => {
             return curEle.category === cateItem;
         });
-        setData(updateItem);
+        // setData(updateItem);
+        setLoadData(updateItem);
     } 
     
     // load more
-    const [currentElm, setCurrentElm] = useState(8);
-    const loadData = data.slice(0, currentElm);
     const loadMore = () => {
         setCurrentElm(currentElm + 4);
     }
@@ -45,9 +64,6 @@ function Shop(){
         setShow(false);
         setActiveModal(null);
     }
-    // const handleShow = () => {
-    //     setShow(true);
-    // }
     const [activeModal, setActiveModal] = useState(null);
     const clickHandler= (e, index) => {
         setActiveModal(index);
@@ -78,6 +94,7 @@ function Shop(){
             cart.push({product, boughtQuantity: 1});
         }
         localStorage.setItem('cart', JSON.stringify(cart));
+        props.handleIncreaseCart();
     }
 
     // notification add to cart success
@@ -90,24 +107,14 @@ function Shop(){
 
     return(
         <div>
-            <div className="shop-title">
-                <div className="shop-img">
-                    <img src="./images/slider-1.jpg" alt="shop-img"></img>
-                </div>
-                <div className="shop-content"  data-aos="fade-up" data-aos-duration="1000">
-                    <div className="container content-detail text-center">
-                        <h3>Home products</h3>
-                        <h1>Products</h1>
-                    </div>
-                </div>
-            </div>
+            <PageContent />
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
                         <div className=" text-center">
                             <ul className="products-category">
                                 <li>
-                                    <div onClick={() => setData(ListProducts)} className="tabItem active">All</div>
+                                    <div onClick={() => setLoadData(data)} className="tabItem active">All</div>
                                 </li>
                                 <li>
                                     <div onClick={() => filterItem('vegetables')} className="tabItem">Vegetables</div>
@@ -194,4 +201,4 @@ function Shop(){
     );
 };
 
-export default Shop;
+export default React.memo(Shop);
