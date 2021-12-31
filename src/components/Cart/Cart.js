@@ -175,10 +175,17 @@ const Cart = () => {
         sum += data[i].total;
     }
 
+    // cart content
+    const cartContent = {
+        line1: "Cart",
+        line2: "Cart nè",
+        line3: "Cart nữa nè",
+        line4: "Cart tiếp nè"
+    }
 
     return (
         <div >
-            <PageContent />
+            <PageContent content={cartContent}/>
             <Container>
                 <div className="cart-content">
                     <Table

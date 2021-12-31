@@ -100,8 +100,17 @@ function Shop(props) {
         });
     }
 
+    // shop content
+    const shopContent = {
+        line1: "Shop",
+        line2: "Shop nè",
+        line3: "Shop nữa nè",
+        line4: "Shop tiếp nè"
+    }
+
     return (
-            <PageContent />
+        <div>
+            <PageContent content={shopContent}/>
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
