@@ -7,10 +7,12 @@ import "./Shop.css";
 import { notification } from 'antd';
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
+import { useNavigate } from "react-router-dom";
 
 function Shop(props) {
+    const navigate=useNavigate();
     // list product
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
@@ -76,7 +78,12 @@ function Shop(props) {
     }
 
     const addToCard = async (id) => {
-        let headers = {
+        if(authenticated==null)
+        {
+            navigate("/login");
+        }else
+        {
+            let headers = {
             'Authorization': 'Bearer '+ authenticated.token,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -85,11 +92,13 @@ function Shop(props) {
         await axios.post(base_url + "/cart", { product_id: id }, { headers })
             .then(res => {
                 if (res.status == 200) {
-                    console.log(res.data);
+                   
                     openNotificationSuccess(product.name);
                 }
             }).catch(err=>{throw new Error(err)});
         props.handleIncreaseCart();
+        }
+        
     }
 
     // notification add to cart success
@@ -109,8 +118,9 @@ function Shop(props) {
     }
 
     return (
+      
         <div>
-            <PageContent content={shopContent}/>
+            <PageContent />
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
