@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Radio } from 'antd';
+
 import { Form, Input, InputNumber, Button, Select, notification, Space } from 'antd';
 import { Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
@@ -29,14 +31,17 @@ const validateMessages = {
 };
 
 const Register = () => {
-    const navigate =useNavigate()
+
+    const navigate = useNavigate()
+    const [type,setType]=useState("");
 
     const onFinish = (values) => {
         console.log(values);
     };
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept':'application/json'
     };
 
     const register = async () => {
@@ -46,16 +51,15 @@ const Register = () => {
         var email = document.getElementById("nest-messages_user_email").value;
         var address = document.getElementById("nest-messages_user_address").value;
         var phone = document.getElementById("nest-messages_user_phone").value;
-        var type = document.getElementById("nest-messages_user_type").value;
         var age = document.getElementById("nest-messages_user_age").value;
 
         var body = { name, username, password, email, age, address, phone, type };
         console.log(body);
-       
-        await axios.post(base_url + "/register", body, {headers})
-                    .then(res=>res.data)
-                    .then(() => {openNotificationWithIcon('success');navigate("/login")})
-                    .catch(err=>{throw new Error(err)});
+
+        await axios.post(base_url + "/register", body, { headers })
+            .then(res => res.data)
+            .then(() => { openNotificationWithIcon('success'); navigate("/login") })
+            .catch(err => { throw new Error(err) });
     }
     // register success
     const openNotificationWithIcon = type => {
@@ -65,6 +69,9 @@ const Register = () => {
                 ''
         });
     };
+    const onChange = e => {
+    setType(e.target.value);
+  };
 
     return (
         <Container className="register">
@@ -119,20 +126,6 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'age']}
-                    label="Age"
-                    rules={[
-                        {
-                            type: 'number',
-                            min: 0,
-                            max: 99,
-                        },
-                    ]}
-                >
-                    <InputNumber />
-                </Form.Item>
-
-                <Form.Item
                     name={['user', 'email']}
                     label="Email"
                     rules={[
@@ -166,26 +159,21 @@ const Register = () => {
                 >
                     <Input />
                 </Form.Item>
-                {/* <Form.Item
-                    name={['user', 'bankname']}
-                    label="Bank Name"
+
+                <Form.Item
+                    name={['user', 'age']}
+                    label="Age"
                     rules={[
                         {
-                            required: true,
+                            type: 'number',
+                            min: 0,
+                            max: 99,
                         },
                     ]}
                 >
-                    <Select>
-                        <Select.Option value="vietinbank">Vietinbank</Select.Option>
-                        <Select.Option value="vietcombank">Vietcombank</Select.Option>
-                        <Select.Option value="agribank">Agribank</Select.Option>
-                        <Select.Option value="bidv">BIDV</Select.Option>
-                        <Select.Option value="vpbank">VPBank</Select.Option>
-                        <Select.Option value="sacombank">Sacombank</Select.Option>
-                        <Select.Option value="acb">ACB</Select.Option>
-                        <Select.Option value="tpbank">TPBank</Select.Option>
-                    </Select>
-                </Form.Item> */}
+                    <InputNumber />
+                </Form.Item>
+
                 <Form.Item
                     name={['user', 'type']}
                     label="User type"
@@ -195,8 +183,12 @@ const Register = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Radio.Group onChange={onChange} value={type}>
+                        <Radio value={"FARMER"}>FARMER</Radio>
+                        <Radio value={"SOCIETY"}>SOCIETY</Radio>
+                    </Radio.Group>
                 </Form.Item>
+                
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
                     <Space>
                         <Button

@@ -8,28 +8,46 @@ import "./Cart.css";
 import DeleteProduct from "./DeleteProduct";
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
+import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
 
 const Cart = () => {
+    const navigate = useNavigate();
     // refresh component
     const [value, setValue] = useState();
-    const [cart,setCart]=useState(null);
+    const [cart, setCart] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const refresh = () => {
         setValue({});
     }
-     let headers = {
-        'Authorization': 'Bearer ' + authenticated.token,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    };
+
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     useEffect(async () => {
-      await  axios.get(base_url + "/cart",headers={headers})
-            .then(res => res.data)
-            .then(data => {
-                setCart(data.data);
-            });
-    },[]);
+
+        if (authenticated == null) {
+            openNotificationWarning("Bạn cần đăng nhập trước nhé!");
+            navigate("/login");
+        } else {
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
+            await axios.get(base_url + "/cart", headers = { headers })
+                .then(res => res.data)
+                .then(data => {
+                    setCart(data.data);
+                });
+        }
+
+    }, []);
+    const openNotificationWarning = (message) => {
+        notification.warning({
+            message: message,
+            duration: 3
+        });
+    }
+
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
@@ -51,17 +69,17 @@ const Cart = () => {
         cart.find(item => {
             if (item.product_id === id)
                 item.bought_quantity += 1;
-                refresh();
+            refresh();
         }
         )
         console.log(cart)
     }
 
     // send payment
-    let cartData=[]
+    let cartData = []
     const paymentHandle = async () => {
-        
-        if (cart!=null) {
+
+        if (cart != null) {
             for (let i = 0; i < cart.length; i++) {
                 cartData.push({
                     product_id: cart[i].product_id,
@@ -72,7 +90,11 @@ const Cart = () => {
                 total_amount: sum,
                 cart: cartData
             }
-
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
             await axios.post(base_url + "/order", paymentData, { headers })
                 .then(res => res.data)
                 .then(data => {
@@ -143,7 +165,7 @@ const Cart = () => {
     ];
 
     var d = [];
-    if (cart!=null) {
+    if (cart != null) {
         d = cart;
     } else {
         console.log("Giỏ hàng rỗng");
@@ -180,7 +202,7 @@ const Cart = () => {
 
     return (
         <div >
-            <PageContent content={cartContent}/>
+            <PageContent content={cartContent} />
             <Container>
                 <div className="cart-content">
                     <Table

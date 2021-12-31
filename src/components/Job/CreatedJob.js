@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row ,Spinner} from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
 
@@ -11,6 +11,7 @@ const CreatedJob = () => {
 
     const [job, setJob] = useState({});
     const [receivers, setReceivers] = useState(null)
+    const [jobStatus,setJobStatus]=useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
@@ -24,13 +25,16 @@ const CreatedJob = () => {
         await axios.get(base_url + "/job/createdJob/" + id, { headers })
             .then(res => res.data)
             .then(data => {
-                console.log(data.data)
                 setJob(data.data.job);
                 setReceivers(data.data.receivers);
+                setJobStatus(data.data.job.status);
 
             }).catch(err => { throw Error(err) });
     }, []);
 
+    const handleAcceptJob =()=>{
+        setJobStatus("PENDING");
+    }
     return (
         <Container>
 
@@ -48,7 +52,7 @@ const CreatedJob = () => {
                                     <p>{job.name}</p>
                                     <p>{job.image_url}</p>
                                     <p>{job.description}</p>
-                                    <p>{job.status}</p>
+                                    <p>{jobStatus}</p>
 
                                 </div>
                             </div>
@@ -57,8 +61,10 @@ const CreatedJob = () => {
                             <div><h3>Receivers</h3>
                                 {
                                     receivers.map((receiver, idx) => {
+                                        if (receiver.status != "REJECTED") {
+                                            return <Receiver key={idx} job={job} authenticated={authenticated} handleAcceptJob={()=>handleAcceptJob()} receiver={receiver} />
+                                        }
 
-                                        return <Receiver key={idx} job={job.id} authenticated={authenticated} receiver={receiver} />
                                     })
                                 }
                             </div>

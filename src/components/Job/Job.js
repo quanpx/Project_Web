@@ -88,7 +88,11 @@ function Job() {
                                                     {element.status}
                                                 </Card.Text>
                                                 <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
-                                                <Button className="getJob-btn" onClick={(e) => clickHandler(e,index)}>Nhận việc</Button>
+                                                {
+                                                    element.status=="PENDING"?  <Button className="getJob-btn" disabled>Nhận việc</Button>:
+                                                      <Button className="getJob-btn" onClick={(e) => clickHandler(e,index)}>Nhận việc</Button>
+                                                }
+                                              
                                                     <Modal show={activeModal === index} onHide={handleClose} centered>
                                                             <Modal.Header closeButton>
                                                                 <Modal.Title>Nhận việc</Modal.Title>

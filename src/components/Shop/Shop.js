@@ -80,6 +80,7 @@ function Shop(props) {
     const addToCard = async (id) => {
         if(authenticated==null)
         {
+            openNotificationWarning("Bạn cần đăng nhập trước nhé !")
             navigate("/login");
         }else
         {
@@ -108,6 +109,13 @@ function Shop(props) {
             duration: 3
         });
     }
+     const openNotificationWarning = (message) => {
+        notification.warning({
+            message: message,
+            duration: 3
+        });
+    }
+
 
     // shop content
     const shopContent = {
