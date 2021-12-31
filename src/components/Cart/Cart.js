@@ -50,15 +50,14 @@ const Cart = () => {
     }
     // increase product quantity
     const increaseQuantity = (id) => {
-        let storage = JSON.parse(localStorage.getItem('cart'));
-        storage.find(item => {
-            if (item.product.id === id)
-                item.boughtQuantity += 1;
-            refresh();
-        }
-        )
-        localStorage.setItem('cart', JSON.stringify(storage));
-        // document.location.reload();
+        
+        let cartUpdate=cart.map(product=>{
+            if(product.product_id==id)
+            {
+                product.bought_quantity+=1;
+            }
+        })
+        setCart(cartUpdate);
     }
 
     // send payment
