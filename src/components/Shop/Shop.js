@@ -120,7 +120,7 @@ function Shop(props) {
     return (
       
         <div>
-            <PageContent />
+            <PageContent content={shopContent}/>
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
