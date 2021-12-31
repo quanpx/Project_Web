@@ -202,7 +202,7 @@ const Cart = () => {
                         <span className="sum"> ₫{sum}</span>
                         &nbsp; &nbsp;
                     </div>
-                    <div className="col-md-3 col-sm-4">
+                    <div className="col-md-3 col-sm-4 text-center">
                         <button className="btn btn-primary pay-btn" onClick={paymentHandle}>
                             Mua hàng
                         </button>

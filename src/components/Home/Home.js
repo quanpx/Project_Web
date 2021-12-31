@@ -176,7 +176,7 @@ function Home(){
                                             <div className='agri-item'>
                                                 <div className='agri-img'>
                                                     <img className='img-fluid' src={image} alt="agri-img"/>
-                                                    <span className='sale'>{sale}</span>
+                                                    <span className='sale'>{sale} 30%</span>
                                                 </div>
                                                 <div className='text text-center px-3 py-3 pb-4'>
                                                     <h3>{name}</h3>
@@ -186,9 +186,6 @@ function Home(){
                                                     </div>
                                                     <div className='bottom-area d-flex px-3'>
                                                         <div className='m-auto d-flex'>
-                                                            <a href="#" className='add-to-card d-flex justify-content-center align-items-center text-center'>
-                                                                <BsList />
-                                                            </a>
                                                             <a href="#" className='buy-now d-flex justify-content-center align-items-center text-center'>
                                                                 <FaShoppingCart />
                                                             </a>

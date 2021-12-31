@@ -46,7 +46,7 @@ const Register = () => {
         var type = document.getElementById("nest-messages_user_type").value;
         var age = document.getElementById("nest-messages_user_age").value;
 
-        var body = { name, username, password, email,age, address, phone, type };
+        var body = { name, username, password, email, age, address, phone, type };
         console.log(body);
        
         await axios.post(base_url + "/register", body, headers)
