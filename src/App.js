@@ -103,6 +103,7 @@ function App() {
     const handleLogout = () => {
         localStorage.removeItem("authenticated");
         setAuthenticated(null);
+        setCart(null);
 
     }
     const onLogined = (newAuth) => {
@@ -149,9 +150,9 @@ function App() {
                         <Nav className="me-auto">
                         </Nav>
                         <Nav>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Trang Chủ</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Cửa Hàng</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Công việc</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{cart != null ? cart.length : 0}]</Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
 
@@ -166,13 +167,13 @@ function App() {
 
                             </Nav.Link>
                             <NavDropdown className='log-dropdown'>
-                                <NavDropdown.Item as={Link} to={"/user"}>User</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={"/user"}>Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 {authenticated == null ?
-                                    <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item> :
-                                    <NavDropdown.Item as={Link} to={"/user/yourJobs"}>Your Jobs</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to={"/login"}>Đăng nhập</NavDropdown.Item> :
+                                    <NavDropdown.Item as={Link} to={"/user/yourJobs"}>Công việc</NavDropdown.Item>
                                 }
-                                <NavDropdown.Item as={Link} to={"/"} onClick={handleLogout}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={"/"} onClick={handleLogout}>Đăng xuất</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
