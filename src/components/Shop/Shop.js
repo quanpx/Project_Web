@@ -140,7 +140,7 @@ function Shop(props) {
                                         <div className='agri-item'>
                                             <div className='agri-img'>
                                                 <img className='img-fluid' src={element.image_url} alt="agri-img" />
-                                                <span className='sale'>{element.discount}</span>
+                                                <span className='sale'>{element.discount}%</span>
                                                 <div className="detail btn btn-primary" onClick={(e) => clickHandler(e, index)}>
                                                     Detail
                                                 </div>
