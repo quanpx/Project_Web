@@ -1,11 +1,10 @@
 {
   "name": "project",
   "version": "0.1.0",
-  "engines":
-  {
+  "engines":{
     "node":"17.3.0",
     "npm":"8.3.0"
-  }
+  },
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
