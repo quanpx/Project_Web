@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import "./Cart.css";
 import DeleteProduct from "./DeleteProduct";
 import axios from "axios";
+import PageContent from "../PageContent/PageContent";
 
 const Cart = () => {
     // refresh component
@@ -177,17 +178,7 @@ const Cart = () => {
 
     return (
         <div >
-            <div className="shop-title">
-                <div className="shop-img">
-                    <img src="./images/slider-3.jpg" alt="shop-img"></img>
-                </div>
-                <div className="shop-content" data-aos="fade-up" data-aos-duration="1000">
-                    <div className="container content-detail text-center">
-                        <h3>Cart</h3>
-                        <h1>Cart</h1>
-                    </div>
-                </div>
-            </div>
+            <PageContent />
             <Container>
                 <div className="cart-content">
                     <Table
