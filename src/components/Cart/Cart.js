@@ -16,7 +16,7 @@ const Cart = () => {
     const refresh = () => {
         setValue({});
     }
-    let headers = {
+     let headers = {
         'Authorization': 'Bearer ' + authenticated.token,
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -61,20 +61,19 @@ const Cart = () => {
     }
 
     // send payment
+    let cartData=[]
     const paymentHandle = async () => {
-        console.log(headers);
-        const storage = JSON.parse(localStorage.getItem('cart'));
-        var cart = [];
-        if (storage) {
-            for (let i = 0; i < d.length; i++) {
-                cart.push({
-                    product_id: d[i].product.id,
-                    quantity: d[i].boughtQuantity
+        
+        if (cart!=null) {
+            for (let i = 0; i < cart.length; i++) {
+                cartData.push({
+                    product_id: cart[i].product_id,
+                    quantity: cart[i].bought_quantity
                 })
             }
             var paymentData = {
                 total_amount: sum,
-                cart: cart
+                cart: cartData
             }
 
             await axios.post(base_url + "/order", paymentData, { headers })

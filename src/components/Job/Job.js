@@ -41,7 +41,7 @@ function Job() {
             deal_price: user_salary,
             comment: user_note
         }
-        await axios.post(base_url+"/receiveJob/"+id,
+        await axios.post(base_url+"/job/receiveJob/"+id,
                 body,
                 {headers}
             )
