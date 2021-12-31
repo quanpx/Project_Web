@@ -3,7 +3,6 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { Container } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import "./Login.css";
-import Register from "../Register/Register";
 import { Navigate, useNavigate } from "react-router-dom";
 const axios = require('axios');
 
