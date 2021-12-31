@@ -6,6 +6,7 @@ import { MdPriceCheck, MdOutlineDescription, MdProductionQuantityLimits } from '
 import "./Shop.css";
 import { notification } from 'antd';
 import axios from "axios";
+import PageContent from "../PageContent/PageContent";
 
 function Shop(props) {
     // list product
@@ -101,7 +102,7 @@ function Shop(props) {
 
     return (
         <div>
-            <div className="shop-title">
+            {/* <div className="shop-title">
                 <div className="shop-img">
                     <img src="./images/slider-1.jpg" alt="shop-img"></img>
                 </div>
@@ -111,7 +112,8 @@ function Shop(props) {
                         <h1>Products</h1>
                     </div>
                 </div>
-            </div>
+            </div> */}
+            <PageContent />
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">

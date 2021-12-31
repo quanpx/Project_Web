@@ -22,27 +22,30 @@ function Job() {
 
     //get job pop up
     const [show, setShow] = useState(false);
-    const handleClose = async () => {
+
+    const handleClose = () => {
         setShow(false);
         setActiveModal(null);
+    }
+
+    const handleGetjob = async (id) => {
+        handleClose();
         let headers = {
             'Authorization': 'Bearer ' + authenticated.token,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         };
-        const user_salary = document.getElementById('user_salary').value;
-        const user_note = document.getElementById('user_note').value
+        const user_salary = document.getElementById(`user_salary${id}`).value;
+        const user_note = document.getElementById(`user_note${id}`).value
         let body = {
             deal_price: user_salary,
             comment: user_note
         }
-        console.log(body);
-        // console.log(body)
-        // await axios.post(base_url+"/receiveJob/"+id,
-        //         body,
-        //         {headers}
-        //     )
-        //     .then(res => console.log(res));
+        await axios.post(base_url+"/receiveJob/"+id,
+                body,
+                {headers}
+            )
+            .then(res => console.log(res));
     }
 
     const [activeModal, setActiveModal] = useState(null);
@@ -98,18 +101,17 @@ function Job() {
                                                                 <Modal.Title>Nhận việc</Modal.Title>
                                                             </Modal.Header>
                                                             <Modal.Body>
-                                                            <Form {...layout}>
-                                                                
+                                                            <Form {...layout}>    
                                                                 <Form.Item name={['user', 'salary']} label="Lương mong muốn" rules={[{ type: 'number', min: 100000, max: 10000000 }]}>
-                                                                    <InputNumber step={100000}/>
+                                                                    <InputNumber step={100000} id={`user_salary${element.id}`}/>
                                                                 </Form.Item>
                                                                 <Form.Item name={['user', 'note']} label="Yêu cầu">
-                                                                    <Input.TextArea />
+                                                                    <Input.TextArea id={`user_note${element.id}`}/>
                                                                 </Form.Item>
                                                             </Form>
                                                             </Modal.Body>
                                                             <Modal.Footer>
-                                                                <Button variant="secondary" onClick={handleClose()}>
+                                                                <Button variant="secondary" onClick={() => handleGetjob(element.id)}>
                                                                     Nhận việc
                                                                 </Button>
                                                             </Modal.Footer>
