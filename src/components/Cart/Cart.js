@@ -33,11 +33,10 @@ const Cart = () => {
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
-        let storage = JSON.parse(localStorage.getItem('cart'));
-        storage.find(item => {
-            if (item.product.id === id) {
-                if (item.boughtQuantity > 0) {
-                    item.boughtQuantity -= 1;
+        cart.find(item => {
+            if (item.product_id === id) {
+                if (item.bought_quantity > 0) {
+                    item.bought_quantity -= 1;
                     refresh();
                 } else {
                     <DeleteProduct />
@@ -45,19 +44,17 @@ const Cart = () => {
             }
         }
         )
-        localStorage.setItem('cart', JSON.stringify(storage));
-
+        console.log(cart)
     }
     // increase product quantity
     const increaseQuantity = (id) => {
-        
-        let cartUpdate=cart.map(product=>{
-            if(product.product_id==id)
-            {
-                product.bought_quantity+=1;
-            }
-        })
-        setCart(cartUpdate);
+        cart.find(item => {
+            if (item.product_id === id)
+                item.bought_quantity += 1;
+                refresh();
+        }
+        )
+        console.log(cart)
     }
 
     // send payment
@@ -173,10 +170,17 @@ const Cart = () => {
         sum += data[i].total;
     }
 
+    // cart content
+    const cartContent = {
+        line1: "Cart",
+        line2: "Cart nè",
+        line3: "Cart nữa nè",
+        line4: "Cart tiếp nè"
+    }
 
     return (
         <div >
-            <PageContent />
+            <PageContent content={cartContent}/>
             <Container>
                 <div className="cart-content">
                     <Table

@@ -109,21 +109,18 @@ function Shop(props) {
         });
     }
 
+    // shop content
+    const shopContent = {
+        line1: "Shop",
+        line2: "Shop nè",
+        line3: "Shop nữa nè",
+        line4: "Shop tiếp nè"
+    }
+
     return (
       
         <div>
-            {/* <div className="shop-title">
-                <div className="shop-img">
-                    <img src="./images/slider-1.jpg" alt="shop-img"></img>
-                </div>
-                <div className="shop-content" data-aos="fade-up" data-aos-duration="1000">
-                    <div className="container content-detail text-center">
-                        <h3>Home products</h3>
-                        <h1>Products</h1>
-                    </div>
-                </div>
-            </div> */}
-            <PageContent />
+            <PageContent content={shopContent}/>
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
@@ -153,7 +150,7 @@ function Shop(props) {
                                         <div className='agri-item'>
                                             <div className='agri-img'>
                                                 <img className='img-fluid' src={element.image_url} alt="agri-img" />
-                                                <span className='sale'>{element.discount}</span>
+                                                <span className='sale'>{element.discount}%</span>
                                                 <div className="detail btn btn-primary" onClick={(e) => clickHandler(e, index)}>
                                                     Detail
                                                 </div>
