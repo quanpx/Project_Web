@@ -29,6 +29,7 @@ import Register from './components/Register/Register';
 import YourJob from './components/Job/YourJob';
 import CreatedJob from './components/Job/CreatedJob';
 import JobDetail from './components/Job/JobDetail';
+import axios from 'axios';
 
 function App() {
 
@@ -36,11 +37,30 @@ function App() {
     //create aos effect (fade up) when scroll
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    const [storage, setStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    const [cart, setCart] = useState(null);
+
     useEffect(() => {
 
         AOS.init();
     });
+
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+    useEffect(async () => {
+
+        if (authenticated != null) {
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
+            await axios.get(base_url + "/cart", headers = { headers })
+                .then(res => res.data)
+                .then(data => {
+                    setCart(data.data);
+                });
+        }
+
+    }, []);
 
     //change nav color when scroll
     const [navColor, setNavColor] = useState(false);
@@ -88,8 +108,17 @@ function App() {
     const onLogined = (newAuth) => {
         setAuthenticated(newAuth);
     }
-    const handleIncreaseCart = () => {
-        setStorage(JSON.parse(localStorage.getItem('cart')));
+    const handleIncreaseCart = async () => {
+        let headers = {
+            'Authorization': 'Bearer ' + authenticated.token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
+        await axios.get(base_url + "/cart", headers = { headers })
+            .then(res => res.data)
+            .then(data => {
+                setCart(data.data);
+            });
     }
 
     window.addEventListener('scroll', toggleVisible);
@@ -123,7 +152,7 @@ function App() {
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Home</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Shop</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Job</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{storage != null ? storage.length : 0}]</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{cart != null ? cart.length : 0}]</Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
 
                                 {

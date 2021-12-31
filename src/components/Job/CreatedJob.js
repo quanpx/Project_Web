@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Col, Container, Row ,Spinner} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
 
@@ -9,7 +10,7 @@ const CreatedJob = () => {
     const { id } = useParams();
 
     const [job, setJob] = useState({});
-    const [receivers, setReceivers] = useState([])
+    const [receivers, setReceivers] = useState(null)
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
@@ -31,36 +32,47 @@ const CreatedJob = () => {
     }, []);
 
     return (
-        <div>
+        <Container>
+
+
             {
+
                 receivers != null ?
-                    <div>
-                        <h1>Created Job </h1>
-                        <div>
-                            <div><h3>Job detail</h3>
+                    <Row>
+                        <Col>
+                            <h1>Created Job </h1>
+                            <div>
+                                <div><h3>Job detail</h3>
 
-                                <p>{job.id}</p>
-                                <p>{job.name}</p>
-                                <p>{job.image_url}</p>
-                                <p>{job.description}</p>
-                                <p>{job.status}</p>
+                                    <p>{job.id}</p>
+                                    <p>{job.name}</p>
+                                    <p>{job.image_url}</p>
+                                    <p>{job.description}</p>
+                                    <p>{job.status}</p>
 
+                                </div>
                             </div>
-                        </div>
-                        <div><h3>Receivers</h3>
-                            {
-                                receivers.map((receiver, idx) => {
+                        </Col>
+                        <Col>
+                            <div><h3>Receivers</h3>
+                                {
+                                    receivers.map((receiver, idx) => {
 
-                                    return <Receiver key={idx} job={job.id} authenticated={authenticated} receiver={receiver} />
-                                })
-                            }
-                        </div>
-                    </div> :
-                    <h1>Loading...</h1>
+                                        return <Receiver key={idx} job={job.id} authenticated={authenticated} receiver={receiver} />
+                                    })
+                                }
+                            </div>
+                        </Col>
+                    </Row> :
+                    <Spinner animation="border" role="status" variant="success">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
             }
 
 
-        </div >
+
+        </Container>
+
     )
 }
 export default React.memo(CreatedJob);

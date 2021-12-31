@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import "./Register.css";
 import axios from "axios";
 
+
 const layout = {
     labelCol: {
         span: 8,
@@ -53,7 +54,8 @@ const Register = () => {
        
         await axios.post(base_url + "/register", body, {headers})
                     .then(res=>res.data)
-                    .then(() => {openNotificationWithIcon('success');navigate("/login")});
+                    .then(() => {openNotificationWithIcon('success');navigate("/login")})
+                    .catch(err=>{throw new Error(err)});
     }
     // register success
     const openNotificationWithIcon = type => {

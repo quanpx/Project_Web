@@ -11,10 +11,10 @@ const JobDetail = () => {
     const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    let headers = {
-        'Authorization': "Bearer "+authenticated.token,
-        'Content-Type': 'application/json'
-    };
+    // let headers = {
+    //     'Authorization': "Bearer "+authenticated.token,
+    //     'Content-Type': 'application/json'
+    // };
 
     useEffect(async () => {
       await  axios.get(base_url + "/job/detail/"+id)

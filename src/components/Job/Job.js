@@ -12,10 +12,6 @@ function Job() {
     const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    let headers = {
-        'Authorization': "Bearer "+authenticated.token,
-        'Content-Type': 'application/json'
-    };
 
     useEffect(async () => {
       await  axios.get(base_url + "/job")
@@ -80,11 +76,10 @@ function Job() {
                                 return (
                                     <div className="col-sm-6 col-md-4" key={index} data-aos="zoom-in-up">
                                         <Card className="card-active">
-                                            <Card.Img variant="top" src={element.image} />
+                                            <Card.Img variant="top" src={element.image_url} />
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    {element.image_url}<br />
                                                     {element.address}<br />
                                                     {element.salary}<br />
                                                     {element.due}<br />
