@@ -14,7 +14,7 @@
     margin-right: 20px;
 }
 
-.list-jobs .btn, .modal-footer .btn{
+.list-jobs .detail-btn,.list-jobs .getJob-btn{
     background: #82ae46;
     color: #fff;
     border-color: #82ae46;

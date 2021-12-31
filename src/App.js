@@ -26,6 +26,7 @@ import Shop from './components/Shop/Shop';
 import User from './components/User/User';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import JobDetail from './components/Job/JobDetail';
 
 function App() {
 
@@ -157,6 +158,9 @@ function App() {
                     />
                     <Route path="/job"
                         element={<Job />}
+                    />
+                    <Route path="job-detail/:id"
+                        element={<JobDetail />}
                     />
                     <Route path="/cart"
                         element={<Cart />}
