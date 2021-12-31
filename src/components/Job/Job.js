@@ -11,10 +11,6 @@ function Job() {
     const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    let headers = {
-        'Authorization': "Bearer "+authenticated.token,
-        'Content-Type': 'application/json'
-    };
 
     useEffect(async () => {
       await  axios.get(base_url + "/job")
@@ -40,6 +36,7 @@ function Job() {
             deal_price: user_salary,
             comment: user_note
         }
+        console.log(body);
         // console.log(body)
         // await axios.post(base_url+"/receiveJob/"+id,
         //         body,
@@ -85,11 +82,10 @@ function Job() {
                                 return (
                                     <div className="col-sm-6 col-md-4" key={index} data-aos="zoom-in-up">
                                         <Card className="card-active">
-                                            <Card.Img variant="top" src={element.image} />
+                                            <Card.Img variant="top" src={element.image_url} />
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    {element.image_url}<br />
                                                     {element.address}<br />
                                                     {element.salary}<br />
                                                     {element.due}<br />
@@ -113,7 +109,7 @@ function Job() {
                                                             </Form>
                                                             </Modal.Body>
                                                             <Modal.Footer>
-                                                                <Button variant="secondary" onClick={handleClose}>
+                                                                <Button variant="secondary" onClick={handleClose()}>
                                                                     Nhận việc
                                                                 </Button>
                                                             </Modal.Footer>

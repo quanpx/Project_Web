@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import "./Register.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const layout = {
     labelCol: {
@@ -27,6 +28,7 @@ const validateMessages = {
 };
 
 const Register = () => {
+    const navigate=useNavigate();
 
     const onFinish = (values) => {
         console.log(values);
@@ -51,9 +53,8 @@ const Register = () => {
        
         await axios.post(base_url + "/register", body, headers)
                     .then(res=>res.data)
-                    .then(data=>console.log(data));
-
-
+                    .then(data=>navigate("/login"))
+                    .catch(err=>{throw new Error(err)});
     }
     // register success
     const openNotificationWithIcon = type => {

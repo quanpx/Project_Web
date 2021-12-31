@@ -11,6 +11,7 @@ import axios from "axios";
 const Cart = () => {
     // refresh component
     const [value, setValue] = useState();
+    const [cart,setCart]=useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const refresh = () => {
         setValue({});
@@ -21,6 +22,13 @@ const Cart = () => {
         'Accept': 'application/json'
     };
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+    useEffect(async () => {
+      await  axios.get(base_url + "/cart",headers={headers})
+            .then(res => res.data)
+            .then(data => {
+                setCart(data.data);
+            });
+    },[]);
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
@@ -139,25 +147,24 @@ const Cart = () => {
     ];
 
     var d = [];
-    const storage = localStorage.getItem('cart');
-    if (storage) {
-        d = JSON.parse(storage);
+    if (cart!=null) {
+        d = cart;
     } else {
         console.log("Giỏ hàng rỗng");
     }
     var data = [];
     for (let i = 0; i < d.length; i++) {
         data.push({
-            key: d[i].product.id,
-            product_img: <img src={d[i].product.image} alt="product-img" width="75" height="75"></img>,
-            product_name: d[i].product.name,
-            price: d[i].product.price,
+            key: d[i].product_id,
+            product_img: <img src={d[i].image_url} alt="product-img" width="75" height="75"></img>,
+            product_name: d[i].name,
+            price: d[i].price,
             quantity: <div>
-                <AiOutlineMinus className="decrease-product" onClick={() => decreaseQuantity(d[i].product.id)} /> &nbsp; &nbsp;
-                {d[i].boughtQuantity} &nbsp; &nbsp;
-                <AiOutlinePlus className="increase-product" onClick={() => increaseQuantity(d[i].product.id)} />
+                <AiOutlineMinus className="decrease-product" onClick={() => decreaseQuantity(d[i].product_id)} /> &nbsp; &nbsp;
+                {d[i].bought_quantity} &nbsp; &nbsp;
+                <AiOutlinePlus className="increase-product" onClick={() => increaseQuantity(d[i].product_id)} />
             </div>,
-            total: Math.imul(d[i].product.price, d[i].boughtQuantity)
+            total: Math.imul(d[i].price, d[i].bought_quantity)
         });
     }
 
