@@ -4,7 +4,6 @@ import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaShoppingCart } from 'react-icons/fa';
 import { MdPriceCheck,MdOutlineDescription,MdProductionQuantityLimits} from 'react-icons/md';
 import "./Shop.css";
-import ListProducts from "../Shop/ListProducts";
 import { notification } from 'antd';
 import axios from "axios";
 
@@ -15,18 +14,20 @@ function Shop(props){
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
+    const [currentElm, setCurrentElm] = useState(8);
+    const [loadData,setLoadData] = useState([]);
+
     let headers = {
         'Authorization': "Bearer "+authenticated.token,
         'Content-Type': 'application/json'
     };
 
-
     useEffect(async () => {
-      await  axios.get(base_url + "/product")
+        await  axios.get(base_url + "/product")
             .then(res => res.data)
             .then(data => {
-                setData(data.data);
-               
+                setData(data.data); 
+                setLoadData(data.data.slice(0, currentElm));       
             });
     }, [])
     // tab active
@@ -44,15 +45,14 @@ function Shop(props){
     
     // filter products
     const filterItem = (cateItem) => {
-        const updateItem = ListProducts.filter((curEle) => {
+        const updateItem = data.filter((curEle) => {
             return curEle.category === cateItem;
         });
-        setData(updateItem);
+        // setData(updateItem);
+        setLoadData(updateItem);
     } 
     
     // load more
-    const [currentElm, setCurrentElm] = useState(8);
-    const loadData = data.slice(0, currentElm);
     const loadMore = () => {
         setCurrentElm(currentElm + 4);
     }
@@ -63,9 +63,6 @@ function Shop(props){
         setShow(false);
         setActiveModal(null);
     }
-    // const handleShow = () => {
-    //     setShow(true);
-    // }
     const [activeModal, setActiveModal] = useState(null);
     const clickHandler= (e, index) => {
         setActiveModal(index);
@@ -95,8 +92,6 @@ function Shop(props){
         }else{
             cart.push({product, boughtQuantity: 1});
         }
-
-        
         localStorage.setItem('cart', JSON.stringify(cart));
         props.handleIncreaseCart();
     }
@@ -128,7 +123,7 @@ function Shop(props){
                         <div className=" text-center">
                             <ul className="products-category">
                                 <li>
-                                    <div onClick={() => setData(ListProducts)} className="tabItem active">All</div>
+                                    <div onClick={() => setLoadData(data)} className="tabItem active">All</div>
                                 </li>
                                 <li>
                                     <div onClick={() => filterItem('vegetables')} className="tabItem">Vegetables</div>

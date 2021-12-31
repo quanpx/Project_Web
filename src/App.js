@@ -28,6 +28,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import YourJob from './components/Job/YourJob';
 import CreatedJob from './components/Job/CreatedJob';
+import JobDetail from './components/Job/JobDetail';
 
 function App() {
 
@@ -162,6 +163,9 @@ function App() {
                     />
                     <Route path="/job"
                         element={<Job />}
+                    />
+                    <Route path="job-detail/:id"
+                        element={<JobDetail />}
                     />
                     <Route path="/cart"
                         element={<Cart />}

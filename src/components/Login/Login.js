@@ -9,6 +9,7 @@ const axios = require('axios');
 
 const Login = (props) => {
 
+    //login handle
     const navigate = useNavigate();
     let [authenticated, setAuthenticated] = useState({});
 
@@ -39,13 +40,9 @@ const Login = (props) => {
                 props.action(data.data);
                 navigate("/");
             })
-
-
-
-
-
     }
 
+    // login notification
     const onFinish = (values) => {
         console.log('Success:', values);
     };
