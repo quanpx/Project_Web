@@ -26,15 +26,17 @@ import Shop from './components/Shop/Shop';
 import User from './components/User/User';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import YourJob from './components/Job/YourJob';
+import CreatedJob from './components/Job/CreatedJob';
 import JobDetail from './components/Job/JobDetail';
 
 function App() {
 
-    
+
     //create aos effect (fade up) when scroll
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    const [storage,setStorage]=useState(JSON.parse(localStorage.getItem('cart')));
+    const [storage, setStorage] = useState(JSON.parse(localStorage.getItem('cart')));
     useEffect(() => {
 
         AOS.init();
@@ -53,7 +55,7 @@ function App() {
     window.addEventListener('scroll', changeNavColor)
 
     // get quantity of product in cart
-   // const storage = JSON.parse(localStorage.getItem('cart'));
+    // const storage = JSON.parse(localStorage.getItem('cart'));
     // if(storage.length==null)
     // {
     //     storage.length=0;   
@@ -81,12 +83,12 @@ function App() {
     const handleLogout = () => {
         localStorage.removeItem("authenticated");
         setAuthenticated(null);
-        
+
     }
-    const onLogined =(newAuth)=>{
+    const onLogined = (newAuth) => {
         setAuthenticated(newAuth);
     }
-    const handleIncreaseCart = ()=>{
+    const handleIncreaseCart = () => {
         setStorage(JSON.parse(localStorage.getItem('cart')));
     }
 
@@ -127,7 +129,7 @@ function App() {
                                 {
                                     authenticated != null ?
                                         <div>
-                                            <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp; 
+                                            <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp;
                                             <span>{authenticated.user.name}</span>
                                         </div> :
                                         <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
@@ -137,7 +139,10 @@ function App() {
                             <NavDropdown className='log-dropdown'>
                                 <NavDropdown.Item as={Link} to={"/user"}>User</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item>
+                                {authenticated == null ?
+                                    <NavDropdown.Item as={Link} to={"/login"}>Login</NavDropdown.Item> :
+                                    <NavDropdown.Item as={Link} to={"/user/yourJobs"}>Your Jobs</NavDropdown.Item>
+                                }
                                 <NavDropdown.Item as={Link} to={"/"} onClick={handleLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
@@ -154,7 +159,7 @@ function App() {
                         element={<Home />}
                     />
                     <Route path="/shop"
-                        element={<Shop handleIncreaseCart={handleIncreaseCart}/>}
+                        element={<Shop handleIncreaseCart={handleIncreaseCart} />}
                     />
                     <Route path="/job"
                         element={<Job />}
@@ -169,12 +174,17 @@ function App() {
                         element={<User />}
                     />
                     <Route path="/login"
-                        element={<Login action={onLogined}/>}
+                        element={<Login action={onLogined} />}
                     />
                     <Route path="/register"
                         element={<Register />}
                     />
-
+                    <Route path="/user/yourJobs"
+                        element={<YourJob />}
+                    />
+                    <Route path="user/createdJob/:id"
+                        element={<CreatedJob />}
+                    />
                 </Routes>
             </div>
 
