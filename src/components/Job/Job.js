@@ -59,17 +59,19 @@ function Job() {
         wrapperCol: { span: 16 },
     };
       
+    // job content
+    const jobContent = {
+        line1: "Job",
+        line2: "Job nè",
+        line3: "Job nữa nè",
+        line4: "Job tiếp nè"
+    }
 
     return (
         <>
-            <PageContent />
+            <PageContent content={jobContent}/>
             <Container>
                 <div className="jobs-content">
-                    <div className="jobs-title text-title text-center" >
-                        <h1>Agricultural Products</h1>
-                        <h3>Our Products</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-                    </div>
                     <div className="list-jobs row justify-content-center align-items-center">
                         {
                             Items.map((element, index) => {

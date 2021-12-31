@@ -27,7 +27,7 @@
 .page-title .page-content{
     position: absolute;
     right: 15%;
-    top: 10em;
+    top: 16em;
     left: 15%;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
@@ -43,4 +43,22 @@
 .page-title .page-content h1{
     font-weight: bold;
     color: #fff;
+}
+
+
+/* section title */
+.text-title{
+    margin-bottom: 40px;
+    margin-top: 4em;
+}
+
+.text-title h1{
+    color: #82ae46;
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+}
+
+.text-title h3{
+    font-size: 22px;
+    font-weight: bold;
 }
