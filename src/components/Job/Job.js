@@ -3,6 +3,7 @@ import { Container, Card, Modal, Button } from 'react-bootstrap';
 import { Form, Input, InputNumber } from 'antd';
 import "./Job.css";
 import axios from "axios";
+import PageContent from "../PageContent/PageContent";
 
 
 function Job() {
@@ -65,17 +66,7 @@ function Job() {
 
     return (
         <>
-            <div className="shop-title">
-                <div className="shop-img">
-                    <img src="./images/slider-1.jpg" alt="shop-img"></img>
-                </div>
-                <div className="shop-content" data-aos="fade-up" data-aos-duration="1000">
-                    <div className="container content-detail text-center">
-                        <h3>Home jobs</h3>
-                        <h1>Jobs</h1>
-                    </div>
-                </div>
-            </div>
+            <PageContent />
             <Container>
                 <div className="jobs-content">
                     <div className="jobs-title text-title text-center" >
