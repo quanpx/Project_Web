@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner ,Card} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
 
@@ -11,8 +11,9 @@ const CreatedJob = () => {
 
     const [job, setJob] = useState({});
     const [receivers, setReceivers] = useState(null)
-    const [jobStatus,setJobStatus]=useState(null);
+    const [jobStatus, setJobStatus] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
+    
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     let headers = {
@@ -32,7 +33,7 @@ const CreatedJob = () => {
             }).catch(err => { throw Error(err) });
     }, []);
 
-    const handleAcceptJob =()=>{
+    const handleAcceptJob = () => {
         setJobStatus("PENDING");
     }
     return (
@@ -46,13 +47,20 @@ const CreatedJob = () => {
                         <Col>
                             <h1>Created Job </h1>
                             <div>
-                                <div><h3>Job detail</h3>
+                                <div>
+                                    <Card className="card-active">
 
-                                    <p>{job.id}</p>
-                                    <p>{job.name}</p>
-                                    <p>{job.image_url}</p>
-                                    <p>{job.description}</p>
-                                    <p>{jobStatus}</p>
+                                        <Card.Body>
+                                            <Card.Title>{job.name}</Card.Title>
+                                            <Card.Text>
+                                                {job.address}<br />
+                                                {job.salary}<br />
+                                                {job.due}<br />
+                                                {job.description}<br />
+                                                {jobStatus}
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card >
 
                                 </div>
                             </div>
@@ -62,7 +70,7 @@ const CreatedJob = () => {
                                 {
                                     receivers.map((receiver, idx) => {
                                         if (receiver.status != "REJECTED") {
-                                            return <Receiver key={idx} job={job} authenticated={authenticated} handleAcceptJob={()=>handleAcceptJob()} receiver={receiver} />
+                                            return <Receiver key={idx} job={job} authenticated={authenticated} handleAcceptJob={() => handleAcceptJob()} receiver={receiver} />
                                         }
 
                                     })

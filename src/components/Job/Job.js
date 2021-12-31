@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Card, Modal, Button } from 'react-bootstrap';
 import { Form, Input, InputNumber } from 'antd';
 import "./Job.css";
@@ -9,12 +9,12 @@ import PageContent from "../PageContent/PageContent";
 function Job() {
     // list jobs
     const [Items, setItems] = useState([]);
-    const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
+    const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     useEffect(async () => {
-      await  axios.get(base_url + "/job")
+        await axios.get(base_url + "/job")
             .then(res => res.data)
             .then(data => {
                 setItems(data.data);
@@ -42,15 +42,15 @@ function Job() {
             deal_price: user_salary,
             comment: user_note
         }
-        await axios.post(base_url+"/job/receiveJob/"+id,
-                body,
-                {headers}
-            )
+        await axios.post(base_url + "/job/receiveJob/" + id,
+            body,
+            { headers }
+        )
             .then(res => console.log(res));
     }
 
     const [activeModal, setActiveModal] = useState(null);
-    const clickHandler= (e, index) => {
+    const clickHandler = (e, index) => {
         setActiveModal(index);
     }
 
@@ -58,7 +58,7 @@ function Job() {
         labelCol: { span: 8 },
         wrapperCol: { span: 16 },
     };
-      
+
     // job content
     const jobContent = {
         line1: "Job",
@@ -69,7 +69,7 @@ function Job() {
 
     return (
         <>
-            <PageContent content={jobContent}/>
+            <PageContent content={jobContent} />
             <Container>
                 <div className="jobs-content">
                     <div className="list-jobs row justify-content-center align-items-center">
@@ -89,30 +89,30 @@ function Job() {
                                                 </Card.Text>
                                                 <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {
-                                                    element.status=="PENDING"?  <Button className="getJob-btn" disabled>Nhận việc</Button>:
-                                                      <Button className="getJob-btn" onClick={(e) => clickHandler(e,index)}>Nhận việc</Button>
+                                                    element.status == "PENDING" || element.status=="COMPLETED" ? <Button className="getJob-btn" disabled>Nhận việc</Button> :
+                                                        <Button className="getJob-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
                                                 }
-                                              
-                                                    <Modal show={activeModal === index} onHide={handleClose} centered>
-                                                            <Modal.Header closeButton>
-                                                                <Modal.Title>Nhận việc</Modal.Title>
-                                                            </Modal.Header>
-                                                            <Modal.Body>
-                                                            <Form {...layout}>    
-                                                                <Form.Item name={['user', 'salary']} label="Lương mong muốn" rules={[{ type: 'number', min: 100000, max: 10000000 }]}>
-                                                                    <InputNumber step={100000} id={`user_salary${element.id}`}/>
-                                                                </Form.Item>
-                                                                <Form.Item name={['user', 'note']} label="Yêu cầu">
-                                                                    <Input.TextArea id={`user_note${element.id}`}/>
-                                                                </Form.Item>
-                                                            </Form>
-                                                            </Modal.Body>
-                                                            <Modal.Footer>
-                                                                <Button variant="secondary" onClick={() => handleGetjob(element.id)}>
-                                                                    Nhận việc
-                                                                </Button>
-                                                            </Modal.Footer>
-                                                    </Modal>
+
+                                                <Modal show={activeModal === index} onHide={handleClose} centered>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Nhận việc</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <Form {...layout}>
+                                                            <Form.Item name={['user', 'salary']} label="Lương mong muốn" rules={[{ type: 'number', min: 100000, max: 10000000 }]}>
+                                                                <InputNumber step={100000} id={`user_salary${element.id}`} />
+                                                            </Form.Item>
+                                                            <Form.Item name={['user', 'note']} label="Yêu cầu">
+                                                                <Input.TextArea id={`user_note${element.id}`} />
+                                                            </Form.Item>
+                                                        </Form>
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={() => handleGetjob(element.id)}>
+                                                            Nhận việc
+                                                        </Button>
+                                                    </Modal.Footer>
+                                                </Modal>
                                             </Card.Body>
                                         </Card>
                                     </div>

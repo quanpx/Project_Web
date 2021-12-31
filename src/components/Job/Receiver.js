@@ -53,6 +53,7 @@ const Receiver = (props) => {
                         <Card.Text>
                             <p>{comment}</p>
                         </Card.Text>
+                        
 
                         <Card.Text>
                             <p>{receiverStatus}</p>
