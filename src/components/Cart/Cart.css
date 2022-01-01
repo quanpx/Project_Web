@@ -1,6 +1,7 @@
 .cart-content{
     margin-top: 6em;
     margin-bottom: 3em;
+    border: 1px solid #82ae46;
 }
 
 .cart-content .ant-table-thead > tr > th{
@@ -18,8 +19,12 @@
     color: #fff;
 }
 
-.decrease-product, .increase-product:hover{
+.decrease-product, .increase-product{
     cursor: pointer;
+}
+
+.change-quantity, .decrease-product, .increase-product{
+    border: 1px solid #ccc;
 }
 
 /* thanh toán tiền */

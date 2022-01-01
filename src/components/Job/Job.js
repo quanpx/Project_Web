@@ -61,6 +61,7 @@ function Job() {
 
     // job content
     const jobContent = {
+        img: "https://i.rada.vn/data/image/2020/05/15/Farming-Village-Story-nong-trai.jpg",
         line1: "Job",
         line2: "Job nè",
         line3: "Job nữa nè",

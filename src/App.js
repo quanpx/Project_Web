@@ -30,6 +30,7 @@ import YourJob from './components/Job/YourJob';
 import CreatedJob from './components/Job/CreatedJob';
 import JobDetail from './components/Job/JobDetail';
 import axios from 'axios';
+import Payment from './components/Cart/Payment';
 
 function App() {
 
@@ -199,6 +200,9 @@ function App() {
                     />
                     <Route path="/cart"
                         element={<Cart />}
+                    />
+                    <Route path="/cart/payment"
+                        element={<Payment />}
                     />
                     <Route path="/user"
                         element={<User />}
