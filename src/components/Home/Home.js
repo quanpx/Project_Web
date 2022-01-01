@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
 import axios from 'axios';
 
-function Home() {
+
+const Home=(props)=> {
     const navigate = useNavigate();
     const [Items, setItems] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
@@ -48,7 +49,8 @@ function Home() {
                         openNotificationSuccess(product.name);
                     }
                 }).catch(err => { throw new Error(err) });
-        }
+            }
+            props.handleIncreaseCart();
 
     }
 

@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 import React, { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
+
 const Receiver = (props) => {
     const { worker_id, name, username, email, comment, deal_price, phone, status } = props.receiver;
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
@@ -16,7 +16,6 @@ const Receiver = (props) => {
     };
     const acceptJob = async (workerId) => {
         const body = { worker_id: workerId };
-        console.log(body);
         await axios.post(base_url + "/job/assignJob/" + props.job.id, body, { headers })
             .then(res => res.data)
             .then(data => {
