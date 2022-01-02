@@ -195,7 +195,7 @@ const Cart = () => {
 
     // cart content
     const cartContent = {
-        img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
+        img: "https://images.unsplash.com/photo-1614110073736-1778d27f588a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
         line1: "Cart",
         line2: "Cart nè",
         line3: "Cart nữa nè",

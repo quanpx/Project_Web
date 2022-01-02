@@ -4,9 +4,10 @@ import PageContent from "../PageContent/PageContent";
 import "./User.css"
 import { useState } from "react";
 import axios from "axios";
+import moment from "moment";
 // user content
 const userContent = {
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png",
+    img: "https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
     line1: "User",
     line2: "User nè",
     line3: "User nữa nè",
@@ -44,8 +45,8 @@ const User = ({ authenticated }) => {
                             <div className="row align-items-center flex-row-reverse">
                                 <div className="col-lg-6">
                                     <div className="about-text go-to">
-                                        <h3 className="dark-color">About Me</h3>
-                                        <h6 className="theme-color lead">A Lead UX &amp; UI designer based in Canada</h6>
+                                        <h3 className="dark-color">Profile</h3>
+                                        <h6 className="theme-color lead">Chào {user.user.name}</h6>
                                         <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores. My passion is to design digital user experiences through the bold interface and meaningful interactions.</p>
                                         <div className="row about-list">
                                             <div className="col-md-6">
@@ -55,11 +56,11 @@ const User = ({ authenticated }) => {
                                                 </div>
                                                 <div className="media">
                                                     <label>Birthday</label>
-                                                    {user.user.date_of_birth}
+                                                    { moment(user.user.date_of_birth).format('LL')}
                                                 </div>
-                                                <div className="media">
-                                                    <label>Age</label>
-                                                    {user.user.age}
+                                                  <div className="media">
+                                                    <label>Phone</label>
+                                                    {user.user.phone}
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -71,10 +72,7 @@ const User = ({ authenticated }) => {
                                                     <label>E-mail</label>
                                                     {user.user.email}
                                                 </div>
-                                                <div className="media">
-                                                    <label>Phone</label>
-                                                    {user.user.phone}
-                                                </div>
+                                              
                                             </div>
                                         </div>
                                     </div>
