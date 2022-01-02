@@ -59,8 +59,22 @@ function Job() {
         wrapperCol: { span: 16 },
     };
 
+    // Search
+    const { Search } = Input;
+    const [filterData, setFilterData] = useState([]);
+
+    const searchJob = (event) => {
+        setFilterData(event.target.value);
+    }
+    let dataSearch = Items.filter(item => {
+        return Object.keys(item).some(key => 
+            item[key].toString().toLowerCase().includes(filterData.toString().toLowerCase())
+        )
+    })
+
     // job content
     const jobContent = {
+        img: "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
         line1: "Job",
         line2: "Job nè",
         line3: "Job nữa nè",
@@ -71,14 +85,24 @@ function Job() {
         <>
             <PageContent content={jobContent} />
             <Container>
+                <div className="search col-4 mx-auto mb-2">
+                    <Search
+                        type="text"
+                        placeholder="Search for..." 
+                        // enterButton 
+                        value={filterData}
+                        onChange={searchJob}
+                    />
+                </div>
+
                 <div className="jobs-content">
                     <div className="list-jobs row justify-content-center align-items-center">
                         {
-                            Items.map((element, index) => {
+                            dataSearch.map((element, index) => {
                                 return (
-                                    <div className="col-sm-6 col-md-4" key={index} data-aos="zoom-in-up">
+                                    <div key={index} className="col-sm-6 col-md-6 col-lg-4" key={index} data-aos="zoom-in-up">
                                         <Card className="card-active">
-                                            <Card.Img variant="top" src={element.image_url} />
+                                            <Card.Img className="mx-auto" src={element.image_url} />
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>

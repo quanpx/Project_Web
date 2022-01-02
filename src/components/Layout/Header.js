@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Dropdown } from 'react-bootstrap';
 import AOS from 'aos';
 import { Badge, Popover, Button, notification } from 'antd';
 import 'aos/dist/aos.css';
@@ -34,19 +34,20 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
         }
     }
     const content = (
-         <div>
-        {
-           
-            notifications.map(notification=>{
+        <div>
+            {
 
-                 <a>{notification.id}</a>
-            })
-            
-        }
+                notifications.map((notification, idx) => {
+
+                    console.log(notification.message);
+                    <a key={idx}>{notification.id}</a>
+                })
+
+            }
         </div>
-       
+
     )
-   
+
 
     window.addEventListener('scroll', changeNavColor)
 
@@ -86,16 +87,27 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                         <div>
 
                                             <span className="avatar-item">
-                                                {
-                                                    notifications.length > 0 ?
-                                                        <Popover content={content} trigger={"click"}>
+
+
+
+                                              
+
+                                                    {
+                                                        notifications.length > 0 ?
                                                             <Badge count={notifications.length}>
                                                                 <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
-                                                            </Badge> </Popover>
-                                                        : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
-                                                }
-                                                &nbsp; &nbsp;
-                                                <span>{authenticated.user.name}</span>
+                                                            </Badge>
+                                                            : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
+
+                                                    }
+
+                                                    &nbsp; &nbsp;
+                                                    <span>{authenticated.user.name}</span>
+
+
+                                                  
+
+
                                             </span>
                                             {/* <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp;
                                             <span>{authenticated.user.name}</span> */}

@@ -6,7 +6,7 @@ const PageContent = (props) => {
         <>
            <div className="page-title">
                 <div className="page-img">
-                    <img src="./images/slider-1.jpg" alt="page-img"></img>
+                    <img src={props.content.img} alt="page-img"></img>
                 </div>
                 <div className="page-content"  data-aos="fade-up" data-aos-duration="1000">
                     <div className="container content-detail text-center">

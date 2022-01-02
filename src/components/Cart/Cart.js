@@ -110,6 +110,7 @@ const Cart = () => {
                      * 
                      */
                     console.log(data.data);
+                    navigate("./payment")
                 });
         } else {
             alert("Giỏ hàng đang rỗng");
@@ -177,7 +178,7 @@ const Cart = () => {
             product_img: <img src={d[i].image_url} alt="product-img" width="75" height="75"></img>,
             product_name: d[i].name,
             price: d[i].price,
-            quantity: <div>
+            quantity: <div className="change-quantity">
                 <AiOutlineMinus className="decrease-product" onClick={() => decreaseQuantity(d[i].product_id)} /> &nbsp; &nbsp;
                 {d[i].bought_quantity} &nbsp; &nbsp;
                 <AiOutlinePlus className="increase-product" onClick={() => increaseQuantity(d[i].product_id)} />
@@ -194,6 +195,7 @@ const Cart = () => {
 
     // cart content
     const cartContent = {
+        img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
         line1: "Cart",
         line2: "Cart nè",
         line3: "Cart nữa nè",
@@ -215,6 +217,7 @@ const Cart = () => {
                             false
                         }
                         scroll={{ y: 480 }}
+                        // bordered
                     />
                 </div>
                 <div className="payment row">

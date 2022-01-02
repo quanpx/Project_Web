@@ -119,6 +119,7 @@ function Shop(props) {
 
     // shop content
     const shopContent = {
+        img: "https://saffronbahraman.vn/wp-content/uploads/2021/01/diem-mat-nhung-loai-rau-cu-qua-tot-cho-voc-dang-nhat-rau-cu-qua-1.jpg",
         line1: "Shop",
         line2: "Shop nè",
         line3: "Shop nữa nè",

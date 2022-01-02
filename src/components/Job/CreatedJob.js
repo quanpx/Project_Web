@@ -70,7 +70,7 @@ const CreatedJob = () => {
                                 {
                                     receivers.map((receiver, idx) => {
                                         if (receiver.status != "REJECTED") {
-                                            return <Receiver key={idx} job={job} authenticated={authenticated} handleAcceptJob={() => handleAcceptJob()} receiver={receiver} socket={socket} />
+                                            return <Receiver key={idx} job={job} authenticated={authenticated} handleAcceptJob={() => handleAcceptJob()} receiver={receiver} />
                                         }
 
                                     })

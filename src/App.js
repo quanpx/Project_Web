@@ -32,6 +32,7 @@ import CreatedJob from './components/Job/CreatedJob';
 import JobDetail from './components/Job/JobDetail';
 import Header from './components/Layout/Header'
 import axios from 'axios';
+import Payment from './components/Cart/Payment';
 
 function App() {
 

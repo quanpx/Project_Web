@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { Container } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import "./Login.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 const axios = require('axios');
 
 const Login = (props) => {
