@@ -43,7 +43,7 @@ const YourJob = () => {
                 <Col>
 
                     <div><h1>Created Job</h1>
-                        <NewJob />
+                        <NewJob authenticated={authenticated} createdJobs={createdJobs} setCreateJobs={setCreateJobs}/>
                         {
                             createdJobs.map((job, idx) => {
                                 const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;

@@ -1,0 +1,122 @@
+
+@host=my-happy-farmer.herokuapp.com/api/v1
+
+@token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxdWFuaWZ5IiwiaWF0IjoxNjQxMDU1MDg0LCJleHAiOjE2NDExNDE0ODR9.4xq2i0XlmqtOJyRAfWF_U_3TjUwksKyjHzSpLtYnMlpeImpu2GSIXg0xPGhMnWNPjXai1hEfNvJpr9xiV18G8w
+POST https://{{host}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"quanify",
+    "password":"crquan07"
+}
+
+### Register
+POST  https://{{host}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "Phung Quan",
+"username":"quanify",
+"password":"crquan07",
+"email": "quanbka00@gmail.com",
+"address": "83 Xa Dan",
+"phone": "0974654701",
+"type":"FARMER",
+"age":22
+}
+// Farmer API
+### get all farmers 
+GET https://{{host}}/user/farmer HTTP/1.1
+
+
+### {farmerid}/{societyid} add farmer id to sociery id
+GET https://{{host}/user/farmer/7/3 HTTP/1.1
+
+### add farmer
+POST  https://{{host}}/user/farmer HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "Phung Quan Phung",
+"username": "quanify",
+"password": "crquan07",
+"email": "quanphungxuan00@gmail.com",
+"address": "83 Xa Dan",
+"phone": "0974654701",
+"age": 21
+}
+
+//Society API
+
+### Get all societies
+GET  http://{{host}}/user/society HTTP/1.1
+
+### Get society by id
+
+@societyid=3
+GET  http://{{host}}/user/society/{{societyid}} HTTP/1.1
+
+### Add society
+
+POST  http://{{host}}/user/society HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "Nong Nghiep Huu Van",
+"username": "nong_nghiep_hv",
+"password": "crquan07",
+"email": "nongnghiepHV00@gmail.com",
+"address": "Huu Van",
+"phone": "0974654701",
+"total_capital":2000.5,
+"established_date":"1999-11-30",
+"industry_code":"NNHV0001"
+}
+
+### Product
+GET  https://{{host}}/product HTTP/1.1
+###
+POST https://{{host}}/product HTTP/1.1
+Content-Type: application/json
+
+{
+    "image_url": "no/url",
+    "category": "rau",
+    "expiration_date": "2021-12-20",
+    "name": "Rau huu co",
+    "price": 500.0,
+    "discount": 0.0,
+    "quantity": 100,
+    "description": "khopng description"
+}
+
+###
+DELETE https://{{host}}/product/10 HTTP/1.1
+///Job service
+
+### Job
+GET https://{{host}}/job HTTP/1.1
+
+
+### JOB by id
+
+POST  https://{{host}}/job HTTP/1.1
+Content-Type: application/json
+Authorization:{{token}}
+
+{
+        "image_url": "https://image.freepik.com/free-vector/farmer-illustration-concept_119121-4.jpg",
+        "name": "Cần người bón phân",
+        "description": "Cần tuyển người bón phân cho vườn ngô",
+        "address": "Thửa ruộng nhà anh A",
+        "salary": "500.000",
+        "created_at": "2021-12-20",
+        "due": "2022-01-01",
+        "contact": "anh A",
+        "contact_number": "0123456789",
+        "job_detail": "Công việc gồm: bón phân."
+}
+####
+
+GET  http://{{host}}/cart HTTP/1.1
+Authorization: {{token}}
