@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Button, Card } from 'react-bootstrap';
 import PageContent from "../PageContent/PageContent";
@@ -7,10 +7,14 @@ import "./JobDetail.css";
 import axios from "axios";
 
 const JobDetail = () => {
-    const {id} = useParams();
- 
+    const { id } = useParams();
+
     // get products
     const [Items, setItems] = useState([]);
+    const [job, setJob] = useState({});
+    const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
+    const [relate,setRelate]=useState(null);
+    //  const [activeModal, setActiveModal] = useState(null);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     useEffect(async () => {
@@ -18,42 +22,25 @@ const JobDetail = () => {
             .then(res => res.data)
             .then(data => {
                 setItems(data.data);
-                console.log(data);
+                setRelate(data.data.slice(0,3));
             });
-        await  axios.get(base_url + "/job/detail/"+id)
+        await axios.get(base_url + "/job/detail/" + id)
             .then(res => res.data)
             .then(data => {
                 setJob(data.data);
+                
             });
-    }, []);
+    },[authenticated]);
 
-    var Relate = [];
-    const getRelate = () => {
-        for(let i = 0; i < 3; i++){
-            Relate.push(Items[i]);
-        }
-    }
+    console.log(Items);
 
-    // getRelate();
 
-    // get detail product
-    const [job,setJob] = useState({});
-    const [authenticated,setAuthenticated]=useState(JSON.parse(localStorage.getItem("authenticated")));
-
-    const [activeModal, setActiveModal] = useState(null);
+    let activeModal = null;
     const clickHandler = (e, index) => {
-        setActiveModal(index);
+        activeModal = index;
     }
 
-    // useEffect(async () => {
-    //   await  axios.get(base_url + "/job/detail/"+id)
-    //         .then(res => res.data)
-    //         .then(data => {
-    //             setJob(data.data);
-    //         });
-    // }, []);
 
-    //job-detail content
     const jobDetailContent = {
         img: "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
         line1: "Job detail",
@@ -61,10 +48,10 @@ const JobDetail = () => {
         line3: "Job detail",
         line4: "Job detail",
     }
- 
-    return(
+
+    return (
         <>
-            <PageContent content={jobDetailContent}/>
+            <PageContent content={jobDetailContent} />
             <Container className="job-detail">
                 <div className="row">
                     <div className="col-lg-6">
@@ -99,38 +86,43 @@ const JobDetail = () => {
                         <div type="button" className="btn btn-primary">Nhận việc</div>
                     </div>
                 </div>
-                <div className="row">
-                    <h1 className="text-center mt-4">Các công việc liên quan</h1>
-                    <div className="list-jobs row justify-content-center align-items-center">
-                        {
-                            Relate.map((element, index) => {
-                                console.log("element " + element)
-                                return (
-                                    <div className="col-sm-6 col-md-6 col-lg-4" key={index} data-aos="zoom-in-up">
-                                        <Card className="card-active">
-                                            <Card.Img className="mx-auto" src={element.image_url} />
-                                            <Card.Body>
-                                                <Card.Title>{element.name}</Card.Title>
-                                                <Card.Text>
-                                                    {element.address}<br />
-                                                    {element.salary}<br />
-                                                    {element.due}<br />
-                                                    {element.status}
-                                                </Card.Text>
-                                                <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
-                                                {
-                                                    element.status == "PENDING" || element.status=="COMPLETED" ? <Button className="getJob-btn" disabled>Nhận việc</Button> :
-                                                        <Button className="getJob-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
-                                                }  
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-            </Container>  
+                {
+                    relate!= null ?
+                        <div className="row">
+                            <h1 className="text-center mt-4">Các công việc liên quan</h1>
+                            <div className="list-jobs row justify-content-center align-items-center">
+                                {
+                                    relate.map((element, index) => {
+                                        console.log("element " + element)
+                                        return (
+                                            <div className="col-sm-6 col-md-6 col-lg-4" key={index} data-aos="zoom-in-up">
+                                                <Card className="card-active">
+                                                    <Card.Img className="mx-auto" src={element.image_url} />
+                                                    <Card.Body>
+                                                        <Card.Title>{element.name}</Card.Title>
+                                                        <Card.Text>
+                                                            {element.address}<br />
+                                                            {element.salary}<br />
+                                                            {element.due}<br />
+                                                            {element.status}
+                                                        </Card.Text>
+                                                        <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
+                                                        {
+                                                            element.status == "PENDING" || element.status == "COMPLETED" ?
+                                                                <Button className="getJob-btn" disabled>Nhận việc</Button> :
+                                                                <Button className="getJob-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
+                                                        }
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>:<p>HHello</p>
+
+                }
+            </Container>
         </>
     )
 }
