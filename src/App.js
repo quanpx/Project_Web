@@ -44,7 +44,6 @@ function App() {
     const [notifications, setNotifications] = useState([]);
 
 
-    //set socket
     useEffect(() => {
 
         AOS.init();
@@ -133,7 +132,7 @@ function App() {
             <div className="content">
                 <Routes>
                     <Route path=""
-                        element={<Home />}
+                        element={<Home handleIncreaseCart={handleIncreaseCart} />}
                     />
                     <Route path="/home"
                         element={<Home handleIncreaseCart={handleIncreaseCart} />}
