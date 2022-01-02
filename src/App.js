@@ -154,14 +154,18 @@ function App() {
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/home"}>Trang Chủ</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/shop"}>Cửa Hàng</Nav.Link>
                             <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/job"}>Công việc</Nav.Link>
-                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}><BsFillCartCheckFill />[{cart != null ? cart.length : 0}]</Nav.Link>
+                            <Nav.Link className={navColor ? " navLink-at" : ""} as={Link} to={"/cart"}>
+                                <div className='cart-icon'>
+                                    <BsFillCartCheckFill />[{cart != null ? cart.length : 0}]
+                                </div>
+                            </Nav.Link>
                             <Nav.Link as={Link} to={"/user"}>
 
                                 {
                                     authenticated != null ?
-                                        <div>
+                                        <div className='d-flex'>
                                             <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp;
-                                            <span>{authenticated.user.name}</span>
+                                            <p>{authenticated.user.name}</p>
                                         </div> :
                                         <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
                                 }
