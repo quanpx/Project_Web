@@ -106,7 +106,7 @@ const JobDetail = () => {
                                                             {element.due}<br />
                                                             {element.status}
                                                         </Card.Text>
-                                                        <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
+                                                        <Button className="detail-btn" href={`./${element.id}`}>Chi tiết</Button>
                                                         {
                                                             element.status == "PENDING" || element.status == "COMPLETED" ?
                                                                 <Button className="getJob-btn" disabled>Nhận việc</Button> :

@@ -69,7 +69,7 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                                 {
                                                     notifications.length > 0 ?
                                                         <Badge count={notifications.length}>
-                                                            <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
+                                                            <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />}onClick={()=>console.log(notifications)} />
                                                         </Badge>
                                                         : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
 
