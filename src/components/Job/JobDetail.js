@@ -13,7 +13,7 @@ const JobDetail = () => {
     const [Items, setItems] = useState([]);
     const [job, setJob] = useState({});
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    const [relate,setRelate]=useState(null);
+    const [relate, setRelate] = useState(null);
     //  const [activeModal, setActiveModal] = useState(null);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
@@ -22,15 +22,15 @@ const JobDetail = () => {
             .then(res => res.data)
             .then(data => {
                 setItems(data.data);
-                setRelate(data.data.slice(0,3));
+                setRelate(data.data.slice(0, 3));
             });
         await axios.get(base_url + "/job/detail/" + id)
             .then(res => res.data)
             .then(data => {
                 setJob(data.data);
-                
+
             });
-    },[authenticated]);
+    }, [authenticated]);
 
     console.log(Items);
 
@@ -83,11 +83,16 @@ const JobDetail = () => {
                                 <td>: {job.contact}.  Số điện thoại: {job.contact_number}</td>
                             </tr>
                         </table>
-                        <div type="button" className="btn btn-primary">Nhận việc</div>
+                        {
+                            job.status == "PENDING" || job.status == "COMPLETED" ?
+                                <Button className="getJob-btn" disabled>Nhận việc</Button> :
+                                <Button className="getJob-btn" onClick={(e) => clickHandler(e)}>Nhận việc</Button>
+                        }
+
                     </div>
                 </div>
                 {
-                    relate!= null ?
+                    relate != null ?
                         <div className="row">
                             <h1 className="text-center mt-4">Các công việc liên quan</h1>
                             <div className="list-jobs row justify-content-center align-items-center">
@@ -119,7 +124,7 @@ const JobDetail = () => {
                                     })
                                 }
                             </div>
-                        </div>:<p>HHello</p>
+                        </div> : <p>HHello</p>
 
                 }
             </Container>
