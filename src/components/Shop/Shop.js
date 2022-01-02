@@ -155,7 +155,7 @@ function Shop(props) {
                         {
                             loadData.map((element, index) => {
                                 return (
-                                    <div key={element.id} className='col-md-6 col-lg-3' data-aos="fade-up" data-aos-duration="1000">
+                                    <div key={element.id} className='col-sm-6 col-md-4 col-lg-3' data-aos="fade-up" data-aos-duration="1000">
                                         <div className='agri-item'>
                                             <div className='agri-img'>
                                                 <img className='img-fluid' src={element.image_url} alt="agri-img" />

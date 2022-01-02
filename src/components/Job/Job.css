@@ -1,12 +1,17 @@
 /* search */
-.ant-input:hover, .ant-btn:hover{
+.ant-input:hover, .ant-btn:hover, .ant-picker:hover{
     border-color: #82ae46 !important;
 }
 
 .ant-btn{
     background: #82ae46 !important;
     color: #fff !important;
-    border-color: #82ae46;
+    border-color: #82ae46 !important;
+    border-radius: 16px !important;
+}
+
+.ant-btn:hover{
+    background: #598120 !important;
 }
 
 /* job content */
@@ -55,5 +60,5 @@
 }
 
 .list-jobs .detail-btn:hover , .list-jobs .getJob-btn:hover{
-    background: #6e9e2b;
+    background: #598120;
 }

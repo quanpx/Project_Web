@@ -4,8 +4,6 @@ import { Col, Container, Row, Spinner ,Card} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
 
-
-
 const CreatedJob = () => {
     const { id } = useParams();
 
@@ -38,10 +36,7 @@ const CreatedJob = () => {
     }
     return (
         <Container>
-
-
             {
-
                 receivers != null ?
                     <Row>
                         <Col>

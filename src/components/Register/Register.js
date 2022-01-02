@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Radio } from 'antd';
 
-import { Form, Input, InputNumber, Button, Select, notification, Space } from 'antd';
+import { Form, Input, InputNumber, Button, DatePicker, notification, Space } from 'antd';
 import { Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import 'antd/dist/antd.css';
@@ -69,6 +69,10 @@ const Register = () => {
                 ''
         });
     };
+
+    const back = () => {
+        navigate("/login");
+    }
     const onChange = e => {
     setType(e.target.value);
   };
@@ -91,7 +95,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'name']}
-                    label="Name"
+                    label="Tên"
                     rules={[
                         {
                             required: true,
@@ -103,7 +107,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'username']}
-                    label="Username"
+                    label="Tài khoản"
                     rules={[
                         {
                             required: true,
@@ -115,12 +119,19 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'password']}
-                    label="Password"
+                    label="Mật khẩu"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    name={['user', 'avatar']}
+                    label="Avatar"
                 >
                     <Input />
                 </Form.Item>
@@ -139,7 +150,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'address']}
-                    label="Address"
+                    label="Địa chỉ"
                     rules={[
                         {
                             required: true,
@@ -150,7 +161,7 @@ const Register = () => {
                 </Form.Item>
                 <Form.Item
                     name={['user', 'phone']}
-                    label="Phone"
+                    label="Số điện thoại"
                     rules={[
                         {
                             required: true,
@@ -161,22 +172,15 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'age']}
-                    label="Age"
-                    rules={[
-                        {
-                            type: 'number',
-                            min: 0,
-                            max: 99,
-                        },
-                    ]}
+                    name={['user', 'birth']}
+                    label="Ngày sinh"
                 >
-                    <InputNumber />
+                    <DatePicker />
                 </Form.Item>
 
                 <Form.Item
                     name={['user', 'type']}
-                    label="User type"
+                    label="Loại tài khoản"
                     rules={[
                         {
                             required: true,
@@ -199,7 +203,12 @@ const Register = () => {
                             // href="./login"  
                             onClick={register}
                         >
-                            Submit
+                            Đăng ký
+                        </Button>
+                        <Button
+                            onClick={back}
+                        >
+                            Trở về
                         </Button>
                     </Space>
                 </Form.Item>

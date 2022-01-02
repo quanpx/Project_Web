@@ -1,3 +1,9 @@
+@media (min-width: 992px){
+    .container{
+        max-width: 1100px;
+    }
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -35,7 +41,7 @@ body{
     transition: 0.6s;
 }
 
-.nav-link{
+.nav-link, .ant-dropdown-link{
     justify-content: space-around;
     margin-left: 3rem;
     text-transform: uppercase;

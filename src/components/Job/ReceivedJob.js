@@ -8,14 +8,12 @@ const ReceivedJob = (props) => {
 
     const [status,setStatus]=useState(props.job.status);
 
-     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     let headers = {
         'Authorization': "Bearer " + props.authenticated.token,
         'Content-Type': 'application/json'
     };
-
-
 
     const completeJob = async (id)=>
     {

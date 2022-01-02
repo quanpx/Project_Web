@@ -70,7 +70,7 @@ const Login = (props) => {
             >
                 <div className="row text-center justify-content-center login-title">LOGIN</div>
                 <Form.Item
-                    label="Username"
+                    label="Tài khoản"
                     name="username"
                     rules={[
                         {
@@ -83,7 +83,7 @@ const Login = (props) => {
                 </Form.Item>
 
                 <Form.Item
-                    label="Password"
+                    label="Mật khẩu"
                     name="password"
                     rules={[
                         {
@@ -103,7 +103,7 @@ const Login = (props) => {
                         span: 14,
                     }}
                 >
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>Lưu tài khoản</Checkbox>
                 </Form.Item>
 
                 <Form.Item
