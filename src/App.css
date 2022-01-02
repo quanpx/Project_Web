@@ -47,6 +47,10 @@ body{
     margin-top: 6px;
 }
 
+.nav-link .cart-icon{
+    width: 32px;
+}
+
 .nav-link:hover{
     color: tomato !important;
 }

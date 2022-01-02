@@ -1,9 +1,42 @@
+/* search */
+.ant-input:hover, .ant-btn:hover{
+    border-color: #82ae46 !important;
+}
+
+.ant-btn{
+    background: #82ae46 !important;
+    color: #fff !important;
+    border-color: #82ae46;
+}
+
+/* job content */
+.jobs-content{
+    margin-bottom: 5em;
+}
+
 .list-jobs .card{
     margin: 20px 8px;
 }
 
+.list-jobs .card-img{
+    height: 240px;
+    width: 95% !important;
+    margin-top: 6px;
+}
+
+.list-jobs .card-img:hover{
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05); 
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
 .list-jobs .card .card-body{
     background-color: #f9f9f9;
+    height: 230px;
 }
 
 .list-jobs .card:hover{
@@ -18,8 +51,9 @@
     background: #82ae46;
     color: #fff;
     border-color: #82ae46;
+
 }
 
-.jobs-content{
-    margin-bottom: 5em;
+.list-jobs .detail-btn:hover , .list-jobs .getJob-btn:hover{
+    background: #6e9e2b;
 }
