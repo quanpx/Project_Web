@@ -44,7 +44,6 @@ function App() {
     const [notifications, setNotifications] = useState([]);
 
 
-    //set socket
     useEffect(() => {
 
         AOS.init();
@@ -62,156 +61,168 @@ function App() {
                 .then(data => {
                     setNotifications(data.data);
                 });
+        }
+    }, [authenticated])
+    useEffect(async () => {
+        if (authenticated != null) {
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
             await axios.get(base_url + "/cart", headers = { headers })
                 .then(res => res.data)
                 .then(data => {
                     setCart(data.data);
                 });
         }
-    }, [])
+    }, [authenticated])
 
-//scroll to top
-const [visible, setVisible] = useState(false)
+    //scroll to top
+   // const [visible, setVisible] = useState(false)
 
-const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-        setVisible(true)
-    }
-    else if (scrolled <= 300) {
-        setVisible(false)
-    }
-};
-
-const scrollToTop = () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-};
-const handleLogout = () => {
-    localStorage.removeItem("authenticated");
-    setAuthenticated(null);
-    setCart(null);
-
-}
-const onLogined = (newAuth) => {
-    setAuthenticated(newAuth);
-}
-const handleIncreaseCart = async () => {
-    let headers = {
-        'Authorization': 'Bearer ' + authenticated.token,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+    let visible=false;
+    const toggleVisible = () => {
+        const scrolled = document.documentElement.scrollTop;
+        if (scrolled > 300) {
+            // setVisible(true)
+            visible=true;
+        }
+        else if (scrolled <= 300) {
+          //  setVisible(false)
+          visible=false;
+        }
     };
-    await axios.get(base_url + "/cart", headers = { headers })
-        .then(res => res.data)
-        .then(data => {
-            setCart(data.data);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-}
-window.addEventListener('scroll', toggleVisible);
+    };
+    const handleLogout = () => {
+        localStorage.removeItem("authenticated");
+        setAuthenticated(null);
+        setCart(null);
 
-// handle increase cart
+    }
+    const onLogined = (newAuth) => {
+        setAuthenticated(newAuth);
+    }
+    const handleIncreaseCart = async () => {
+        let headers = {
+            'Authorization': 'Bearer ' + authenticated.token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
+        await axios.get(base_url + "/cart", headers = { headers })
+            .then(res => res.data)
+            .then(data => {
+                setCart(data.data);
+            });
+    }
+    window.addEventListener('scroll', toggleVisible);
 
-return (
-    <Router >
-        <Header cart={cart} authenticated={authenticated} handleLogout={handleLogout} notifications={notifications} />
-        {/* </div> */}
-        <div className="content">
-            <Routes>
-                <Route path=""
-                    element={<Home />}
-                />
-                <Route path="/home"
-                    element={<Home handleIncreaseCart={handleIncreaseCart} />}
-                />
-                <Route path="/shop"
-                    element={<Shop handleIncreaseCart={handleIncreaseCart} />}
-                />
-                <Route path="/job"
-                    element={<Job />}
-                />
-                <Route path="job-detail/:id"
-                    element={<JobDetail />}
-                />
-                <Route path="/cart"
-                    element={<Cart />}
-                />
-                <Route path="/user"
-                    element={<User />}
-                />
-                <Route path="/login"
-                    element={<Login action={onLogined} />}
-                />
-                <Route path="/register"
-                    element={<Register />}
-                />
-                <Route path="/user/yourJobs"
-                    element={<YourJob />}
-                />
-                <Route path="user/createdJob/:id"
-                    element={<CreatedJob />}
-                />
-            </Routes>
-        </div>
+    // handle increase cart
 
-        {/* footer */}
-        <footer className="footer">
-            <Container>
-                <div className="mouse text-center">
-                    <div className="mouse-icon">
-                        <BsFillArrowUpCircleFill onClick={scrollToTop}
-                            style={{ display: visible ? 'inline' : 'none' }}
-                        />
-                    </div>
-                </div>
-                <div className="footer-content row">
-                    <div className="footer-vegefoods col-sm-6 col-md-3">
-                        <h3>Vegefoods</h3>
-                        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-                        <div className='media-icon'>
-                            <BsTwitter /> &nbsp;
-                            <FaFacebook /> &nbsp;
-                            <BsInstagram />
+    return (
+        <Router >
+            <Header cart={cart} authenticated={authenticated} handleLogout={handleLogout} notifications={notifications} />
+            {/* </div> */}
+            <div className="content">
+                <Routes>
+                    <Route path=""
+                        element={<Home handleIncreaseCart={handleIncreaseCart} />}
+                    />
+                    <Route path="/home"
+                        element={<Home handleIncreaseCart={handleIncreaseCart} />}
+                    />
+                    <Route path="/shop"
+                        element={<Shop handleIncreaseCart={handleIncreaseCart} />}
+                    />
+                    <Route path="/job"
+                        element={<Job />}
+                    />
+                    <Route path="job-detail/:id"
+                        element={<JobDetail />}
+                    />
+                    <Route path="/cart"
+                        element={<Cart />}
+                    />
+                    <Route path="/user"
+                        element={<User />}
+                    />
+                    <Route path="/login"
+                        element={<Login action={onLogined} />}
+                    />
+                    <Route path="/register"
+                        element={<Register />}
+                    />
+                    <Route path="/user/yourJobs"
+                        element={<YourJob />}
+                    />
+                    <Route path="user/createdJob/:id"
+                        element={<CreatedJob />}
+                    />
+                </Routes>
+            </div>
+
+            {/* footer */}
+            <footer className="footer">
+                <Container>
+                    <div className="mouse text-center">
+                        <div className="mouse-icon">
+                            <BsFillArrowUpCircleFill onClick={scrollToTop}
+                                style={{ display: visible ? 'inline' : 'none' }}
+                            />
                         </div>
                     </div>
-                    <div className="footer-menu col-sm-6 col-md-3">
-                        <h3>Menu</h3>
-                        <ul>
-                            <li>Shop</li>
-                            <li>About</li>
-                            <li>Journal</li>
-                            <li>Contact Us</li>
-                        </ul>
+                    <div className="footer-content row">
+                        <div className="footer-vegefoods col-sm-6 col-md-3">
+                            <h3>Vegefoods</h3>
+                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                            <div className='media-icon'>
+                                <BsTwitter /> &nbsp;
+                                <FaFacebook /> &nbsp;
+                                <BsInstagram />
+                            </div>
+                        </div>
+                        <div className="footer-menu col-sm-6 col-md-3">
+                            <h3>Menu</h3>
+                            <ul>
+                                <li>Shop</li>
+                                <li>About</li>
+                                <li>Journal</li>
+                                <li>Contact Us</li>
+                            </ul>
+                        </div>
+                        <div className="footer-help col-sm-6 col-md-3">
+                            <h3>Help</h3>
+                            <ul>
+                                <li>Shipping Information</li>
+                                <li>Returns & Exchange</li>
+                                <li>Terms & Conditions</li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                        <div className="footer-contact col-sm-6 col-md-3">
+                            <h3>Have a question?</h3>
+                            <ul>
+                                <li><BsGeoAltFill />203 Fake St. Mountain View, San Francisco, California, USA</li>
+                                <li><BsFillTelephoneFill />+2 392 3929 210</li>
+                                <li><BsEnvelopeFill />	info@yourdomain.com</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="footer-help col-sm-6 col-md-3">
-                        <h3>Help</h3>
-                        <ul>
-                            <li>Shipping Information</li>
-                            <li>Returns & Exchange</li>
-                            <li>Terms & Conditions</li>
-                            <li>Privacy Policy</li>
-                        </ul>
+                    <div className="footer-copyright row mt-2">
+                        <div className='col-md-12 text-center'>
+                            Copyright ©2021 All rights reserved | This template is made with <BsFillSuitHeartFill /> by Group 7
+                        </div>
                     </div>
-                    <div className="footer-contact col-sm-6 col-md-3">
-                        <h3>Have a question?</h3>
-                        <ul>
-                            <li><BsGeoAltFill />203 Fake St. Mountain View, San Francisco, California, USA</li>
-                            <li><BsFillTelephoneFill />+2 392 3929 210</li>
-                            <li><BsEnvelopeFill />	info@yourdomain.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="footer-copyright row mt-2">
-                    <div className='col-md-12 text-center'>
-                        Copyright ©2021 All rights reserved | This template is made with <BsFillSuitHeartFill /> by Group 7
-                    </div>
-                </div>
-            </ Container>
-        </footer>
-    </Router>
-);
+                </ Container>
+            </footer>
+        </Router>
+    );
 }
 
-export default App;
+export default React.memo(App);

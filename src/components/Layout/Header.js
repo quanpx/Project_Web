@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Dropdown } from 'react-bootstrap';
-import AOS from 'aos';
-import { Badge, Popover, Button, notification } from 'antd';
+import { Navbar, Nav, Container, NavDropdown, } from 'react-bootstrap';
+import { Badge} from 'antd';
 import 'aos/dist/aos.css';
-import { AiOutlineUser, AiFillCaretDown } from 'react-icons/ai';
-import { BsFillCartCheckFill, BsTelephone, BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
-import { FaRegPaperPlane, FaFacebook } from 'react-icons/fa';
+import { AiOutlineUser} from 'react-icons/ai';
+import { BsFillCartCheckFill, BsTelephone} from "react-icons/bs";
+import { FaRegPaperPlane} from 'react-icons/fa';
 import {
-    BrowserRouter as Router,
+   
     Link,
-    useNavigate
+   
 } from "react-router-dom";
 import { Avatar } from 'antd';
 import '../../App.css';
 
 
-
-import axios from 'axios';
-import { io } from 'socket.io-client';
 
 
 
@@ -33,22 +29,6 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
             setNavColor(false)
         }
     }
-    const content = (
-        <div>
-            {
-
-                notifications.map((notification, idx) => {
-
-                    console.log(notification.message);
-                    <a key={idx}>{notification.id}</a>
-                })
-
-            }
-        </div>
-
-    )
-
-
     window.addEventListener('scroll', changeNavColor)
 
     return (
@@ -85,32 +65,19 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                 {
                                     authenticated != null ?
                                         <div>
-
                                             <span className="avatar-item">
+                                                {
+                                                    notifications.length > 0 ?
+                                                        <Badge count={notifications.length}>
+                                                            <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />}onClick={()=>console.log(notifications)} />
+                                                        </Badge>
+                                                        : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
 
-
-
-                                              
-
-                                                    {
-                                                        notifications.length > 0 ?
-                                                            <Badge count={notifications.length}>
-                                                                <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
-                                                            </Badge>
-                                                            : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
-
-                                                    }
-
-                                                    &nbsp; &nbsp;
-                                                    <span>{authenticated.user.name}</span>
-
-
-                                                  
-
+                                                }
+                                                &nbsp; &nbsp;
+                                                <span>{authenticated.user.name}</span>
 
                                             </span>
-                                            {/* <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />&nbsp; &nbsp;
-                                            <span>{authenticated.user.name}</span> */}
                                         </div> :
                                         <Avatar style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
                                 }
