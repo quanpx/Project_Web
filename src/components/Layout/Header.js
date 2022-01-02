@@ -10,15 +10,10 @@ import { FaRegPaperPlane, FaFacebook } from 'react-icons/fa';
 import {
     BrowserRouter as Router,
     Link,
-    useNavigate
 } from "react-router-dom";
 import { Avatar } from 'antd';
 import '../../App.css';
 
-
-
-import axios from 'axios';
-import { io } from 'socket.io-client';
 
 
 
@@ -95,7 +90,7 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                                     {
                                                         notifications.length > 0 ?
                                                             <Badge count={notifications.length}>
-                                                                <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
+                                                                <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} onClick={() => console.log(notifications)}/>
                                                             </Badge>
                                                             : <Avatar shape="circle" style={{ backgroundColor: '#87d068' }} icon={<AiOutlineUser />} />
 
