@@ -67,7 +67,9 @@ const Header = ({ cart, authenticated, handleLogout }) => {
             <h5><b><BsFillBellFill style={{ color: "#87d068" }} />Thông báo</b></h5>
             {
                 notifications.filter(item => item.status === "UNREAD").length > 0 ?
-                    notifications.filter(item => item.status === "UNREAD").map((item, index) => {
+                    notifications.filter(item => item.status === "UNREAD").sort((a,b)=>
+                        b.created_at-a.created_at
+                    ).reverse().map((item, index) => {
                         return (
                             <div key={index}>
                                 <Menu.Divider />
