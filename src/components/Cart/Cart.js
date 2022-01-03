@@ -53,16 +53,14 @@ const Cart = () => {
     const decreaseQuantity = (id) => {
         cart.find(item => {
             if (item.product_id === id) {
-                if (item.bought_quantity > 0) {
+                if (item.bought_quantity > 1) {
                     item.bought_quantity -= 1;
                     refresh();
                 } else {
-                    <DeleteProduct />
+                    return <DeleteProduct />
                 }
             }
-        }
-        )
-        console.log(cart)
+        })
     }
     // increase product quantity
     const increaseQuantity = (id) => {
@@ -114,10 +112,11 @@ const Cart = () => {
             dataIndex: 'delete',
             width: 50,
             align: "center",
-            render: (record) => {
+            render: (record, index) => {
+                // console.log(index)
                 return (
-                    // console.log(record),
-                    <DeleteProduct record={record} />
+                    <DeleteProduct authenticated={authenticated} record={index} />
+                    // <button onClick={() => console.log(index)}>click me</button>
                 )
             }
         },
@@ -205,7 +204,6 @@ const Cart = () => {
                             false
                         }
                         scroll={{ y: 480 }}
-                        // bordered
                     />
                 </div>
                 <div className="payment row">
