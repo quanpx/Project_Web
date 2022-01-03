@@ -35,7 +35,7 @@ function App() {
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const [cart, setCart] = useState(null);
-    const [notifications, setNotifications] = useState([]);
+    
 
 
     useEffect(() => {
@@ -43,20 +43,7 @@ function App() {
         AOS.init();
     });
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    useEffect(async () => {
-        if (authenticated != null) {
-            let headers = {
-                'Authorization': 'Bearer ' + authenticated.token,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            };
-            await axios.get(base_url + "/noti", headers = { headers })
-                .then(res => res.data)
-                .then(data => {
-                    setNotifications(data.data);
-                });
-        }
-    }, [authenticated])
+   
     useEffect(async () => {
         if (authenticated != null) {
             let headers = {
@@ -122,7 +109,7 @@ function App() {
 
     return (
         <Router >
-            <Header cart={cart} authenticated={authenticated} handleLogout={handleLogout} notifications={notifications} />
+            <Header cart={cart} authenticated={authenticated} handleLogout={handleLogout} />
             {/* </div> */}
             <div className="content">
                 <Routes>
