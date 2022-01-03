@@ -1,7 +1,8 @@
 import React from "react";
 import { Container } from 'react-bootstrap';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GiPositionMarker } from 'react-icons/gi';
+import { notification } from 'antd';
 import PageContent from "../PageContent/PageContent";
 import "./Payment.css";
 
@@ -17,6 +18,15 @@ const Payment = () => {
    
 
     console.log(state);
+
+    const navigate = useNavigate();
+
+    const openNotificationWithIcon = type => {
+        notification[type]({
+          message: 'Đặt hàng thành công',
+        });
+        navigate("/shop")
+    };
 
     return(
         <>
@@ -64,7 +74,7 @@ const Payment = () => {
                             <h4>
                                 Tổng thanh toán: <span className="total">₫{state.total_amount} </span>
                             </h4>
-                            <div type="button" className="order-btn btn btn-primary">Đặt hàng</div>
+                            <div type="button" className="order-btn btn btn-primary" onClick={() => openNotificationWithIcon('success')}>Đặt hàng</div>
                         </div>
                     </div>
                 </div>
