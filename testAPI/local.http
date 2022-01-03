@@ -1,0 +1,233 @@
+@host=localhost:8080/api/v1
+ @token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxdWFuMiIsImlhdCI6MTY0MTE0MjUxOCwiZXhwIjoxNjQxMjI4OTE4fQ.-ocZhS6LH-dur1ysxVPdSEBf9nIiJkId8srj4eBcTFtoSfi6IAwi15BK9UgP4DbiA5fsrRUK-SMMAQT7mrfKnA
+###
+POST http://{{host}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"quan2",
+    "password":"crquan07"
+}
+
+### Register
+POST  http://{{host}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "Phung Xuan Quan ",
+"username": "quan2",
+"password": "crquan07",
+"email": "quan2@gmail.com",
+"address": "83 Xa Dan",
+"phone": "0974654701",
+"age":22,
+"date_of_birth":"2000-01-06",
+"type":"FARMER"
+}
+
+###
+POST http://{{host}}/user/updateProfile HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "image_url":"https://scontent.fhan5-7.fna.fbcdn.net/v/t39.30808-6/237034132_2043718162451449_533245264396881234_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=174925&_nc_ohc=5b20eWRme60AX8tcDsN&_nc_ht=scontent.fhan5-7.fna&oh=00_AT96UISCLK4r0L5mw4VqGlBq18vu2w0KqCyhoOmnELpHHw&oe=61D75AA0"
+}
+###
+GET  http://{{host}}/profile HTTP/1.1
+Authorization: {{token}}
+
+###
+GET http://{{host}}/remove/6 HTTP/1.1
+# Authorization: {{token}}
+
+### add farmer
+POST  http://{{host}}/user/farmer HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "Phung Quan Phung",
+"username": "quan1",
+"password": "crquan07",
+"email": "quan1@gmail.com",
+"address": "83 Xa Dan",
+"phone": "0974654701",
+"age": 21
+}
+
+
+//Product API
+
+
+### Get all product
+GET  http://{{host}}/product HTTP/1.1
+
+
+###
+GET  http://{{host}}/product/1 HTTP/1.1
+
+
+### Add product
+POST http://{{host}}/product HTTP/1.1
+Content-Type: application/json
+
+
+{
+    "image_url": "no/url",
+    "category":  "quoc",
+    "sale":400,
+    "expiration_date": "2021-12-20",
+    "name": "quoc sat",
+    "price": 500.0,
+    "discount": 40,
+    "quantity": 100,
+    "description": "khopng description"
+}
+
+### delete a 
+@productId=1
+DELETE  http://{{host}}/product/{{productId}} HTTP/1.1
+
+
+
+// Job API
+
+### Get all job
+GET  http://{{host}}/job HTTP/1.1
+
+###
+GET http://{{host}}/job/createdJob
+Authorization: {{token}}
+
+###
+@jobId=1
+GET http://{{host}}/job/createdJob/1
+Authorization: {{token}}
+###
+GET http://{{host}}/job/receivedJob
+Authorization: {{token}}
+### add a job
+POST  http://{{host}}/job HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+
+{
+        "image_url": "no/ủl",
+        "name": "Gặt lúa",
+        "description": "Cần tuyển người đi Gặt lúa",
+        "address": "Thửa ruộng nhà anh A",
+        "salary": "500.000",
+        "due": "2022-01-01"
+       
+}
+
+### get job detaieyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxdWFucCIsImlhdCI6MTY0MDUzNDIzOCwiZXhwIjoxNjQwNjIwNjM4fQ.5SHsn2qZHH3fA4IrKrupR3y-LnOiq9gg-IFS1roX4hkh-wu7A7PmUuC-wumNGLsu4ckB0rObs0-FypchUowmbA
+### l
+@job_id=1
+GET  http://{{host}}/job/detail/{{job_id}} HTTP/1.1
+
+
+### Mark a job as completed
+GET  http://{{host}}/job/completeJob/{{job_id}} HTTP/1.1
+
+
+### reject a job request
+POST  http://{{host}}/job/rejectJob/{{job_id}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "worker_id": 3
+}
+
+### accept a job request from a farmer
+@job_id=2
+POST  http://{{host}}/job/assignJob/{{job_id}}
+Content-Type: application/json
+Authorization: {{token}}
+
+ {
+      "job_id": 1,
+      "worker_id": 1,
+      "deal_price": 300000.0,
+      "comment": "Nhanh chong, hieu qua, chat luong",
+      "received_at": "2021-12-25T10:41:14.596+00:00",
+      "accepted_at": null
+ }
+
+### Request to do a job '
+@job_id=2
+POST  http://{{host}}/job/receiveJob/{{job_id}}
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+      "deal_price":300000,
+      "comment":"Nhanh chong, hieu qua, chat luong"
+}
+
+// Cart info
+###
+GET  http://{{host}}/cart HTTP/1.1
+Authorization: {{token}}
+
+### Add to cart
+POST http://{{host}}/cart HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+      "product_id": 1,
+      "bought_quantity":30
+      
+}
+
+###
+DELETE  http://{{host}}/cart HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+      "product_id": 1
+
+      
+}
+
+// Place order
+####
+GET  http://{{host}}/order HTTP/1.1
+Authorization: {{token}}
+###
+POST http://{{host}}/order HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "total_amount":10000,
+  "cart":[
+    {
+      "product_id": 1,
+      "quantity":1
+    },
+    {
+      "product_id": 2,
+      "quantiy":2
+    } 
+  ]   
+}
+
+###
+GET http://{{host}}/order HTTP/1.1
+Authorization: {{token}}
+
+{
+  total_amount:sum,
+  cart:payment
+}
+
+###
+GET http://{{host}}/noti HTTP/1.1
+Authorization: {{token}}
+
+###
+GET  http://{{host}}/noti/read/1

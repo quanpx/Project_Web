@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { Radio } from 'antd';
+import { Radio, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
-import { Form, Input, InputNumber, Button, Select, notification, Space } from 'antd';
+import { Form, Input, InputNumber, Button, DatePicker, notification, Space } from 'antd';
 import { Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import 'antd/dist/antd.css';
 import "./Register.css";
 import axios from "axios";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import storage from "../../firebase";
+
+
 
 
 const layout = {
@@ -33,7 +38,11 @@ const validateMessages = {
 const Register = () => {
 
     const navigate = useNavigate()
-    const [type,setType]=useState("");
+    const [type, setType] = useState("");
+    //let [image, setImage] = useState(null);
+    let [url, setURL] = useState(null);
+
+
 
     const onFinish = (values) => {
         console.log(values);
@@ -41,7 +50,7 @@ const Register = () => {
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const headers = {
         'Content-Type': 'application/json',
-        'Accept':'application/json'
+        'Accept': 'application/json'
     };
 
     const register = async () => {
@@ -51,9 +60,11 @@ const Register = () => {
         var email = document.getElementById("nest-messages_user_email").value;
         var address = document.getElementById("nest-messages_user_address").value;
         var phone = document.getElementById("nest-messages_user_phone").value;
-        var age = document.getElementById("nest-messages_user_age").value;
+        var date_of_birth = document.getElementById("nest-messages_user_birth").value;
+        var image_url = localStorage.getItem("profile_image");
 
-        var body = { name, username, password, email, age, address, phone, type };
+
+        var body = { name, username, password, image_url, email, date_of_birth, address, phone, type };
         console.log(body);
 
         await axios.post(base_url + "/register", body, { headers })
@@ -64,14 +75,70 @@ const Register = () => {
     // register success
     const openNotificationWithIcon = type => {
         notification[type]({
-            message: 'Register Success',
-            description:
-                ''
+            message: 'Đăng ký thành công!',
+            duration: 3
         });
     };
+
+    const back = () => {
+        navigate("/login");
+    }
     const onChange = e => {
-    setType(e.target.value);
-  };
+        setType(e.target.value);
+    };
+
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            //setImage(e.target.files[0]);
+            let image = e.target.files[0];
+            const metadata = {
+                contentType: 'image/jpg'
+            }
+            const storageRef = ref(storage, 'images/' + image.name);
+            const uploadTask = uploadBytesResumable(storageRef, image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        localStorage.setItem("profile_image", downloadURL);
+
+                    });
+                }
+            );
+        }
+
+
+    };
 
     return (
         <Container className="register">
@@ -91,7 +158,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'name']}
-                    label="Name"
+                    label="Tên"
                     rules={[
                         {
                             required: true,
@@ -103,7 +170,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'username']}
-                    label="Username"
+                    label="Tài khoản"
                     rules={[
                         {
                             required: true,
@@ -115,7 +182,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'password']}
-                    label="Password"
+                    label="Mật khẩu"
                     rules={[
                         {
                             required: true,
@@ -139,7 +206,7 @@ const Register = () => {
 
                 <Form.Item
                     name={['user', 'address']}
-                    label="Address"
+                    label="Địa chỉ"
                     rules={[
                         {
                             required: true,
@@ -150,7 +217,7 @@ const Register = () => {
                 </Form.Item>
                 <Form.Item
                     name={['user', 'phone']}
-                    label="Phone"
+                    label="Số điện thoại"
                     rules={[
                         {
                             required: true,
@@ -161,22 +228,20 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'age']}
-                    label="Age"
-                    rules={[
-                        {
-                            type: 'number',
-                            min: 0,
-                            max: 99,
-                        },
-                    ]}
+                    name={['user', 'birth']}
+                    label="Ngày sinh"
                 >
-                    <InputNumber />
+                    <DatePicker />
                 </Form.Item>
+
+                <Form.Item label="Avatar" name={['user', 'avatar']} >
+                    <Input type="file" onChange={handleChange} />
+                </Form.Item>
+
 
                 <Form.Item
                     name={['user', 'type']}
-                    label="User type"
+                    label="Loại tài khoản"
                     rules={[
                         {
                             required: true,
@@ -188,7 +253,7 @@ const Register = () => {
                         <Radio value={"SOCIETY"}>SOCIETY</Radio>
                     </Radio.Group>
                 </Form.Item>
-                
+
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
                     <Space>
                         <Button
@@ -199,7 +264,12 @@ const Register = () => {
                             // href="./login"  
                             onClick={register}
                         >
-                            Submit
+                            Đăng ký
+                        </Button>
+                        <Button
+                            onClick={back}
+                        >
+                            Trở về
                         </Button>
                     </Space>
                 </Form.Item>

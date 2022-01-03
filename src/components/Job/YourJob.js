@@ -1,10 +1,11 @@
-import { message, notification } from "antd";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Container,Card, NavLink, Button } from "react-bootstrap";
+import { Container,Card } from "react-bootstrap";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ReceivedJob from "./ReceivedJob";
+import NewJob from "./NewJob";
+
 const YourJob = () => {
 
     const [createdJobs, setCreateJobs] = useState([])
@@ -42,12 +43,13 @@ const YourJob = () => {
                 <Col>
 
                     <div><h1>Created Job</h1>
+                        <NewJob authenticated={authenticated} createdJobs={createdJobs} setCreateJobs={setCreateJobs}/>
                         {
                             createdJobs.map((job, idx) => {
                                 const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;
+                                console.log(job)
                                 return (
-                                    <Card className="card-active">
-                                        
+                                    <Card key={id} className="card-active"> 
                                         <Card.Body>
                                             <Card.Title><a href={"/user/createdJob/"+id}>{name}</a></Card.Title>
                                             <Card.Text>
@@ -67,7 +69,6 @@ const YourJob = () => {
                 <Col>
                     <div><h1>Received Job</h1>
                         {
-
                             receivedJobs.map((job, idx) => {
                                 return <ReceivedJob authenticated={authenticated} job={job}/>
                             })

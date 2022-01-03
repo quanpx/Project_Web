@@ -84,6 +84,7 @@
     margin-left: 5%;
     margin-top: 5%;
     width: 90%;
+    height: 200px;
 }
 
 
@@ -97,6 +98,9 @@
     cursor: pointer;
 }
 
+.agri-item .text{
+    height: 104px;
+}
 
 .agri-item .text h3{
     text-transform: uppercase;

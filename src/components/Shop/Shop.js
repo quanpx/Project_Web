@@ -119,7 +119,7 @@ function Shop(props) {
 
     // shop content
     const shopContent = {
-        img: "https://saffronbahraman.vn/wp-content/uploads/2021/01/diem-mat-nhung-loai-rau-cu-qua-tot-cho-voc-dang-nhat-rau-cu-qua-1.jpg",
+        img: "https://images.unsplash.com/photo-1626139576127-f02f74c10298?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
         line1: "Shop",
         line2: "Shop nè",
         line3: "Shop nữa nè",
@@ -155,7 +155,7 @@ function Shop(props) {
                         {
                             loadData.map((element, index) => {
                                 return (
-                                    <div key={element.id} className='col-md-6 col-lg-3' data-aos="fade-up" data-aos-duration="1000">
+                                    <div key={element.id} className='col-sm-6 col-md-4 col-lg-3' data-aos="fade-up" data-aos-duration="1000">
                                         <div className='agri-item'>
                                             <div className='agri-img'>
                                                 <img className='img-fluid' src={element.image_url} alt="agri-img" />
