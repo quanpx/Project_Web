@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { Container } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import "./Login.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const axios = require('axios');
 
 const Login = (props) => {
@@ -11,6 +11,7 @@ const Login = (props) => {
     //login handle
     const navigate = useNavigate();
     let [authenticated, setAuthenticated] = useState({});
+    let [error, setError] = useState(null);
 
     useEffect(() => {
         let authenticated = localStorage.getItem("authenticated");
@@ -31,16 +32,28 @@ const Login = (props) => {
         };
         let body = { username, password };
 
-        await axios.post(base_url + "/login", body, headers)
+        await axios.post(base_url + "/login", body, { headers })
             .then(res => res.data)
             .then(data => {
                 setAuthenticated(data.data);
                 localStorage.setItem("authenticated", JSON.stringify(data.data));
                 props.action(data.data);
+                openNotificationSuccess("Đăng nhập thành công!")
                 navigate("/");
-            })
+            }).catch(error => openNotificationWarning("Đăng nhập thất bại! Xin thử lại!"));
     }
-
+     const openNotificationSuccess = (message) => {
+        notification.success({
+            message: message,
+            duration: 3
+        });
+    }
+     const openNotificationWarning = (message) => {
+        notification.warning({
+            message: message,
+            duration: 3
+        });
+    }
     // login notification
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -52,6 +65,7 @@ const Login = (props) => {
 
     return (
         <Container className="login ">
+
             <Form
                 name="basic"
                 labelCol={{
