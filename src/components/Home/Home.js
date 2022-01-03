@@ -78,7 +78,7 @@ const Home=(props)=> {
                                 <Carousel.Item interval={1500}>
                                     <img
                                         className="d-block "
-                                        src="./images/slider-1.jpg"
+                                        src="https://images.unsplash.com/photo-1632153380265-d1f815db5a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
                                         alt="First slide"
                                     />
                                     <Carousel.Caption>

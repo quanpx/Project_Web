@@ -74,7 +74,7 @@ function Job() {
 
     // job content
     const jobContent = {
-        img: "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+        img: "https://images.unsplash.com/photo-1601737786679-f6883570cfb5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
         line1: "Job",
         line2: "Job nè",
         line3: "Job nữa nè",

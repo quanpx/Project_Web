@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner ,Card} from "react-bootstrap";
+import { GiPositionMarker } from "react-icons/gi";
+import { AiOutlineBulb } from "react-icons/ai";
+import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
 
@@ -38,21 +41,21 @@ const CreatedJob = () => {
         <Container>
             {
                 receivers != null ?
-                    <Row>
+                    <Row style={{margin: "4em 0"}}>
                         <Col>
                             <h1>Created Job </h1>
                             <div>
                                 <div>
-                                    <Card className="card-active">
+                                    <Card className="card-active" style={{height: "299px" }}>
 
                                         <Card.Body>
-                                            <Card.Title>{job.name}</Card.Title>
+                                            <Card.Title style={{fontSize: "30px", marginBottom: "25px"}}>{job.name}</Card.Title>
                                             <Card.Text>
-                                                {job.address}<br />
-                                                {job.salary}<br />
-                                                {job.due}<br />
-                                                {job.description}<br />
-                                                {jobStatus}
+                                                <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {job.address}<br /></p>
+                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: {job.salary}<br /></p>
+                                                <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {job.due}<br /></p>
+                                                <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {job.description}<br /></p>
+                                                <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái công việc: {jobStatus}</p>
                                             </Card.Text>
                                         </Card.Body>
                                     </Card >
@@ -61,7 +64,7 @@ const CreatedJob = () => {
                             </div>
                         </Col>
                         <Col>
-                            <div><h3>Receivers</h3>
+                            <div><h1>Receivers</h1>
                                 {
                                     receivers.map((receiver, idx) => {
                                         if (receiver.status != "REJECTED") {

@@ -145,7 +145,7 @@ function App() {
                         element={<Cart />}
                     />
                     <Route path="/user"
-                        element={<User />}
+                        element={<User authenticated={authenticated} />}
                     />
                     <Route path="/login"
                         element={<Login action={onLogined} />}

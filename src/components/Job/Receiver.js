@@ -1,12 +1,16 @@
 //import { Card } from "antd";
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import axios from "axios";
 import React, { useState } from "react";
-import { Container } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import { Rate } from 'antd';
+import Button from 'react-bootstrap/Button';
+import { AiFillPhone, AiOutlineBulb } from "react-icons/ai";
+import { MdAttachMoney, MdEditNote } from "react-icons/md";
+import { FaCommentDots } from "react-icons/fa";
+import { BsCheck2Circle } from "react-icons/bs";
+import axios from "axios";
 
 const Receiver = (props) => {
-    const { worker_id, name, username, email, comment, deal_price, phone, status } = props.receiver;
+    const { worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const [receiverStatus, setReceiverStatus] = useState(status);
     const [isShow, setIsShow] = useState(true);
@@ -38,23 +42,34 @@ const Receiver = (props) => {
             }).catch(err => { throw Error(err) });
     }
     return (
-        <Container>
+        <>
             {
                 isShow ? <Card style={{ width: "100%" }}>
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Body>
                         <div className='d-flex'>
-                            <img src='https://bootdey.com/img/Content/avatar/avatar7.png' width="12%" alt="user image" />
-                            <Card.Title style={{marginTop: "12px", marginLeft: "12px", fontSize: "30px"}}>{username}</Card.Title>
+                            <img src='https://bootdey.com/img/Content/avatar/avatar7.png' width="16%" height="20%" alt="user image" />
+                            <div style={{marginLeft: "16px"}}>
+                                <div 
+                                    style={{
+                                        marginBottom: "-10px", 
+                                        fontSize: "30px"
+                                    }}>
+                                    {fullname}
+                                </div>
+                                <Rate disabled allowHalf defaultValue={4.5} />
+                                <FaCommentDots style={{marginLeft: "16px"}}/> 6
+                                <BsCheck2Circle style={{marginLeft: "16px"}}/> 98%
+                            </div>
                         </div>
                         <div style={{marginLeft: "16px", marginTop: "8px"}}>
-                            <p>SĐT: {phone}</p>
-                            <p>Lương mong muốn: {deal_price} vnd</p>
-                            <p>Chú thích: {comment}</p>
-                            <p>{receiverStatus}</p>
+                            <p><AiFillPhone style={{marginBottom: "4px", fontSize: "16px"}}/>SĐT: {phone}</p>
+                            <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương mong muốn: {deal_price} vnd</p>
+                            <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Chú thích: {comment}</p>
+                            <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{receiverStatus}</p>
                         </div>
                     </Card.Body>
-                    <Card.Footer>
+                    <Card.Footer style={{marginLeft: "16px"}}>
                         {
                             receiverStatus == "ACCEPTED" ? <Button
                                 variant="success" disabled>Accept</Button> :
@@ -70,7 +85,7 @@ const Receiver = (props) => {
                     </Card.Footer>
                 </Card > : null
             }
-        </Container>
+        </>
     )
 }
 

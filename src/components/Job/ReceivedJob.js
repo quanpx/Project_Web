@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {  Card ,Button} from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { GiPositionMarker } from "react-icons/gi";
+import { AiOutlineBulb } from "react-icons/ai";
+import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { notification } from "antd";
 
 const ReceivedJob = (props) => {
@@ -36,24 +38,21 @@ const ReceivedJob = (props) => {
 
     
     return (
-        <Card className="card-active">
-
+        <Card className="card-active" style={{width: "100%"}}>
             <Card.Body>
                 <Card.Title>{props.job.name}</Card.Title>
                 <Card.Text>
-                    {props.job.address}<br />
-                    {props.job.salary}<br />
-                    {props.job.due}<br />
-                    {props.job.description}<br />
-                    {status}
+                    <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.address}<br /></p>
+                    <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.salary}<br /></p>
+                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.due}<br /></p>
+                    <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.description}<br /></p>
+                    <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{status}</p>
                 </Card.Text>
                 {
                     status=="COMPLETED"? <Button disabled variant="success">Complete</Button>:
                      <Button onClick={() => completeJob(props.job.id)} variant="success">Complete</Button>
                 }
-               
             </Card.Body>
-
         </Card >
     )
 }

@@ -33,7 +33,7 @@ const validateMessages = {
 const Register = () => {
 
     const navigate = useNavigate()
-    const [type,setType]=useState("");
+    const [type, setType] = useState("");
 
     const onFinish = (values) => {
         console.log(values);
@@ -41,19 +41,21 @@ const Register = () => {
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const headers = {
         'Content-Type': 'application/json',
-        'Accept':'application/json'
+        'Accept': 'application/json'
     };
 
     const register = async () => {
         var name = document.getElementById("nest-messages_user_name").value;
         var username = document.getElementById("nest-messages_user_username").value;
         var password = document.getElementById("nest-messages_user_password").value;
+        var image_url = document.getElementById("nest-messages_user_avatar").value;
         var email = document.getElementById("nest-messages_user_email").value;
         var address = document.getElementById("nest-messages_user_address").value;
         var phone = document.getElementById("nest-messages_user_phone").value;
-        var age = document.getElementById("nest-messages_user_age").value;
+        var date_of_birth = document.getElementById("nest-messages_user_birth").value;
+        
 
-        var body = { name, username, password, email, age, address, phone, type };
+        var body = { name, username, password,image_url, email, date_of_birth, address, phone, type };
         console.log(body);
 
         await axios.post(base_url + "/register", body, { headers })
@@ -64,9 +66,8 @@ const Register = () => {
     // register success
     const openNotificationWithIcon = type => {
         notification[type]({
-            message: 'Register Success',
-            description:
-                ''
+            message: 'Đăng ký thành công!',
+            duration: 3
         });
     };
 
@@ -74,8 +75,8 @@ const Register = () => {
         navigate("/login");
     }
     const onChange = e => {
-    setType(e.target.value);
-  };
+        setType(e.target.value);
+    };
 
     return (
         <Container className="register">
@@ -192,7 +193,7 @@ const Register = () => {
                         <Radio value={"SOCIETY"}>SOCIETY</Radio>
                     </Radio.Group>
                 </Form.Item>
-                
+
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
                     <Space>
                         <Button
