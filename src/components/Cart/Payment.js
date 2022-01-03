@@ -21,14 +21,36 @@ const Payment = (props) => {
             <PageContent content={paymentContent}/>
             <Container>
                 <div className="payment-form">
-                    <div className="row">
+                    <div>
                         <div className="top-line"></div>
                         <h4 className="address"><GiPositionMarker /> Địa chỉ nhận hàng</h4>
-                        <div><b>Lưu Văn Đông - 0906185900</b></div>
+                        <div>
+                            <b>Lưu Văn Đông - 0906185900</b>
+                            &nbsp;&nbsp;&nbsp;
+                            a    
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="">
-
+                    <div className="list-product">
+                        <table className="list">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>image : description</td>
+                                    <td>₫ 500</td>
+                                    <td>2</td>
+                                    <td>₫ 1000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className="text-end">
+                            Tổng thanh toán: ₫ 1000
                         </div>
                     </div>
                 </div>
