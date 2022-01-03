@@ -9,6 +9,7 @@ import { FaCommentDots } from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
 import NumberFormat from "react-number-format";
 import axios from "axios";
+import NumberFormat from "react-number-format";
 
 const Receiver = (props) => {
     const { image_url,worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;
@@ -65,9 +66,7 @@ const Receiver = (props) => {
                         </div>
                         <div style={{marginLeft: "16px", marginTop: "8px"}}>
                             <p><AiFillPhone style={{marginBottom: "4px", fontSize: "16px"}}/>SĐT: {phone}</p>
-                            <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
-                            Lương mong muốn: <NumberFormat value={deal_price} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
-                            </p>
+                            <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương mong muốn: <NumberFormat value={ deal_price} displayType={'text'} thousandSeparator={true} suffix={' VND'} /></p>
                             <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Chú thích: {comment}</p>
                             <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{receiverStatus}</p>
                         </div>

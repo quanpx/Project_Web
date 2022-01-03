@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Spinner ,Card} from "react-bootstrap";
+import { Col, Container, Row, Spinner, Card } from "react-bootstrap";
 import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
@@ -16,7 +16,7 @@ const CreatedJob = () => {
     const [receivers, setReceivers] = useState(null)
     const [jobStatus, setJobStatus] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    
+
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     let headers = {

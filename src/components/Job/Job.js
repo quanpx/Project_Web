@@ -7,7 +7,8 @@ import { MdAttachMoney,  MdDateRange } from "react-icons/md";
 import NumberFormat from "react-number-format";
 import "./Job.css";
 import PageContent from "../PageContent/PageContent";
-import axios from "axios";
+import convertToVNese from "../../utils/convertToVNese";
+import NumberFormat from "react-number-format";
 
 
 function Job() {
@@ -110,12 +111,10 @@ function Job() {
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {element.address}<br /></p>
-                                                    <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
-                                                        Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
-                                                    </p>
-                                                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {element.due}<br /></p>   
-                                                    <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {element.status}</p>
+                                                    {element.address}<br />
+                                                    <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
+                                                    {element.due}<br />
+                                                    {convertToVNese(element.status)}
                                                 </Card.Text>
                                                 <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {
