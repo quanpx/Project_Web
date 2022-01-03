@@ -3,7 +3,7 @@ import { Modal, Space, notification } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 
-
+import axios from 'axios';
 
 const DeleteProduct = (props) => {
     // refresh component
@@ -27,20 +27,28 @@ const DeleteProduct = (props) => {
             okText: 'Đồng ý',
             okType: 'danger',
             cancelText: 'Không',
-            onOk() {
+            async onOk() {
                 console.log('OK');
-                console.log(props.record);
 
                 // delete by id
-                let storage = JSON.parse(localStorage.getItem('cart'));
-                storage = storage.filter(item => item.product.id !== props.record.id);
-                localStorage.setItem('cart',JSON.stringify(storage));
+                const body = {product_id: props.record.key}
+
+                const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+                let headers = {
+                    'Authorization': 'Bearer ' + props.authenticated.token,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                };
+                await axios.delete(base_url + "/cart", {data: body}, headers = { headers })
+                    .then(res => res.data)
+                    .then(res => console.log(res))
                 
                 // success notice
                 openNotificationSuccess();
             },
             onCancel() {
                 console.log('Cancel');
+                console.log(props.authenticated)
             },
         });
     }
