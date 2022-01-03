@@ -77,7 +77,7 @@ const User = ({ authenticated }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6 text-center">
+                                <div className="col-lg-6">
                                     <div className="about-avatar">
                                         <img src={user.user.image_url} title alt="user image"  style={{borderRadius: "50%", width: "60%"}}/>
                                     </div>
