@@ -26,7 +26,6 @@ import CreatedJob from './components/Job/CreatedJob';
 import JobDetail from './components/Job/JobDetail';
 import Header from './components/Layout/Header'
 import axios from 'axios';
-import Test from './components/Test';
 import Payment from './components/Cart/Payment';
 
 function App() {
@@ -163,9 +162,8 @@ function App() {
                     <Route path="user/createdJob/:id"
                         element={<CreatedJob />}
                     />
-                    <Route paht="/test" 
-                    element={<Test />}
-                    />
+                  
+                
                 </Routes>
             </div>
 

@@ -33,6 +33,7 @@ const YourJob = () => {
         await axios.get(base_url + "/job/receivedJob", { headers })
             .then(res => res.data)
             .then(data => {
+                console.log(data.data);
                 setReceivedJobs(data.data);
             }).catch(err => { throw Error(err) });
     }, [])
