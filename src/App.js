@@ -162,6 +162,11 @@ function App() {
                     <Route path="user/createdJob/:id"
                         element={<CreatedJob />}
                     />
+                    <Route path="/cart/payment"
+                        element={<Payment />}
+                    />
+                  
+                
                 </Routes>
             </div>
 

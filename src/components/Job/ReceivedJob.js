@@ -50,7 +50,8 @@ const ReceivedJob = (props) => {
                 </Card.Text>
                 {
                     status=="COMPLETED"? <Button disabled variant="success">Complete</Button>:
-                     <Button onClick={() => completeJob(props.job.id)} variant="success">Complete</Button>
+                    status=="PENDING"?
+                     <Button onClick={() => completeJob(props.job.id)} variant="success">Complete</Button>:"Đang yêu cầu!"
                 }
             </Card.Body>
         </Card >

@@ -16,7 +16,6 @@ const userContent = {
 
 
 const User = ({ authenticated }) => {
-
     const [user, setUser] = useState(null);
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
@@ -35,6 +34,7 @@ const User = ({ authenticated }) => {
                 }
             }).catch(err => { throw Error(err) });
     }, [])
+   
     return (
         user != null ?
             <>
@@ -42,7 +42,7 @@ const User = ({ authenticated }) => {
                 <Container>
                     <section className="section about-section gray-bg" id="about">
                         <div className="container">
-                            <div className="row align-items-center flex-row-reverse">
+                            <div className="row align-items-center flex-row-reverse mb-4">
                                 <div className="col-lg-6">
                                     <div className="about-text go-to">
                                         <h3 className="dark-color">Profile</h3>
@@ -56,9 +56,9 @@ const User = ({ authenticated }) => {
                                                 </div>
                                                 <div className="media">
                                                     <label>Birthday</label>
-                                                    { moment(user.user.date_of_birth).format('LL')}
+                                                    {moment(user.user.date_of_birth).format('LL')}
                                                 </div>
-                                                  <div className="media">
+                                                <div className="media">
                                                     <label>Phone</label>
                                                     {user.user.phone}
                                                 </div>
@@ -72,14 +72,14 @@ const User = ({ authenticated }) => {
                                                     <label>E-mail</label>
                                                     {user.user.email}
                                                 </div>
-                                              
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 text-center">
                                     <div className="about-avatar">
-                                        <img src={user.user.image_url} title alt="user image" />
+                                        <img src={user.user.image_url} title alt="user image"  style={{borderRadius: "50%", width: "60%"}}/>
                                     </div>
                                 </div>
                             </div>

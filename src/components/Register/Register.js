@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Radio } from 'antd';
+import { Radio, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 import { Form, Input, InputNumber, Button, DatePicker, notification, Space } from 'antd';
 import { Container } from 'react-bootstrap';
@@ -7,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 import 'antd/dist/antd.css';
 import "./Register.css";
 import axios from "axios";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import storage from "../../firebase";
+
+
 
 
 const layout = {
@@ -34,6 +39,10 @@ const Register = () => {
 
     const navigate = useNavigate()
     const [type, setType] = useState("");
+    //let [image, setImage] = useState(null);
+    let [url, setURL] = useState(null);
+
+
 
     const onFinish = (values) => {
         console.log(values);
@@ -48,14 +57,14 @@ const Register = () => {
         var name = document.getElementById("nest-messages_user_name").value;
         var username = document.getElementById("nest-messages_user_username").value;
         var password = document.getElementById("nest-messages_user_password").value;
-        var image_url = document.getElementById("nest-messages_user_avatar").value;
         var email = document.getElementById("nest-messages_user_email").value;
         var address = document.getElementById("nest-messages_user_address").value;
         var phone = document.getElementById("nest-messages_user_phone").value;
         var date_of_birth = document.getElementById("nest-messages_user_birth").value;
-        
+        var image_url = localStorage.getItem("profile_image");
 
-        var body = { name, username, password,image_url, email, date_of_birth, address, phone, type };
+
+        var body = { name, username, password, image_url, email, date_of_birth, address, phone, type };
         console.log(body);
 
         await axios.post(base_url + "/register", body, { headers })
@@ -76,6 +85,59 @@ const Register = () => {
     }
     const onChange = e => {
         setType(e.target.value);
+    };
+
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            //setImage(e.target.files[0]);
+            let image = e.target.files[0];
+            const metadata = {
+                contentType: 'image/jpg'
+            }
+            const storageRef = ref(storage, 'images/' + image.name);
+            const uploadTask = uploadBytesResumable(storageRef, image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        localStorage.setItem("profile_image", downloadURL);
+
+                    });
+                }
+            );
+        }
+
+
     };
 
     return (
@@ -131,13 +193,6 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'avatar']}
-                    label="Avatar"
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
                     name={['user', 'email']}
                     label="Email"
                     rules={[
@@ -178,6 +233,11 @@ const Register = () => {
                 >
                     <DatePicker />
                 </Form.Item>
+
+                <Form.Item label="Avatar" name={['user', 'avatar']} >
+                    <Input type="file" onChange={handleChange} />
+                </Form.Item>
+
 
                 <Form.Item
                     name={['user', 'type']}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Container } from 'react-bootstrap';
-import { GiPositionMarker } from "react-icons/gi";
-
+import { useLocation } from "react-router-dom";
+import { GiPositionMarker } from 'react-icons/gi';
 import PageContent from "../PageContent/PageContent";
 import "./Payment.css";
 
-const Payment = (props) => {
+const Payment = () => {
     const paymentContent = {
         img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
         line1: "Cart",
@@ -13,8 +13,10 @@ const Payment = (props) => {
         line3: "Thanh toán",
         line4: "Hóa đơn"
     }
+    const state=useLocation().state;
+   
 
-    console.log(props.data);
+    console.log(state);
 
     return(
         <>
@@ -23,34 +25,46 @@ const Payment = (props) => {
                 <div className="payment-form">
                     <div>
                         <div className="top-line"></div>
-                        <h4 className="address"><GiPositionMarker /> Địa chỉ nhận hàng</h4>
-                        <div>
-                            <b>Lưu Văn Đông - 0906185900</b>
-                            &nbsp;&nbsp;&nbsp;
-                            a    
+                        <div className="user-address">
+                            <h4><GiPositionMarker /> Địa chỉ nhận hàng</h4>
+                            <h6>
+                                <b>{state.user.name} - {state.user.phone}</b>
+                                &nbsp;&nbsp;&nbsp;
+                                {state.user.address}
+                            </h6>
+                            <span className="text-start">Đơn hàng tạo lúc: {state.created_at}</span>
                         </div>
                     </div>
                     <div className="list-product">
-                        <table className="list">
+                        <table className="table text-center">
                             <thead>
                                 <tr>
-                                    <th>Sản phẩm</th>
+                                    <th className="text-start left-data">Sản phẩm</th>
                                     <th>Đơn giá</th>
                                     <th>Số lượng</th>
                                     <th>Thành tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>image : description</td>
-                                    <td>₫ 500</td>
-                                    <td>2</td>
-                                    <td>₫ 1000</td>
-                                </tr>
+                                {
+                                    state.products.map( item => {
+                                        return (
+                                            <tr style={{height: "80px"}}>
+                                                <td className="text-start left-data">image : {item.name}</td>
+                                                <td>₫{item.price}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>₫{item.price * item.quantity}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </tbody>
                         </table>
-                        <div className="text-end">
-                            Tổng thanh toán: ₫ 1000
+                        <div className="text-end order">
+                            <h4>
+                                Tổng thanh toán: <span className="total">₫{state.total_amount} </span>
+                            </h4>
+                            <div type="button" className="order-btn btn btn-primary">Đặt hàng</div>
                         </div>
                     </div>
                 </div>
