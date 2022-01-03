@@ -144,6 +144,9 @@ function App() {
                     <Route path="/cart"
                         element={<Cart />}
                     />
+                    <Route path="/cart/payment"
+                        element={<Payment />}
+                    />
                     <Route path="/user"
                         element={<User authenticated={authenticated} />}
                     />

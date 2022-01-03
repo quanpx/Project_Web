@@ -110,7 +110,7 @@ const Cart = () => {
                      * 
                      */
                     console.log(data.data);
-                    navigate("./payment")
+                    navigate("./payment", {data: data.data})
                 });
         } else {
             alert("Giỏ hàng đang rỗng");
