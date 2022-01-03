@@ -5,6 +5,7 @@ import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { notification } from "antd";
+import NumberFormat from "react-number-format";
 
 const ReceivedJob = (props) => {
 
@@ -38,15 +39,17 @@ const ReceivedJob = (props) => {
 
     
     return (
-        <Card className="card-active" style={{width: "100%"}}>
+        <Card className="card-active" style={{width: "100%", marginBottom: "12px", height: "304px"}}>
             <Card.Body>
                 <Card.Title>{props.job.name}</Card.Title>
                 <Card.Text>
-                    <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.address}<br /></p>
-                    <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.salary}<br /></p>
-                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.due}<br /></p>
-                    <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>{props.job.description}<br /></p>
-                    <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{status}</p>
+                    <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {props.job.address}<br /></p>
+                    <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
+                        Lương: <NumberFormat value={props.job.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
+                    </p>
+                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {props.job.due}<br /></p>
+                    <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {props.job.description}<br /></p>
+                    <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {status}</p>
                 </Card.Text>
                 {
                     status=="COMPLETED"? <Button disabled variant="success">Complete</Button>:

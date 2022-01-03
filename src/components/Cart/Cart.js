@@ -114,12 +114,8 @@ const Cart = () => {
             align: "center",
             render: ( index) => {
                 return (
-<<<<<<< HEAD
-                    <DeleteProduct authenticated={authenticated} record={index} />
-=======
                     <DeleteProduct authenticated={authenticated} record={index} cart={cart} setCart={setCart} />
                     // <button onClick={() => console.log(index)}>click me</button>
->>>>>>> b1f6d531714a5447d35773bd7cf4e9ce5bb0eb97
                 )
             }
         },

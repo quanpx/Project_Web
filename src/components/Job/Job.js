@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Modal, Button } from 'react-bootstrap';
 import { Form, Input, InputNumber } from 'antd';
+import { GiPositionMarker } from "react-icons/gi";
+import { AiOutlineBulb } from "react-icons/ai";
+import { MdAttachMoney,  MdDateRange } from "react-icons/md";
+import NumberFormat from "react-number-format";
 import "./Job.css";
-import axios from "axios";
 import PageContent from "../PageContent/PageContent";
+import axios from "axios";
 
 
 function Job() {
@@ -106,10 +110,12 @@ function Job() {
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    {element.address}<br />
-                                                    {element.salary}<br />
-                                                    {element.due}<br />
-                                                    {element.status}
+                                                    <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {element.address}<br /></p>
+                                                    <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
+                                                        Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
+                                                    </p>
+                                                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {element.due}<br /></p>   
+                                                    <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {element.status}</p>
                                                 </Card.Text>
                                                 <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {

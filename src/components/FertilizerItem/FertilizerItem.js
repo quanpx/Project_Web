@@ -14,7 +14,7 @@ function FertilizerItem(props){
                     <p>{props.value.description}</p>
                 </div>
                 <h5 className='fertilizer-cost'>{props.value.price} 000 VND</h5>
-                <button type="button" class="btn btn-success">Mua ngay</button>
+                <button type="button" className="btn btn-success">Mua ngay</button>
             </div>
         </div>
     )

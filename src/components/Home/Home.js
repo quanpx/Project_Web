@@ -275,9 +275,9 @@ const Home=(props)=> {
                                 </div>
                                 <div className='row fertilizer-list'>
                                     {
-                                        Items.map(item => {
+                                        Items.map((item,index) => {
                                             if (item.category == "Phân bón") {
-                                                return <FertilizerItem value={item} />
+                                                return <FertilizerItem value={item} key={index}/>
                                             }
                                         })
 

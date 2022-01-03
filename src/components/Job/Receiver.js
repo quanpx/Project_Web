@@ -7,14 +7,15 @@ import { AiFillPhone, AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote } from "react-icons/md";
 import { FaCommentDots } from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
+import NumberFormat from "react-number-format";
 import axios from "axios";
 
 const Receiver = (props) => {
-    const { worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;
+    const { image_url,worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const [receiverStatus, setReceiverStatus] = useState(status);
     const [isShow, setIsShow] = useState(true);
-
+    
     let headers = {
         'Authorization': "Bearer " + props.authenticated.token,
         'Content-Type': 'application/json'
@@ -44,11 +45,11 @@ const Receiver = (props) => {
     return (
         <>
             {
-                isShow ? <Card style={{ width: "100%" }}>
+                isShow ? <Card style={{ width: "100%", height: "332px", marginBottom: "12px" }}>
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Body>
                         <div className='d-flex'>
-                            <img src='https://bootdey.com/img/Content/avatar/avatar7.png' width="16%" height="20%" alt="user image" />
+                            <img src={image_url} width="16%" height="20%" alt="user image" style={{borderRadius: "50%"}}/>
                             <div style={{marginLeft: "16px"}}>
                                 <div 
                                     style={{
@@ -64,7 +65,9 @@ const Receiver = (props) => {
                         </div>
                         <div style={{marginLeft: "16px", marginTop: "8px"}}>
                             <p><AiFillPhone style={{marginBottom: "4px", fontSize: "16px"}}/>SĐT: {phone}</p>
-                            <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương mong muốn: {deal_price} vnd</p>
+                            <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
+                            Lương mong muốn: <NumberFormat value={deal_price} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
+                            </p>
                             <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Chú thích: {comment}</p>
                             <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{receiverStatus}</p>
                         </div>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Container, Button, Card } from 'react-bootstrap';
 import PageContent from "../PageContent/PageContent";
 import "./JobDetail.css";
+import NumberFormat from "react-number-format";
 
 import axios from "axios";
 
@@ -64,7 +65,7 @@ const JobDetail = () => {
                                 ({job.status})
                             </div>
                         </h1>
-                        <h1>Lương: ${job.salary}</h1>
+                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br /></h1>
                         <table className="align-items-start">
                             <tr>
                                 <td width="30%"><b>Chi tiết công việc</b></td>

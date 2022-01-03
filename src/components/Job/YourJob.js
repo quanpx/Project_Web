@@ -6,6 +6,7 @@ import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import ReceivedJob from "./ReceivedJob";
 import NewJob from "./NewJob";
+import NumberFormat from "react-number-format";
 
 const YourJob = () => {
 
@@ -41,8 +42,8 @@ const YourJob = () => {
     
     return (
         <Container>
-            <div className="row">
-                <div className="col" style={{margin: "4em 0"}}>
+            <div className="row" style={{margin: "4em 0"}}>
+                <div className="col-md-6">
                     <div >
                         <NewJob 
                             authenticated={authenticated} 
@@ -57,12 +58,14 @@ const YourJob = () => {
                                 const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;
                                 console.log(job)
                                 return (
-                                    <Card key={id} className="card-active" style={{ width: "100%", height: "284px" }}> 
+                                    <Card key={id} className="card-active" style={{ width: "100%", height: "304px", marginBottom: "12px" }}> 
                                         <Card.Body>
                                             <Card.Title><a href={"/user/createdJob/"+id}>{name}</a></Card.Title>
                                             <Card.Text>
                                                 <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {address}<br /></p>
-                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: {salary}<br /></p>
+                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
+                                                    Lương: <NumberFormat value={salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
+                                                </p>
                                                 <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {due}<br /></p>
                                                 <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {description}<br/></p>
                                                 <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {status}</p>
@@ -74,7 +77,7 @@ const YourJob = () => {
                     }
                     </div>
                 </div>
-                <div className="col" style={{marginTop: "112px"}}>
+                <div className="col-md-6" style={{marginTop: "56px"}}>
                     <div><h1>Received Job</h1>
                         {
                             receivedJobs.map((job, idx) => {
