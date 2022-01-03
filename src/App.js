@@ -144,7 +144,7 @@ function App() {
                     <Route path="/cart"
                         element={<Cart />}
                     />
-                    <Route path="cart/payment"
+                    <Route path="/cart/payment"
                         element={<Payment />}
                     />
                     <Route path="/user"
@@ -161,6 +161,9 @@ function App() {
                     />
                     <Route path="user/createdJob/:id"
                         element={<CreatedJob />}
+                    />
+                    <Route path="/cart/payment"
+                        element={<Payment />}
                     />
                   
                 

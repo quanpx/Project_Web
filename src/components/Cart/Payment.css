@@ -1,0 +1,63 @@
+.payment-form{
+    margin: 4em 0;
+    color: black;
+    font-size: 16px;
+}
+
+.payment-form .top-line{
+    height: 3px;
+    width: 100%;
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    background-image: repeating-linear-gradient(
+    45deg,#6fa6d6,#6fa6d6 33px,transparent 0,transparent 41px,#f18d9b 0,#f18d9b 74px,transparent 0,transparent 82px);
+}
+
+.payment-form .user-address{
+    height: 120px;
+    border: 1px solid #ccc;
+    margin-bottom: 2em;
+    padding: 16px 24px 40px 24px;
+    box-shadow: 0px 2px 2px 2px #cccccc4f;
+    background: #fffcf252;
+    border-radius: 0 0 10px 10px;
+}
+
+.payment-form .list-product{
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 2px 2px #cccccc4f;
+    background: #fffcf252;
+    border-radius: 10px;
+}
+
+.payment-form .list-product .table{
+    margin-bottom: 0px !important;
+}
+
+.payment-form .list-product .table td{
+    padding-top: 24px !important;
+}
+
+.payment-form .list-product .table .left-data{
+    padding-left: 24px;
+}
+
+.order{
+    padding-top: 20px;
+    padding-right: 28px;
+    padding-bottom: 28px;
+}
+
+.order .total{
+    color: red;
+}
+
+.order-btn{
+    background: #82ae46;
+    border-color: #82ae46;
+}
+
+.order-btn:hover{
+    background: #538a06;
+    border-color: #82ae46;
+}
