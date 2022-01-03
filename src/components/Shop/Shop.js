@@ -106,13 +106,13 @@ function Shop(props) {
     const openNotificationSuccess = (name) => {
         notification.success({
             message: `Sản phẩm ${name} đã được thêm vào giỏ hàng`,
-            duration: 3
+            duration: 1
         });
     }
      const openNotificationWarning = (message) => {
         notification.warning({
             message: message,
-            duration: 3
+            duration: 1
         });
     }
 

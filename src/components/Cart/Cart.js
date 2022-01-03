@@ -112,11 +112,9 @@ const Cart = () => {
             dataIndex: 'delete',
             width: 50,
             align: "center",
-            render: (record, index) => {
-                // console.log(index)
+            render: ( index) => {
                 return (
                     <DeleteProduct authenticated={authenticated} record={index} />
-                    // <button onClick={() => console.log(index)}>click me</button>
                 )
             }
         },
@@ -161,6 +159,7 @@ const Cart = () => {
     var data = [];
     for (let i = 0; i < d.length; i++) {
         data.push({
+            id: d[i].product_id,
             key: d[i].product_id,
             product_img: <img src={d[i].image_url} alt="product-img" width="75" height="75"></img>,
             product_name: d[i].name,

@@ -39,9 +39,9 @@ const DeleteProduct = (props) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 };
-                await axios.delete(base_url + "/cart", {data: body}, headers = { headers })
+                await axios.delete(base_url + "/cart", {headers: headers, data: body})
                     .then(res => res.data)
-                    .then(res => console.log(res))
+                    .then()
                 
                 // success notice
                 openNotificationSuccess();
