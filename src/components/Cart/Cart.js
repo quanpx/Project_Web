@@ -115,7 +115,7 @@ const Cart = () => {
             render: (record, index) => {
                 // console.log(index)
                 return (
-                    <DeleteProduct authenticated={authenticated} record={index} />
+                    <DeleteProduct authenticated={authenticated} record={index} cart={cart} setCart={setCart} />
                     // <button onClick={() => console.log(index)}>click me</button>
                 )
             }
