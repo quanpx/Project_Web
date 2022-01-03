@@ -16,9 +16,6 @@ import {
 import { Avatar } from 'antd';
 import '../../App.css';
 
-
-
-
 const Header = ({ cart, authenticated, handleLogout, notifications }) => {
 
 
@@ -68,7 +65,7 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
             {authenticated == null ?
                 <Menu.Item key="b" ><a href="/login">Đăng nhập</a></Menu.Item> :
                 <div>
-                    <Menu.Item key="b" ><a href="/user/yourJobs">Công việc</a></Menu.Item>
+                    <Menu.Item key="b" ><a href="/user/yourJobs">Quản lý công việc</a></Menu.Item>
                     <Menu.Item key="c" ><a href="/" onClick={handleLogout}>Đăng xuất</a> </Menu.Item>
                 </div>
             }

@@ -1,23 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import {  Container } from 'react-bootstrap';
 import AOS from 'aos';
-import { Badge, } from 'antd';
 import 'aos/dist/aos.css';
-import { AiOutlineUser, AiFillCaretDown } from 'react-icons/ai';
-import { BsFillCartCheckFill, BsTelephone, BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
-import { FaRegPaperPlane, FaFacebook } from 'react-icons/fa';
+import { BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
+import { FaFacebook } from 'react-icons/fa';
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link,
-    useNavigate
+    // useNavigate,
 } from "react-router-dom";
-import { Avatar } from 'antd';
-// import 'antd/dist/antd.css';
-
 import './App.css';
 
 import Home from './components/Home/Home';
@@ -35,7 +29,7 @@ import axios from 'axios';
 import Payment from './components/Cart/Payment';
 
 function App() {
-
+    // const navigate = useNavigate();
 
     //create aos effect (fade up) when scroll
 
@@ -104,8 +98,9 @@ function App() {
         localStorage.removeItem("authenticated");
         setAuthenticated(null);
         setCart(null);
-
+        // navigate("/login");
     }
+
     const onLogined = (newAuth) => {
         setAuthenticated(newAuth);
     }

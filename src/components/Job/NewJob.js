@@ -131,7 +131,7 @@ const NewJob = ({ authenticated, createdJobs, setCreateJobs }) => {
                     <Form.Item name={['job', 'name']} label="Tên công việc" rules={[{ required: true }]}>
                         <Input />
                     </Form.Item>
-                    <Form.Item name={['job', 'address']} label="Địa chỉ" rules={[{ required: true }]}>
+                    <Form.Item name={['job', 'address']} label="Địa điểm" rules={[{ required: true }]}>
                         <Input />
                     </Form.Item>
                     <Form.Item name={['job', 'salary']} label="Lương:" rules={[{ required: true, type: 'number', min: 0 }]}>
