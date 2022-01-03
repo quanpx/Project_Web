@@ -4,11 +4,11 @@ import { Form, Input, InputNumber } from 'antd';
 import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney,  MdDateRange } from "react-icons/md";
-import NumberFormat from "react-number-format";
 import "./Job.css";
 import PageContent from "../PageContent/PageContent";
 import convertToVNese from "../../utils/convertToVNese";
 import NumberFormat from "react-number-format";
+import axios from "axios";
 
 
 function Job() {

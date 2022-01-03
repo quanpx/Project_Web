@@ -9,7 +9,6 @@ import { FaCommentDots } from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
 import NumberFormat from "react-number-format";
 import axios from "axios";
-import NumberFormat from "react-number-format";
 
 const Receiver = (props) => {
     const { image_url,worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;

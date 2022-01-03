@@ -6,6 +6,7 @@ import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { notification } from "antd";
 import convertToVNese from "../../utils/convertToVNese";
+import NumberFormat from "react-number-format";
 
 const ReceivedJob = (props) => {
 

@@ -72,7 +72,7 @@ const CreatedJob = () => {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div style={{marginTop: "62px"}}>
+                                <div style={{marginTop: "56px"}}>
                                     <h1>Receivers</h1>
                                     {
                                         receivers.map((receiver, idx) => {

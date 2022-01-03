@@ -6,7 +6,6 @@ import "./JobDetail.css";
 import NumberFormat from "react-number-format";
 
 import axios from "axios";
-import NumberFormat from "react-number-format";
 import convertToVNese from "../../utils/convertToVNese";
 
 const JobDetail = () => {
