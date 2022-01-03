@@ -24,9 +24,6 @@ const User = ({ authenticated }) => {
         'Content-Type': 'application/json'
     };
 
-
-
-
     useEffect(async () => {
         await axios.get(base_url + "/profile", { headers })
             .then(res => res.data)
@@ -37,12 +34,7 @@ const User = ({ authenticated }) => {
                 }
             }).catch(err => { throw Error(err) });
     }, [])
-
-
-
-
-
-
+   
     return (
         user != null ?
             <>
@@ -50,7 +42,7 @@ const User = ({ authenticated }) => {
                 <Container>
                     <section className="section about-section gray-bg" id="about">
                         <div className="container">
-                            <div className="row align-items-center flex-row-reverse">
+                            <div className="row align-items-center flex-row-reverse mb-4">
                                 <div className="col-lg-6">
                                     <div className="about-text go-to">
                                         <h3 className="dark-color">Profile</h3>
@@ -87,7 +79,7 @@ const User = ({ authenticated }) => {
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="about-avatar">
-                                        <img src={user.user.image_url} title alt="user image" />
+                                        <img src={user.user.image_url} title alt="user image"  style={{borderRadius: "50%", width: "60%"}}/>
                                     </div>
                                 </div>
                             </div>
