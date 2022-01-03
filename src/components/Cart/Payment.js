@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from 'react-bootstrap';
+import { useLocation } from "react-router-dom";
 
 import PageContent from "../PageContent/PageContent";
 
@@ -11,12 +12,16 @@ const Payment = () => {
         line3: "Thanh toán",
         line4: "Hóa đơn"
     }
+    const state=useLocation().state;
+   
 
     return(
         <>
             <PageContent content={paymentContent}/>
             <Container>
-                hello
+               {
+                   console.log(state)
+               }
             </Container>
         </>
     )

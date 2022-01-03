@@ -98,19 +98,7 @@ const Cart = () => {
             await axios.post(base_url + "/order", paymentData, { headers })
                 .then(res => res.data)
                 .then(data => {
-
-                    //du lieu tra ve : list san pham va tong tien
-                    /**
-                     * products: Array(1)
-                                0:
-                                name: "Rau huu co"
-                                price: 500
-                                quantity: 1
-                        total_amount: 500
-                     * 
-                     */
-                    console.log(data.data);
-                    navigate("./payment")
+                    navigate("./payment",{state:data.data});
                 });
         } else {
             alert("Giỏ hàng đang rỗng");
