@@ -9,15 +9,10 @@ import { MdArrowDropDownCircle} from 'react-icons/md';
 import { FaUser} from 'react-icons/fa';
 import moment from 'moment';
 import {
-   
     Link,
-   
 } from "react-router-dom";
 import { Avatar } from 'antd';
 import '../../App.css';
-
-
-
 
 const Header = ({ cart, authenticated, handleLogout, notifications }) => {
 
@@ -60,15 +55,15 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
     // other dropdown
     const other = (
         <Menu>
-            <Menu.Item key="a">
-                <a href="/user">Profile</a>
-            </Menu.Item>
-            <Menu.Divider />
             {authenticated == null ?
                 <Menu.Item key="b" ><a href="/login">Đăng nhập</a></Menu.Item> :
                 <div>
+                    <Menu.Item key="a">
+                        <a href="/user">Profile</a>
+                    </Menu.Item>
                     <Menu.Item key="b" ><a  href="/user/yourJobs">Công việc</a></Menu.Item>
-                    <Menu.Item key="c"onClick={handleLogout}>Đăng xuất</Menu.Item>
+                    <Menu.Divider />
+                    <Menu.Item key="c" onClick={() => handleLogout}>Đăng xuất</Menu.Item>
                 </div>
             }
         </Menu>

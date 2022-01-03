@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Container,Card } from "react-bootstrap";
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import ReceivedJob from "./ReceivedJob";
 import NewJob from "./NewJob";
 
@@ -39,9 +37,8 @@ const YourJob = () => {
     
     return (
         <Container>
-            <Row>
-                <Col>
-
+            <div className="row">
+                <div className="col col-md-6 col-sm-12">
                     <div><h1>Created Job</h1>
                         <NewJob />
                         {
@@ -49,7 +46,7 @@ const YourJob = () => {
                                 const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;
                                 console.log(job)
                                 return (
-                                    <Card key={id} className="card-active"> 
+                                    <Card key={id} className="card-active" style={{ width: "100%" }}> 
                                         <Card.Body>
                                             <Card.Title><a href={"/user/createdJob/"+id}>{name}</a></Card.Title>
                                             <Card.Text>
@@ -65,8 +62,8 @@ const YourJob = () => {
                         })
                     }
                     </div>
-            </Col>
-                <Col>
+                </div>
+                <div className="col col-md-6 col-sm-12" >
                     <div><h1>Received Job</h1>
                         {
                             receivedJobs.map((job, idx) => {
@@ -74,8 +71,8 @@ const YourJob = () => {
                             })
                         }
                     </div>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </Container >
 
 

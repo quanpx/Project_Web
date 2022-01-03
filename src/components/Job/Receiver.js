@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 import React, { useState } from "react";
+import { Container } from 'react-bootstrap';
 
 const Receiver = (props) => {
     const { worker_id, name, username, email, comment, deal_price, phone, status } = props.receiver;
@@ -37,26 +38,21 @@ const Receiver = (props) => {
             }).catch(err => { throw Error(err) });
     }
     return (
-        <div>
+        <Container>
             {
-                isShow ? <Card style={{ width: '18rem' }}>
+                isShow ? <Card style={{ width: "100%" }}>
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Body>
-                        <Card.Title>{username}</Card.Title>
-                        <Card.Text>
-                            <p>Sdt: {phone}</p>
-                        </Card.Text>
-                        <Card.Text>
-                            <p>{deal_price} vnd</p>
-                        </Card.Text>
-                        <Card.Text>
-                            <p>{comment}</p>
-                        </Card.Text>
-                        
-
-                        <Card.Text>
+                        <div className='d-flex'>
+                            <img src='https://bootdey.com/img/Content/avatar/avatar7.png' width="12%" alt="user image" />
+                            <Card.Title style={{marginTop: "12px", marginLeft: "12px", fontSize: "30px"}}>{username}</Card.Title>
+                        </div>
+                        <div style={{marginLeft: "16px", marginTop: "8px"}}>
+                            <p>SĐT: {phone}</p>
+                            <p>Lương mong muốn: {deal_price} vnd</p>
+                            <p>Chú thích: {comment}</p>
                             <p>{receiverStatus}</p>
-                        </Card.Text>
+                        </div>
                     </Card.Body>
                     <Card.Footer>
                         {
@@ -74,7 +70,7 @@ const Receiver = (props) => {
                     </Card.Footer>
                 </Card > : null
             }
-        </div>
+        </Container>
     )
 }
 
