@@ -16,7 +16,6 @@ const userContent = {
 
 
 const User = ({ authenticated }) => {
-
     const [user, setUser] = useState(null);
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
@@ -24,6 +23,9 @@ const User = ({ authenticated }) => {
         'Authorization': "Bearer " + authenticated.token,
         'Content-Type': 'application/json'
     };
+
+
+
 
     useEffect(async () => {
         await axios.get(base_url + "/profile", { headers })
@@ -35,6 +37,12 @@ const User = ({ authenticated }) => {
                 }
             }).catch(err => { throw Error(err) });
     }, [])
+   
+
+
+
+
+
     return (
         user != null ?
             <>
@@ -56,9 +64,9 @@ const User = ({ authenticated }) => {
                                                 </div>
                                                 <div className="media">
                                                     <label>Birthday</label>
-                                                    { moment(user.user.date_of_birth).format('LL')}
+                                                    {moment(user.user.date_of_birth).format('LL')}
                                                 </div>
-                                                  <div className="media">
+                                                <div className="media">
                                                     <label>Phone</label>
                                                     {user.user.phone}
                                                 </div>
@@ -72,7 +80,7 @@ const User = ({ authenticated }) => {
                                                     <label>E-mail</label>
                                                     {user.user.email}
                                                 </div>
-                                              
+
                                             </div>
                                         </div>
                                     </div>
