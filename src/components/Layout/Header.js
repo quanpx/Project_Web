@@ -37,7 +37,7 @@ const Header = ({ cart, authenticated, handleLogout }) => {
                     setNotifications(data.data);
                 });
         }
-    }, [notifications])
+    }, [])
 
     const changeNavColor = () => {
         if (window.scrollY >= 60) {

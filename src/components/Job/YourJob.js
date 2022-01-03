@@ -6,6 +6,8 @@ import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import ReceivedJob from "./ReceivedJob";
 import NewJob from "./NewJob";
+import NumberFormat from "react-number-format";
+import convertToVNese from "../../utils/convertToVNese";
 
 const YourJob = () => {
 
@@ -19,7 +21,6 @@ const YourJob = () => {
         'Authorization': "Bearer " + authenticated.token,
         'Content-Type': 'application/json'
     };
-
 
     useEffect(async () => {
         await axios.get(base_url + "/job/createdJob", { headers })
@@ -62,10 +63,10 @@ const YourJob = () => {
                                             <Card.Title><a href={"/user/createdJob/"+id}>{name}</a></Card.Title>
                                             <Card.Text>
                                                 <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {address}<br /></p>
-                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: {salary}<br /></p>
+                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: <NumberFormat value={salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br /></p>
                                                 <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {due}<br /></p>
                                                 <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {description}<br/></p>
-                                                <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {status}</p>
+                                                <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {convertToVNese(status)}</p>
                                             </Card.Text>
                                         </Card.Body>
                                      </Card >

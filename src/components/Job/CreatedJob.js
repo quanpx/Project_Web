@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Spinner ,Card} from "react-bootstrap";
+import { Col, Container, Row, Spinner, Card } from "react-bootstrap";
 import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Receiver from "./Receiver";
+import NumberFormat from "react-number-format";
 
 const CreatedJob = () => {
     const { id } = useParams();
@@ -14,7 +15,7 @@ const CreatedJob = () => {
     const [receivers, setReceivers] = useState(null)
     const [jobStatus, setJobStatus] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    
+
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
     let headers = {
@@ -41,21 +42,22 @@ const CreatedJob = () => {
         <Container>
             {
                 receivers != null ?
-                    <Row style={{margin: "4em 0"}}>
+                    <Row style={{ margin: "4em 0" }}>
                         <Col>
                             <h1>Created Job </h1>
                             <div>
                                 <div>
-                                    <Card className="card-active" style={{height: "299px" }}>
+                                    <Card className="card-active" style={{ height: "299px" }}>
 
                                         <Card.Body>
-                                            <Card.Title style={{fontSize: "30px", marginBottom: "25px"}}>{job.name}</Card.Title>
+                                            <Card.Title style={{ fontSize: "30px", marginBottom: "25px" }}>{job.name}</Card.Title>
                                             <Card.Text>
-                                                <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {job.address}<br /></p>
-                                                <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: {job.salary}<br /></p>
-                                                <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {job.due}<br /></p>
-                                                <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {job.description}<br /></p>
-                                                <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái công việc: {jobStatus}</p>
+                                                <p><GiPositionMarker style={{ marginBottom: "4px", fontSize: "16px" }} />Địa điểm: {job.address}<br /></p>
+                                                <p><MdAttachMoney style={{ marginBottom: "4px", fontSize: "16px" }} />Lương: <NumberFormat value={ job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} />
+                                                   <br /></p>
+                                                <p><MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {job.due}<br /></p>
+                                                <p><MdEditNote style={{ marginBottom: "4px", fontSize: "16px" }} />Mô tả công việc: {job.description}<br /></p>
+                                                <p><AiOutlineBulb style={{ marginBottom: "4px", fontSize: "16px" }} />Trạng thái công việc: {jobStatus}</p>
                                             </Card.Text>
                                         </Card.Body>
                                     </Card >
