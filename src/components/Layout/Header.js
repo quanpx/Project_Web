@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Badge, Menu, Dropdown } from 'antd';
@@ -15,11 +15,30 @@ import {
 } from "react-router-dom";
 import { Avatar } from 'antd';
 import '../../App.css';
+import axios from 'axios';
 
-const Header = ({ cart, authenticated, handleLogout, notifications }) => {
+const Header = ({ cart, authenticated, handleLogout }) => {
 
 
     const [navColor, setNavColor] = useState(false);
+    const [notifications, setNotifications] = useState([]);
+
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+    useEffect(async () => {
+        if (authenticated != null) {
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
+            await axios.get(base_url + "/noti", headers = { headers })
+                .then(res => res.data)
+                .then(data => {
+                    setNotifications(data.data);
+                });
+        }
+    }, [notifications])
+
     const changeNavColor = () => {
         if (window.scrollY >= 60) {
             setNavColor(true)
@@ -29,20 +48,35 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
     }
     window.addEventListener('scroll', changeNavColor)
 
+    const readNotification = async (id) => {
+        if (authenticated != null) {
+            let headers = {
+                'Authorization': 'Bearer ' + authenticated.token,
+
+            };
+            await axios.get(base_url + "/noti/read/" + id, headers = { headers })
+                .then(res => res.data)
+                .then(data => {
+                    setNotifications(notifications.filter(noti => noti.id !== id))
+                })
+        }
+    }
     // notification
     const menu = (
         <Menu style={{ maxWidth: "340px", position: "fixed" }}>
             <h5><b><BsFillBellFill style={{ color: "#87d068" }} />Thông báo</b></h5>
             {
-                notifications.length > 0 ?
-                    notifications.map((item, index) => {
+                notifications.filter(item => item.status === "UNREAD").length > 0 ?
+                    notifications.filter(item => item.status === "UNREAD").map((item, index) => {
                         return (
                             <div key={index}>
                                 <Menu.Divider />
-                                <Menu.Item key={index}>
-                                    <b><FaUser style={{ marginBottom: "4px", color: "#87d068" }} />{item.sender}</b>
-                                    <div style={{ whiteSpace: 'pre-wrap' }}>{item.message}</div>
-                                    <div style={{ color: "rgb(173 173 173)", float: "right" }}>{moment(item.created_at).calendar()}</div>
+                                <Menu.Item key={index} >
+                                    <div onClick={() => readNotification(item.id)}>
+                                        <b><FaUser style={{ marginBottom: "4px", color: "#87d068" }} />{item.sender}</b>
+                                        <div style={{ whiteSpace: 'pre-wrap' }} >{item.message}</div>
+                                        <div style={{ color: "rgb(173 173 173)", float: "right" }}>{moment(item.created_at).calendar()}</div>
+                                    </div>
                                 </Menu.Item>
                             </div>
                         )
@@ -110,11 +144,11 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                                 {
                                                     notifications.length > 0 ?
                                                         <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
-                                                            <Badge count={notifications.length}>
+                                                            <Badge count={notifications.filter(noti=>noti.status==="UNREAD").length}>
                                                                 <Avatar
                                                                     src={authenticated.user.image_url}
                                                                     shape="circle"
-                                                                    
+
                                                                     onClick={(e) => e.preventDefault()}
                                                                 // className="ant-dropdown-link"
                                                                 />
@@ -122,8 +156,8 @@ const Header = ({ cart, authenticated, handleLogout, notifications }) => {
                                                         </Dropdown>
                                                         : <Avatar
                                                             shape="circle"
-                                                             src={authenticated.user.image_url}
-                                                           
+                                                            src={authenticated.user.image_url}
+
                                                         />
                                                 }
                                                 &nbsp; &nbsp;
