@@ -159,9 +159,8 @@ function App() {
                     <Route path="user/createdJob/:id"
                         element={<CreatedJob />}
                     />
-                    <Route paht="/test" 
-                    element={<Test />}
-                    />
+                  
+                
                 </Routes>
             </div>
 
