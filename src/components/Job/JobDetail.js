@@ -5,6 +5,8 @@ import PageContent from "../PageContent/PageContent";
 import "./JobDetail.css";
 
 import axios from "axios";
+import NumberFormat from "react-number-format";
+import convertToVNese from "../../utils/convertToVNese";
 
 const JobDetail = () => {
     const { id } = useParams();
@@ -64,7 +66,7 @@ const JobDetail = () => {
                                 ({job.status})
                             </div>
                         </h1>
-                        <h1>Lương: ${job.salary}</h1>
+                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/></h1>
                         <table className="align-items-start">
                             <tr>
                                 <td width="30%"><b>Chi tiết công việc</b></td>
@@ -107,9 +109,9 @@ const JobDetail = () => {
                                                         <Card.Title>{element.name}</Card.Title>
                                                         <Card.Text>
                                                             {element.address}<br />
-                                                            {element.salary}<br />
+                                                            <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
                                                             {element.due}<br />
-                                                            {element.status}
+                                                            {convertToVNese(element.status)}
                                                         </Card.Text>
                                                         <Button className="detail-btn" href={`./${element.id}`}>Chi tiết</Button>
                                                         {

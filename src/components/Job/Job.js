@@ -4,6 +4,8 @@ import { Form, Input, InputNumber } from 'antd';
 import "./Job.css";
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
+import convertToVNese from "../../utils/convertToVNese";
+import NumberFormat from "react-number-format";
 
 
 function Job() {
@@ -107,9 +109,9 @@ function Job() {
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
                                                     {element.address}<br />
-                                                    {element.salary}<br />
+                                                    <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
                                                     {element.due}<br />
-                                                    {element.status}
+                                                    {convertToVNese(element.status)}
                                                 </Card.Text>
                                                 <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {
