@@ -1,7 +1,7 @@
 
 @host=my-happy-farmer.herokuapp.com/api/v1
 
-@token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxdWFuaWZ5IiwiaWF0IjoxNjQxMDU1MDg0LCJleHAiOjE2NDExNDE0ODR9.4xq2i0XlmqtOJyRAfWF_U_3TjUwksKyjHzSpLtYnMlpeImpu2GSIXg0xPGhMnWNPjXai1hEfNvJpr9xiV18G8w
+@token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjcnF1YW4wNyIsImlhdCI6MTY0MTE0NzgyOSwiZXhwIjoxNjQxMjM0MjI5fQ.3JlZ8ABoNsaYG6cFfdIua8etBYIXr3fshR6y_mNIOHlIx43xCohyHfqsi4VPMy6sA2aK2Ibro31iTt2kPY88-A
 POST https://{{host}}/login HTTP/1.1
 Content-Type: application/json
 
@@ -23,6 +23,14 @@ Content-Type: application/json
 "phone": "0974654701",
 "type":"FARMER",
 "age":22
+}
+###
+POST https://{{host}}/user/updateProfile HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "image_url":"https://scontent.fhan5-3.fna.fbcdn.net/v/t1.6435-9/186245782_1972939369529329_7703708206625824242_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=lAYrrSwEnZYAX9uSe6U&_nc_ht=scontent.fhan5-3.fna&oh=00_AT8cjVmk9JC7UlGlaw-An_Q6G-54x_aBcIfd2fiJN0LLrg&oe=61F728C6"
 }
 // Farmer API
 ### get all farmers 
