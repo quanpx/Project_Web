@@ -4,10 +4,11 @@ import { Container,Card } from "react-bootstrap";
 import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
-import ReceivedJob from "./ReceivedJob";
-import NewJob from "./NewJob";
 import NumberFormat from "react-number-format";
 import convertToVNese from "../../utils/convertToVNese";
+
+import ReceivedJob from "./ReceivedJob";
+import NewJob from "./NewJob";
 
 const YourJob = () => {
 

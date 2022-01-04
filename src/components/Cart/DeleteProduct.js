@@ -27,6 +27,7 @@ const DeleteProduct = (props) => {
             okText: 'Đồng ý',
             okType: 'danger',
             cancelText: 'Không',
+            // centered,
             async onOk() {
                 console.log('OK');
 
@@ -54,7 +55,7 @@ const DeleteProduct = (props) => {
             },
             onCancel() {
                 console.log('Cancel');
-                console.log(props.authenticated)
+                console.log(props.record)
             },
         });
     }

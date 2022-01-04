@@ -112,7 +112,7 @@ const Cart = () => {
             dataIndex: 'delete',
             width: 50,
             align: "center",
-            render: ( index) => {
+            render: ( record, index) => {
                 return (
                     <DeleteProduct authenticated={authenticated} record={index} cart={cart} setCart={setCart} />
                     // <button onClick={() => console.log(index)}>click me</button>

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Modal, Button } from 'react-bootstrap';
 import { Form, Input, InputNumber } from 'antd';
-import { GiPositionMarker } from "react-icons/gi";
 import { AiOutlineBulb } from "react-icons/ai";
-import { MdAttachMoney,  MdDateRange } from "react-icons/md";
-import "./Job.css";
-import PageContent from "../PageContent/PageContent";
+import { MdAttachMoney, MdDateRange } from "react-icons/md";
+import { GiPositionMarker } from "react-icons/gi";
 import convertToVNese from "../../utils/convertToVNese";
 import NumberFormat from "react-number-format";
+
+import "./Job.css";
+import PageContent from "../PageContent/PageContent";
 import axios from "axios";
 
 
@@ -111,15 +112,16 @@ function Job() {
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    {element.address}<br />
-                                                    <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
-                                                    {element.due}<br />
-                                                    {convertToVNese(element.status)}
+                                                    <GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {element.address}<br />
+                                                    <MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
+                                                    <MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {element.due}<br />
+                                                    <AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {convertToVNese(element.status)}
                                                 </Card.Text>
-                                                <Button className="detail-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
+                                                <Button className="detail-btn ant-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {
-                                                    element.status == "PENDING" || element.status=="COMPLETED" ? <Button className="getJob-btn" disabled>Nhận việc</Button> :
-                                                        <Button className="getJob-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
+                                                    element.status == "PENDING" || element.status=="COMPLETED" ? 
+                                                        <Button className="getJob-btn ant-btn" disabled>Nhận việc</Button> :
+                                                        <Button className="getJob-btn ant-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
                                                 }
 
                                                 <Modal show={activeModal === index} onHide={handleClose} centered>
@@ -137,7 +139,7 @@ function Job() {
                                                         </Form>
                                                     </Modal.Body>
                                                     <Modal.Footer>
-                                                        <Button variant="secondary" onClick={() => handleGetjob(element.id)}>
+                                                        <Button variant="secondary" className="ant-btn" onClick={() => handleGetjob(element.id)} >
                                                             Nhận việc
                                                         </Button>
                                                     </Modal.Footer>

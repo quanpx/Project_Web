@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Button, Card } from 'react-bootstrap';
 import PageContent from "../PageContent/PageContent";
-import "./JobDetail.css";
+import { AiOutlineBulb } from "react-icons/ai";
+import { MdAttachMoney, MdDateRange } from "react-icons/md";
+import { GiPositionMarker } from "react-icons/gi";
 import NumberFormat from "react-number-format";
-
-import axios from "axios";
 import convertToVNese from "../../utils/convertToVNese";
+
+import "./JobDetail.css";
+import axios from "axios";
 
 const JobDetail = () => {
     const { id } = useParams();
@@ -87,8 +90,8 @@ const JobDetail = () => {
                         </table>
                         {
                             job.status == "PENDING" || job.status == "COMPLETED" ?
-                                <Button className="getJob-btn" disabled>Nhận việc</Button> :
-                                <Button className="getJob-btn" onClick={(e) => clickHandler(e)}>Nhận việc</Button>
+                                <Button className="getJob-btn ant-btn" disabled>Nhận việc</Button> :
+                                <Button className="getJob-btn ant-btn" onClick={(e) => clickHandler(e)}>Nhận việc</Button>
                         }
 
                     </div>
@@ -108,17 +111,12 @@ const JobDetail = () => {
                                                     <Card.Body>
                                                         <Card.Title>{element.name}</Card.Title>
                                                         <Card.Text>
-                                                            {element.address}<br />
-                                                            <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
-                                                            {element.due}<br />
-                                                            {convertToVNese(element.status)}
+                                                            <GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {element.address}<br />
+                                                            <MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
+                                                            <MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {element.due}<br />
+                                                            <AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {convertToVNese(element.status)}
                                                         </Card.Text>
-                                                        <Button className="detail-btn" href={`./${element.id}`}>Chi tiết</Button>
-                                                        {
-                                                            element.status == "PENDING" || element.status == "COMPLETED" ?
-                                                                <Button className="getJob-btn" disabled>Nhận việc</Button> :
-                                                                <Button className="getJob-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
-                                                        }
+                                                        <Button className="detail-btn ant-btn" href={`./${element.id}`}>Chi tiết</Button>
                                                     </Card.Body>
                                                 </Card>
                                             </div>
@@ -126,7 +124,7 @@ const JobDetail = () => {
                                     })
                                 }
                             </div>
-                        </div> : <p>HHello</p>
+                        </div> : <p>Hello</p>
 
                 }
             </Container>
