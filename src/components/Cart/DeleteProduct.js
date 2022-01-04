@@ -28,11 +28,11 @@ const DeleteProduct = (props) => {
             okType: 'danger',
             cancelText: 'Không',
             async onOk() {
-                console.log('OK');
+                
 
                 // delete by id
-                const body = {product_id: props.record.key}
-
+                 const body = {product_id: props.record.key}
+               
                 const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
                 let headers = {
                     'Authorization': 'Bearer ' + props.authenticated.token,

@@ -129,7 +129,7 @@ function App() {
                         element={<JobDetail />}
                     />
                     <Route path="/cart"
-                        element={<Cart />}
+                        element={<Cart cart={cart} setCart={setCart}/>}
                     />
                     <Route path="/cart/payment"
                         element={<Payment />}
