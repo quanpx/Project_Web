@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
@@ -35,7 +35,7 @@ function App() {
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const [cart, setCart] = useState(null);
-    
+
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function App() {
         AOS.init();
     });
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-   
+
     useEffect(async () => {
         if (authenticated != null) {
             let headers = {
@@ -60,18 +60,18 @@ function App() {
     }, [authenticated])
 
     //scroll to top
-   // const [visible, setVisible] = useState(false)
+    // const [visible, setVisible] = useState(false)
 
-    let visible=false;
+    let visible = false;
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         if (scrolled > 300) {
             // setVisible(true)
-            visible=true;
+            visible = true;
         }
         else if (scrolled <= 300) {
-          //  setVisible(false)
-          visible=false;
+            //  setVisible(false)
+            visible = false;
         }
     };
 
@@ -129,7 +129,7 @@ function App() {
                         element={<JobDetail />}
                     />
                     <Route path="/cart"
-                        element={<Cart cart={cart} setCart={setCart}/>}
+                        element={<Cart cart={cart} setCart={setCart} />}
                     />
                     <Route path="/cart/payment"
                         element={<Payment />}
@@ -152,8 +152,8 @@ function App() {
                     <Route path="/cart/payment"
                         element={<Payment />}
                     />
-                  
-                
+
+
                 </Routes>
             </div>
 
@@ -169,8 +169,8 @@ function App() {
                     </div>
                     <div className="footer-content row">
                         <div className="footer-vegefoods col-sm-6 col-md-3">
-                            <h3>Vegefoods</h3>
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                            <h3>Happy Farmers</h3>
+                            Rời xa ồn ào phố thị, trở về với vùng quê yên tĩnh. Ngồi trên mái nhà ngắm hoàng hôn buổi tối thật dễ chịu biết bao.
                             <div className='media-icon'>
                                 <BsTwitter /> &nbsp;
                                 <FaFacebook /> &nbsp;
@@ -180,10 +180,10 @@ function App() {
                         <div className="footer-menu col-sm-6 col-md-3">
                             <h3>Menu</h3>
                             <ul>
-                                <li>Shop</li>
-                                <li>About</li>
-                                <li>Journal</li>
-                                <li>Contact Us</li>
+                                <li><a href="/shop">Cửa hàng</a></li>
+                                <li><a href="/job">Công việc</a></li>
+                                <li><a href="/profile">Profile</a></li>
+                                
                             </ul>
                         </div>
                         <div className="footer-help col-sm-6 col-md-3">

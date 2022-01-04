@@ -16,12 +16,14 @@ import {
 import { Avatar } from 'antd';
 import '../../App.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ cart, authenticated, handleLogout }) => {
 
 
     const [navColor, setNavColor] = useState(false);
     const [notifications, setNotifications] = useState([]);
+    const navigate=useNavigate();
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     useEffect(async () => {
@@ -57,7 +59,8 @@ const Header = ({ cart, authenticated, handleLogout }) => {
             await axios.get(base_url + "/noti/read/" + id, headers = { headers })
                 .then(res => res.data)
                 .then(data => {
-                    setNotifications(notifications.filter(noti => noti.id !== id))
+                    setNotifications(notifications.filter(noti => noti.id !== id));
+                    navigate("/user/yourJobs");
                 })
         }
     }
