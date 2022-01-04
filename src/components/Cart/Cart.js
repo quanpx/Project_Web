@@ -11,36 +11,36 @@ import PageContent from "../PageContent/PageContent";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
 
-const Cart = () => {
+const Cart = ({cart,setCart}) => {
     const navigate = useNavigate();
     // refresh component
     const [value, setValue] = useState();
-    const [cart, setCart] = useState(null);
+    //const [cart, setCart] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const refresh = () => {
         setValue({});
     }
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    useEffect(async () => {
+    // useEffect(async () => {
 
-        if (authenticated == null) {
-            openNotificationWarning("Bạn cần đăng nhập trước nhé!");
-            navigate("/login");
-        } else {
-            let headers = {
-                'Authorization': 'Bearer ' + authenticated.token,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            };
-            await axios.get(base_url + "/cart", headers = { headers })
-                .then(res => res.data)
-                .then(data => {
-                    setCart(data.data);
-                });
-        }
+    //     if (authenticated == null) {
+    //         openNotificationWarning("Bạn cần đăng nhập trước nhé!");
+    //         navigate("/login");
+    //     } else {
+    //         let headers = {
+    //             'Authorization': 'Bearer ' + authenticated.token,
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         };
+    //         await axios.get(base_url + "/cart", headers = { headers })
+    //             .then(res => res.data)
+    //             .then(data => {
+    //                 setCart(data.data);
+    //             });
+    //     }
 
-    }, []);
+    // }, []);
     const openNotificationWarning = (message) => {
         notification.warning({
             message: message,
@@ -112,7 +112,7 @@ const Cart = () => {
             dataIndex: 'delete',
             width: 50,
             align: "center",
-            render: ( index) => {
+            render: ( record,index) => {
                 return (
                     <DeleteProduct authenticated={authenticated} record={index} cart={cart} setCart={setCart} />
                     // <button onClick={() => console.log(index)}>click me</button>
@@ -160,7 +160,7 @@ const Cart = () => {
     var data = [];
     for (let i = 0; i < d.length; i++) {
         data.push({
-            id: d[i].product_id,
+            //id: d[i].product_id,
             key: d[i].product_id,
             product_img: <img src={d[i].image_url} alt="product-img" width="75" height="75"></img>,
             product_name: d[i].name,

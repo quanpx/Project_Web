@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Button, Card } from 'react-bootstrap';
+import { Container, Button, Card,Spinner } from 'react-bootstrap';
 import PageContent from "../PageContent/PageContent";
 import "./JobDetail.css";
 import NumberFormat from "react-number-format";
@@ -66,7 +66,7 @@ const JobDetail = () => {
                                 ({job.status})
                             </div>
                         </h1>
-                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/></h1>
+                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /></h1>
                         <table className="align-items-start">
                             <tr>
                                 <td width="30%"><b>Chi tiết công việc</b></td>
@@ -109,7 +109,7 @@ const JobDetail = () => {
                                                         <Card.Title>{element.name}</Card.Title>
                                                         <Card.Text>
                                                             {element.address}<br />
-                                                            <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
+                                                            <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br />
                                                             {element.due}<br />
                                                             {convertToVNese(element.status)}
                                                         </Card.Text>
@@ -126,7 +126,9 @@ const JobDetail = () => {
                                     })
                                 }
                             </div>
-                        </div> : <p>HHello</p>
+                        </div> : <Spinner animation="border" role="status" variant="success">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
 
                 }
             </Container>
