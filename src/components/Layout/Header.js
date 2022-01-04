@@ -16,12 +16,14 @@ import {
 import { Avatar } from 'antd';
 import '../../App.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ cart, authenticated, handleLogout }) => {
 
 
     const [navColor, setNavColor] = useState(false);
     const [notifications, setNotifications] = useState([]);
+    const navigate=useNavigate();
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     useEffect(async () => {
@@ -57,7 +59,8 @@ const Header = ({ cart, authenticated, handleLogout }) => {
             await axios.get(base_url + "/noti/read/" + id, headers = { headers })
                 .then(res => res.data)
                 .then(data => {
-                    setNotifications(notifications.filter(noti => noti.id !== id))
+                    setNotifications(notifications.filter(noti => noti.id !== id));
+                    navigate("/user/yourJobs");
                 })
         }
     }
@@ -67,7 +70,9 @@ const Header = ({ cart, authenticated, handleLogout }) => {
             <h5><b><BsFillBellFill style={{ color: "#87d068" }} />Thông báo</b></h5>
             {
                 notifications.filter(item => item.status === "UNREAD").length > 0 ?
-                    notifications.filter(item => item.status === "UNREAD").map((item, index) => {
+                    notifications.filter(item => item.status === "UNREAD").sort((a,b)=>
+                        b.created_at-a.created_at
+                    ).reverse().map((item, index) => {
                         return (
                             <div key={index}>
                                 <Menu.Divider />

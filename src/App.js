@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BsFillArrowUpCircleFill, BsGeoAltFill, BsFillTelephoneFill, BsEnvelopeFill, BsTwitter, BsInstagram, BsFillSuitHeartFill } from "react-icons/bs";
@@ -35,7 +35,7 @@ function App() {
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
     const [cart, setCart] = useState(null);
-    
+
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function App() {
         AOS.init();
     });
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-   
+
     useEffect(async () => {
         if (authenticated != null) {
             let headers = {
@@ -60,18 +60,18 @@ function App() {
     }, [authenticated])
 
     //scroll to top
-   // const [visible, setVisible] = useState(false)
+    // const [visible, setVisible] = useState(false)
 
-    let visible=false;
+    let visible = false;
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         if (scrolled > 300) {
             // setVisible(true)
-            visible=true;
+            visible = true;
         }
         else if (scrolled <= 300) {
-          //  setVisible(false)
-          visible=false;
+            //  setVisible(false)
+            visible = false;
         }
     };
 
@@ -129,7 +129,7 @@ function App() {
                         element={<JobDetail />}
                     />
                     <Route path="/cart"
-                        element={<Cart />}
+                        element={<Cart cart={cart} setCart={setCart} />}
                     />
                     <Route path="/cart/payment"
                         element={<Payment />}
@@ -152,8 +152,8 @@ function App() {
                     <Route path="/cart/payment"
                         element={<Payment />}
                     />
-                  
-                
+
+
                 </Routes>
             </div>
 
@@ -169,8 +169,8 @@ function App() {
                     </div>
                     <div className="footer-content row">
                         <div className="footer-vegefoods col-sm-6 col-md-3">
-                            <h3>Vegefoods</h3>
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                            <h3>Happy Farmers</h3>
+                            Rời xa ồn ào phố thị, trở về với vùng quê yên tĩnh. Ngồi trên mái nhà ngắm hoàng hôn buổi tối thật dễ chịu biết bao.
                             <div className='media-icon'>
                                 <BsTwitter /> &nbsp;
                                 <FaFacebook /> &nbsp;
@@ -180,33 +180,37 @@ function App() {
                         <div className="footer-menu col-sm-6 col-md-3">
                             <h3>Menu</h3>
                             <ul>
-                                <li>Shop</li>
-                                <li>About</li>
-                                <li>Journal</li>
-                                <li>Contact Us</li>
+                                <li><a href="/shop">Cửa hàng</a></li>
+                                <li><a href="/job">Công việc</a></li>
+                                <li><a href="/user/yourjobs">Quản lý cong việc</a></li>
+                                <li><a href="/user">Trang cá nhân</a></li>
                             </ul>
                         </div>
                         <div className="footer-help col-sm-6 col-md-3">
-                            <h3>Help</h3>
+                            <h3>Thành viên nhóm</h3>
                             <ul>
-                                <li>Shipping Information</li>
-                                <li>Returns & Exchange</li>
-                                <li>Terms & Conditions</li>
-                                <li>Privacy Policy</li>
+                                <li>Phùng Xuân Quân</li>
+                                <li>Lưu Văn Đông</li>
+                                <li>Nguyễn Duy Khánh</li>
+                                <li>Trần Việt Hoàng</li>
                             </ul>
                         </div>
                         <div className="footer-contact col-sm-6 col-md-3">
                             <h3>Have a question?</h3>
                             <ul>
-                                <li><BsGeoAltFill />203 Fake St. Mountain View, San Francisco, California, USA</li>
-                                <li><BsFillTelephoneFill />+2 392 3929 210</li>
-                                <li><BsEnvelopeFill />	info@yourdomain.com</li>
+                                <li><BsGeoAltFill />Đại học Bách Khoa Hà Nội</li>
+                                <li><BsEnvelopeFill /> quanbka00@gmail.com</li>
+                                <li><BsEnvelopeFill /> luudong271@gmail.com</li>
+                                <li><BsEnvelopeFill /> duykhanhctb@gmail.com</li>
+                                <li><BsEnvelopeFill /> hoangviet15ht@gmail.com</li>
                             </ul>
                         </div>
                     </div>
                     <div className="footer-copyright row mt-2">
                         <div className='col-md-12 text-center'>
-                            Copyright ©2021 All rights reserved | This template is made with <BsFillSuitHeartFill /> by Group 7
+                            <div>Copyright ©2021 Trang web được tạo bởi nhóm 7 <BsFillSuitHeartFill /></div>
+                            <div>Bộ môn: Thực hành Lập trình web</div>
+                            <div>Giảng viên: Trịnh Tuấn Đạt <BsFillSuitHeartFill /></div>
                         </div>
                     </div>
                 </ Container>

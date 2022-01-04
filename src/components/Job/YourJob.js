@@ -53,7 +53,7 @@ const YourJob = () => {
                         />
                     </div>
                     <div>
-                        <h1>Created Job</h1>
+                        <h1>Việc đã tạo</h1>
                         {
                             createdJobs.map((job, idx) => {
                                 const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;
@@ -77,7 +77,7 @@ const YourJob = () => {
                     </div>
                 </div>
                 <div className="col-md-6" style={{marginTop: "56px"}}>
-                    <div><h1>Received Job</h1>
+                    <div><h1>Việc đã nhận</h1>
                         {
                             receivedJobs.map((job, idx) => {
                                 return <ReceivedJob authenticated={authenticated} job={job}/>

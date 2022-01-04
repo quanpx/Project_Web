@@ -45,7 +45,7 @@ const Receiver = (props) => {
     return (
         <>
             {
-                isShow ? <Card style={{ width: "100%", height: "332px", marginBottom: "12px" }}>
+                isShow ? <Card style={{ width: "100%", height: "374px", marginBottom: "12px" }}>
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Body>
                         <div className='d-flex'>

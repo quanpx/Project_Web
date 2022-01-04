@@ -49,10 +49,10 @@ const CreatedJob = () => {
                                 <div type="button" className="ant-btn mb-4" onClick={() => nagative("/user/yourJobs")}>
                                     Trở về
                                 </div>
-                                <h1>Created Job </h1>
+                                <h1>Việc đã tạo</h1>
                                 <div >
                                     <div>
-                                        <Card className="card-active" style={{height: "332px", marginBottom: "12px" }}>
+                                        <Card className="card-active" style={{height: "374px", marginBottom: "12px" }}>
 
                                             <Card.Body>
                                                 <Card.Title style={{fontSize: "30px", marginBottom: "25px"}}>{job.name}</Card.Title>
@@ -73,7 +73,7 @@ const CreatedJob = () => {
                             </div>
                             <div className="col-md-6">
                                 <div style={{marginTop: "56px"}}>
-                                    <h1>Receivers</h1>
+                                    <h1>Yêu cầu</h1>
                                     {
                                         receivers.map((receiver, idx) => {
                                             if (receiver.status != "REJECTED") {

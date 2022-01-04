@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Button, Card } from 'react-bootstrap';
+import { Container, Button, Card,Spinner } from 'react-bootstrap';
 import PageContent from "../PageContent/PageContent";
 import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdDateRange } from "react-icons/md";
 import { GiPositionMarker } from "react-icons/gi";
 import NumberFormat from "react-number-format";
 import convertToVNese from "../../utils/convertToVNese";
-
+import { useNavigate } from "react-router-dom";
 import "./JobDetail.css";
 import axios from "axios";
 
 const JobDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     // get products
     const [Items, setItems] = useState([]);
@@ -59,6 +60,9 @@ const JobDetail = () => {
             <PageContent content={jobDetailContent} />
             <Container className="job-detail">
                 <div className="row">
+                    <Button className="ant-btn" onClick={() => navigate("/job")} style={{width: "74px", marginBottom: "40px"}}>Trở về</Button>
+                </div>
+                <div className="row">
                     <div className="col-lg-6">
                         <img src={job.image_url} alt="job-image" className="job-img"></img>
                     </div>
@@ -69,7 +73,7 @@ const JobDetail = () => {
                                 ({job.status})
                             </div>
                         </h1>
-                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/></h1>
+                        <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /></h1>
                         <table className="align-items-start">
                             <tr>
                                 <td width="30%"><b>Chi tiết công việc</b></td>
@@ -124,7 +128,9 @@ const JobDetail = () => {
                                     })
                                 }
                             </div>
-                        </div> : <p>Hello</p>
+                        </div> : <Spinner animation="border" role="status" variant="success">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
 
                 }
             </Container>
