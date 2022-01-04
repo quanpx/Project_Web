@@ -95,7 +95,6 @@ const Home=(props)=> {
                                         src="./images/slider-2.jpg"
                                         alt="Second slide"
                                     />
-
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
                                             <h1>Second slide label</h1>

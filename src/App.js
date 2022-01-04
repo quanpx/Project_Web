@@ -182,7 +182,7 @@ function App() {
                             <ul>
                                 <li><a href="/shop">Cửa hàng</a></li>
                                 <li><a href="/job">Công việc</a></li>
-                                <li><a href="/user/yourjobs">Quản lý cong việc</a></li>
+                                <li><a href="/user/yourjobs">Quản lý công việc</a></li>
                                 <li><a href="/user">Trang cá nhân</a></li>
                             </ul>
                         </div>
@@ -208,9 +208,9 @@ function App() {
                     </div>
                     <div className="footer-copyright row mt-2">
                         <div className='col-md-12 text-center'>
-                            <div>Copyright ©2021 Trang web được tạo bởi nhóm 7 <BsFillSuitHeartFill /></div>
-                            <div>Bộ môn: Thực hành Lập trình web</div>
-                            <div>Giảng viên: Trịnh Tuấn Đạt <BsFillSuitHeartFill /></div>
+                            <div><BsFillSuitHeartFill /> Copyright ©2021 Trang web được tạo bởi nhóm 7 <BsFillSuitHeartFill /></div>
+                            <div><BsFillSuitHeartFill /> Bộ môn: Thực hành Lập trình web <BsFillSuitHeartFill /></div>
+                            <div><BsFillSuitHeartFill /> Giảng viên: Trịnh Tuấn Đạt <BsFillSuitHeartFill /></div>
                         </div>
                     </div>
                 </ Container>

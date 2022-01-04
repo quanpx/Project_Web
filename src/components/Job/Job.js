@@ -172,7 +172,7 @@ function Job() {
                                                         </Form>
                                                     </Modal.Body>
                                                     <Modal.Footer>
-                                                        <Button variant="secondary" onClick={() => handleGetjob(element.id, element.username)}>
+                                                        <Button className="ant-btn" style={{height: "36px"}} onClick={() => handleGetjob(element.id, element.username)}>
                                                             Nhận việc
                                                         </Button>
                                                     </Modal.Footer>

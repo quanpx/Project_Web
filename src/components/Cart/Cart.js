@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 import { Table } from 'antd';
@@ -9,7 +9,7 @@ import DeleteProduct from "./DeleteProduct";
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
 import { useNavigate } from "react-router-dom";
-import { notification } from "antd";
+
 
 const Cart = ({cart,setCart}) => {
     const navigate = useNavigate();
@@ -41,13 +41,6 @@ const Cart = ({cart,setCart}) => {
     //     }
 
     // }, []);
-    const openNotificationWarning = (message) => {
-        notification.warning({
-            message: message,
-            duration: 3
-        });
-    }
-
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
@@ -98,10 +91,7 @@ const Cart = ({cart,setCart}) => {
                 .then(data => {
                     navigate("./payment",{state:data.data});
                 });
-        } else {
-            alert("Giỏ hàng đang rỗng");
         }
-
     }
 
 
@@ -214,9 +204,15 @@ const Cart = ({cart,setCart}) => {
                         &nbsp; &nbsp;
                     </div>
                     <div className="col-md-3 col-sm-4 text-center">
-                        <button className="btn btn-primary pay-btn" onClick={paymentHandle}>
-                            Mua hàng
-                        </button>
+                        {
+                            cart.length === 0 ? 
+                            <Button className="ant-btn pay-btn" style={{height: "36px"}} disabled>
+                                Mua hàng
+                            </Button> :
+                            <Button className="ant-btn pay-btn" style={{height: "36px"}} onClick={paymentHandle}>
+                                Mua hàng
+                            </Button>
+                        }
                     </div>
                 </div>
             </Container>

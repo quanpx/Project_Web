@@ -197,7 +197,7 @@ body{
     background: #82ae46;
     width: 5em;
     height: 2em;
-    margin-top: 13.6em;
+    margin-top: 15.81em;
     border-radius: 0 6px 0 0;
 }
 
@@ -213,6 +213,5 @@ body{
 
 /* fertilizer */
 .fertilizer{
-    margin-top: 4em;
-    margin-bottom: 4em;
+    margin: 4em 0;
 }

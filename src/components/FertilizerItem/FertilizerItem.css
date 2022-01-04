@@ -3,7 +3,7 @@
 .fertilizer-item{
     border: 1px solid #ccc;
     margin-bottom: 32px;
-    box-shadow: 4px 3px 3px -1px #ccc;
+    box-shadow: 1px 2px 2px -1px #ccc;
 }
 
 .fertilizer-item .fertilizer-content{
