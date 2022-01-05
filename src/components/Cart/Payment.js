@@ -12,6 +12,7 @@ const Payment = ({ setCart }) => {
     const navigate = useNavigate();
 
 
+    // get data
     const paymentContent = {
         img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
         // line1: "Cart",

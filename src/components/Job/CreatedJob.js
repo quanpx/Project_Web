@@ -6,6 +6,7 @@ import { AiOutlineBulb } from "react-icons/ai";
 import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { useParams, useNavigate } from "react-router-dom";
 
+import dateFormat from "dateformat";
 import PageContent from "../PageContent/PageContent";
 import Receiver from "./Receiver";
 import NumberFormat from "react-number-format";
@@ -74,7 +75,7 @@ const CreatedJob = () => {
                                                         <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
                                                             Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
                                                         </p>
-                                                        <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {job.due}<br /></p>
+                                                        <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {dateFormat(job.due, "dd/mm/yyyy")}<br /></p>
                                                         <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {job.description}<br /></p>
                                                         <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái công việc: {jobStatus}</p>
                                                     </Card.Text>
