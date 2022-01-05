@@ -4,11 +4,10 @@ import { Form, Input, InputNumber, notification } from 'antd';
 import { AiOutlineBulb } from "react-icons/ai";
 import { GiPositionMarker } from "react-icons/gi";
 import { MdAttachMoney, MdDateRange } from "react-icons/md";
-import "./Job.css";
 import PageContent from "../PageContent/PageContent";
 import convertToVNese from "../../utils/convertToVNese";
 import NumberFormat from "react-number-format";
-
+import dateFormat from "dateformat";
 import "./Job.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -138,8 +137,8 @@ function Job() {
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
                                                     <GiPositionMarker style={{ marginBottom: "4px", fontSize: "16px" }} />Địa điểm: {element.address}<br />
-                                                    <MdAttachMoney style={{ marginBottom: "4px", fontSize: "16px" }} />Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br />
-                                                    <MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {element.due}<br />
+                                                    <MdAttachMoney style={{ marginBottom: "4px", fontSize: "16px" }} />Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} ></NumberFormat><br />
+                                                    <MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {dateFormat(element.due, "dd/mm/yyyy")}<br />
                                                     <AiOutlineBulb style={{ marginBottom: "4px", fontSize: "16px" }} />Trạng thái: {convertToVNese(element.status)}
                                                 </Card.Text>
                                                 <Button className="detail-btn ant-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>

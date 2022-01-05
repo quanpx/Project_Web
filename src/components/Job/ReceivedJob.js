@@ -7,7 +7,7 @@ import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import { notification } from "antd";
 import convertToVNese from "../../utils/convertToVNese";
 import NumberFormat from "react-number-format";
-
+import dateFormat from "dateformat";
 const ReceivedJob = (props) => {
 
     const [status, setStatus] = useState(props.job.status);
@@ -46,7 +46,7 @@ const ReceivedJob = (props) => {
                     <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>
                         Lương: <NumberFormat value={props.job.salary} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /><br />
                     </p>
-                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {props.job.due}<br /></p>
+                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {dateFormat(props.job.due, "dd/mm/yyyy")}<br /></p>
                     <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {props.job.description}<br /></p>
                     <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {status}</p>
                 </Card.Text>

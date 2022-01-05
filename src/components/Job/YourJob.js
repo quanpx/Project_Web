@@ -7,6 +7,7 @@ import { MdAttachMoney, MdEditNote, MdDateRange } from "react-icons/md";
 import NumberFormat from "react-number-format";
 import convertToVNese from "../../utils/convertToVNese";
 
+import dateFormat from "dateformat";
 import PageContent from "../PageContent/PageContent";
 import ReceivedJob from "./ReceivedJob";
 import NewJob from "./NewJob";
@@ -75,7 +76,7 @@ const YourJob = () => {
                                                 <Card.Text>
                                                     <p><GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {address}<br /></p>
                                                     <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: <NumberFormat value={salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br /></p>
-                                                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {due}<br /></p>
+                                                    <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {dateFormat(due, "dd/mm/yyyy")}<br /></p>
                                                     <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {description}<br/></p>
                                                     <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {convertToVNese(status)}</p>
                                                 </Card.Text>

@@ -9,6 +9,8 @@ import NumberFormat from "react-number-format";
 import convertToVNese from "../../utils/convertToVNese";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, InputNumber, notification } from 'antd';
+
+import dateFormat from "dateformat";
 import "./JobDetail.css";
 import axios from "axios";
 
@@ -124,6 +126,8 @@ const JobDetail = () => {
                                 ({job.status})
                             </div>
                         </h1>
+
+                   
                         <h1>Lương: <NumberFormat value={job.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /></h1>
                         <table className="align-items-start">
                             <tr>
@@ -132,7 +136,7 @@ const JobDetail = () => {
                             </tr>
                             <tr>
                                 <td><b>Ngày làm việc</b></td>
-                                <td>: {job.due}</td>
+                                <td>: {dateFormat(job.due, "dd/mm/yyyy")}</td>
                             </tr>
                             <tr>
                                 <td><b>Địa điểm làm việc</b></td>
@@ -189,7 +193,7 @@ const JobDetail = () => {
                                                         <Card.Text>
                                                             <GiPositionMarker style={{ marginBottom: "4px", fontSize: "16px" }} />Địa điểm: {element.address}<br />
                                                             <MdAttachMoney style={{ marginBottom: "4px", fontSize: "16px" }} />Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br />
-                                                            <MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {element.due}<br />
+                                                            <MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {dateFormat(element.due, "dd/mm/yyyy")}<br />
                                                             <AiOutlineBulb style={{ marginBottom: "4px", fontSize: "16px" }} />Trạng thái: {convertToVNese(element.status)}
                                                         </Card.Text>
                                                         <Button className="detail-btn ant-btn" href={`./${element.id}`}>Chi tiết</Button>
