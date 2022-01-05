@@ -84,7 +84,7 @@ const Home = (props) => {
                                     
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h3>Mang mọi người đến gần nhau hơn</h3>
+                                            <h4>Mang mọi người đến gần nhau hơn</h4>
                                             <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
@@ -111,7 +111,7 @@ const Home = (props) => {
 
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h3>Những sản phẩm chất lượng cao, thân thiện với mọi người</h3>
+                                            <h4>Những sản phẩm chất lượng cao, thân thiện với mọi người</h4>
                                             <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
