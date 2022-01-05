@@ -9,6 +9,7 @@ import FertilizerItem from '../FertilizerItem/FertilizerItem';
 import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
 import axios from 'axios';
+import NumberFormat from 'react-number-format';
 
 
 const Home = (props) => {
@@ -240,7 +241,7 @@ const Home = (props) => {
                                                                 <h3>{name}</h3>
                                                                 <div className='price d-lex '>
                                                                     <span className='price-dc'>{price}</span>
-                                                                    <span className='price-sale'>{sale}</span>
+                                                                    <span className='price-sale'><NumberFormat value={sale} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></span>
                                                                 </div>
                                                                 <div className='bottom-area d-flex px-3'>
                                                                     <div className='m-auto d-flex'>

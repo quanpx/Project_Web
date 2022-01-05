@@ -92,6 +92,7 @@ const JobDetail = () => {
         }
     }
 
+    console.log(job);
     const layout = {
         labelCol: { span: 8 },
         wrapperCol: { span: 16 },

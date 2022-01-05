@@ -9,6 +9,7 @@ import DeleteProduct from "./DeleteProduct";
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
 import { useNavigate } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 
 const Cart = ({cart,setCart}) => {
@@ -127,18 +128,19 @@ const Cart = ({cart,setCart}) => {
     }
     var data = [];
     for (let i = 0; i < d.length; i++) {
+        let total=d[i].price*d[i].bought_quantity;
         data.push({
             //id: d[i].product_id,
             key: d[i].product_id,
             product_img: <img src={d[i].image_url} alt="product-img" width="75" height="75"></img>,
             product_name: d[i].name,
-            price: d[i].price,
+            price: <NumberFormat value={d[i].price} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat>,
             quantity: <div className="change-quantity">
                 <AiOutlineMinus className="decrease-product" onClick={() => decreaseQuantity(d[i].product_id)} /> &nbsp; &nbsp;
                 {d[i].bought_quantity} &nbsp; &nbsp;
                 <AiOutlinePlus className="increase-product" onClick={() => increaseQuantity(d[i].product_id)} />
             </div>,
-            total: Math.imul(d[i].price, d[i].bought_quantity)
+            total: total
         });
     }
 
@@ -178,7 +180,7 @@ const Cart = ({cart,setCart}) => {
                     <div className="col-md-3"></div>
                     <div className="col-md-6 col-sm-8 text-end payment-text">
                         Tổng tiền ({d.length} sản phẩm):
-                        <span className="sum"> ₫{sum}</span>
+                        <span className="sum"> <NumberFormat value={sum} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat> </span>
                         &nbsp; &nbsp;
                     </div>
                     <div className="col-md-3 col-sm-4 text-center">

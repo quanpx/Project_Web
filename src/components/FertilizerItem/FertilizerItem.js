@@ -1,6 +1,7 @@
 import React from "react";
 import "./FertilizerItem.css";
 import { useNavigate } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 function FertilizerItem(props){
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function FertilizerItem(props){
                     <h3>{props.value.name}</h3>
                     <p>{props.value.description}</p>
                 </div>
-                <h5 className='fertilizer-cost'>{props.value.price} 000 VND</h5>
+                <h5 className='fertilizer-cost'><NumberFormat value={props.value.price} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></h5>
                 <button type="button" className="btn btn-success" onClick={() => navigate("/shop")}>Mua ngay</button>
             </div>
         </div>

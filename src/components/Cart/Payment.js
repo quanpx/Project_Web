@@ -6,6 +6,7 @@ import { notification } from 'antd';
 import PageContent from "../PageContent/PageContent";
 import "./Payment.css";
 import axios from "axios";
+import NumberFormat from "react-number-format";
 
 const Payment = ({ setCart }) => {
     const navigate = useNavigate();
@@ -84,9 +85,9 @@ const Payment = ({ setCart }) => {
                                         return (
                                             <tr key={index} style={{ height: "80px" }}>
                                                 <td className="text-start left-data"><img src={item.iamge_url} alt="product image"></img> &nbsp; {item.name}</td>
-                                                <td>₫{item.price}</td>
+                                                <td><NumberFormat value={item.price} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></td>
                                                 <td>{item.quantity}</td>
-                                                <td>₫{item.price * item.quantity}</td>
+                                                <td><NumberFormat value={item.price * item.quantity} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></td>
                                             </tr>
                                         )
                                     })

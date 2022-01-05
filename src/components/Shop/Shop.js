@@ -8,6 +8,7 @@ import { notification } from 'antd';
 import axios from "axios";
 import PageContent from "../PageContent/PageContent";
 import { useNavigate } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 function Shop(props) {
     const navigate = useNavigate();
@@ -168,11 +169,11 @@ function Shop(props) {
                                                         <div className="row">
                                                             <div className="col-md-6">
                                                                 <img src={element.image_url} alt="job-img" style={{ width: "100%" }} />
-                                                                <div><MdPriceCheck />Price: {element.price}</div>
+                                                                <div><MdPriceCheck />Price: <NumberFormat value={element.price} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></div>
                                                                 <div><MdProductionQuantityLimits /> Quantity: {element.quantity}</div>
                                                             </div>
                                                             <div className="col-md-6">
-                                                                <div className="des"><MdOutlineDescription /> Description: {element.description}</div>
+                                                                <div className="des"><MdOutlineDescription /> Description: <p>{element.description}</p></div>
                                                             </div>
                                                         </div>
                                                     </Modal.Body>
@@ -186,8 +187,8 @@ function Shop(props) {
                                             <div className='text text-center px-3 py-3 pb-4'>
                                                 <h3>{element.name}</h3>
                                                 <div className='price d-lex '>
-                                                    <span className='price-dc'>{element.price}</span>
-                                                    <span className='price-sale'>{element.sale}</span>
+                                                    <span className='price-dc'><NumberFormat value={element.price} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></span>
+                                                    <span className='price-sale'><NumberFormat value={element.sale} displayType={'text'} thousandSeparator={true} prefix={'₫'}></NumberFormat></span>
                                                 </div>
                                                 <div className='bottom-area d-flex px-3'>
                                                     <div className='m-auto d-flex'>
