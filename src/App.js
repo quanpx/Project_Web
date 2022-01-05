@@ -34,7 +34,7 @@ function App() {
     //create aos effect (fade up) when scroll
 
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    const [cart, setCart] = useState(null);
+    const [cart, setCart] = useState([]);
 
 
 
@@ -57,7 +57,7 @@ function App() {
                     setCart(data.data);
                 });
         }
-    }, [authenticated])
+    })
 
     //scroll to top
     // const [visible, setVisible] = useState(false)
@@ -150,7 +150,7 @@ function App() {
                         element={<CreatedJob />}
                     />
                     <Route path="/cart/payment"
-                        element={<Payment />}
+                        element={<Payment setCart={setCart}/>}
                     />
 
 

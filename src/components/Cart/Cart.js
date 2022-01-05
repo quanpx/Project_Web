@@ -22,25 +22,6 @@ const Cart = ({cart,setCart}) => {
     }
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
-    // useEffect(async () => {
-
-    //     if (authenticated == null) {
-    //         openNotificationWarning("Bạn cần đăng nhập trước nhé!");
-    //         navigate("/login");
-    //     } else {
-    //         let headers = {
-    //             'Authorization': 'Bearer ' + authenticated.token,
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         };
-    //         await axios.get(base_url + "/cart", headers = { headers })
-    //             .then(res => res.data)
-    //             .then(data => {
-    //                 setCart(data.data);
-    //             });
-    //     }
-
-    // }, []);
 
     // decrease product quantity
     const decreaseQuantity = (id) => {
@@ -63,7 +44,6 @@ const Cart = ({cart,setCart}) => {
             refresh();
         }
         )
-        console.log(cart)
     }
 
     // send payment
@@ -89,7 +69,7 @@ const Cart = ({cart,setCart}) => {
             await axios.post(base_url + "/order", paymentData, { headers })
                 .then(res => res.data)
                 .then(data => {
-                    navigate("./payment",{state:data.data});
+                    navigate("./payment",{state:{data:data.data,authenticated:authenticated}});
                 });
         }
     }

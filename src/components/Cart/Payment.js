@@ -5,8 +5,9 @@ import { GiPositionMarker } from 'react-icons/gi';
 import { notification } from 'antd';
 import PageContent from "../PageContent/PageContent";
 import "./Payment.css";
+import axios from "axios";
 
-const Payment = () => {
+const Payment = ({ setCart }) => {
     const navigate = useNavigate();
 
     const paymentContent = {
@@ -16,21 +17,39 @@ const Payment = () => {
         line3: "Happy Farmer",
         line4: "Mang hạnh phúc đến mọi người!"
     }
-    const state=useLocation().state;
-   
+    const state = useLocation().state;
+    //  console.log(state);
+    const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
+    const confirmPayment = async () => {
+        let headers = {
+            'Authorization': 'Bearer ' + state.authenticated.token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
+        await axios.get(base_url + "/cart/removeAll", { headers })
+            .then(res => res.data)
+            .then(data => {
+                if (data.code == 200) {
+                    openNotificationWithIcon('success');
+                            navigate("/home");
 
-    console.log(state);
+                }
+
+            });
+
+
+    }
 
     const openNotificationWithIcon = type => {
         notification[type]({
-          message: 'Đặt hàng thành công',
+            message: 'Đặt hàng thành công',
         });
-        navigate("/shop")
+
     };
 
-    return(
+    return (
         <>
-            <PageContent content={paymentContent}/>
+            <PageContent content={paymentContent} />
             <Container>
                 <div>
                     <Button className="ant-btn" onClick={() => navigate("/cart")}>Trở về</Button>
@@ -41,11 +60,11 @@ const Payment = () => {
                         <div className="user-address">
                             <h4><GiPositionMarker /> Địa chỉ nhận hàng</h4>
                             <h6>
-                                <b>{state.user.name} - {state.user.phone}</b>
+                                <b>{state.data.user.name} - {state.data.user.phone}</b>
                                 &nbsp;&nbsp;&nbsp;
-                                {state.user.address}
+                                {state.data.user.address}
                             </h6>
-                            <span className="text-start">Đơn hàng tạo lúc: {state.created_at}</span>
+                            <span className="text-start">Đơn hàng tạo lúc: {state.data.created_at}</span>
                         </div>
                     </div>
                     <div className="list-product">
@@ -60,9 +79,9 @@ const Payment = () => {
                             </thead>
                             <tbody>
                                 {
-                                    state.products.map( (item, index) => {
+                                    state.data.products.map((item, index) => {
                                         return (
-                                            <tr key={index} style={{height: "80px"}}>
+                                            <tr key={index} style={{ height: "80px" }}>
                                                 <td className="text-start left-data">image : {item.name}</td>
                                                 <td>₫{item.price}</td>
                                                 <td>{item.quantity}</td>
@@ -75,9 +94,9 @@ const Payment = () => {
                         </table>
                         <div className="text-end order">
                             <h4>
-                                Tổng thanh toán: <span className="total">₫{state.total_amount} </span>
+                                Tổng thanh toán: <span className="total">₫{state.data.total_amount} </span>
                             </h4>
-                            <Button className="order-btn ant-btn" onClick={() => openNotificationWithIcon('success')} style={{height: "36px"}}>Đặt hàng</Button>
+                            <Button className="order-btn ant-btn" onClick={() => confirmPayment()}>Thanh toán</Button>
                         </div>
                     </div>
                 </div>

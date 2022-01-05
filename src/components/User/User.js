@@ -28,7 +28,6 @@ const User = ({ authenticated }) => {
             .then(res => res.data)
             .then(data => {
                 if (data.code == 200) {
-                    console.log(data.data)
                     setUser(data.data);
                 }
             }).catch(err => { throw Error(err) });
