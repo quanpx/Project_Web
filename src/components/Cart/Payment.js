@@ -11,10 +11,10 @@ const Payment = () => {
 
     const paymentContent = {
         img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
-        line1: "Cart",
-        line2: "Cart nè",
-        line3: "Thanh toán",
-        line4: "Hóa đơn"
+        // line1: "Cart",
+        line2: "Thanh toán",
+        line3: "Happy Farmer",
+        line4: "Mang hạnh phúc đến mọi người!"
     }
     const state=useLocation().state;
    

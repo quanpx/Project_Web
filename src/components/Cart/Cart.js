@@ -173,10 +173,10 @@ const Cart = ({cart,setCart}) => {
     // cart content
     const cartContent = {
         img: "https://images.unsplash.com/photo-1614110073736-1778d27f588a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        line1: "Cart",
-        line2: "Cart nè",
-        line3: "Cart nữa nè",
-        line4: "Cart tiếp nè"
+        // line1: "Cart",
+        line2: "Giỏ hàng",
+        line3: "Happy Farmer",
+        line4: "Mang hạnh phúc đến mọi người!"
     }
 
     return (
