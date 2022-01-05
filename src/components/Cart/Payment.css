@@ -39,6 +39,10 @@
     vertical-align: middle;
 }
 
+.payment-form .list-product .table td img{
+    max-width: 8%;
+}
+
 .payment-form .list-product .table .left-data{
     padding-left: 24px;
 }

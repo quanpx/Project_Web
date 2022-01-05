@@ -33,7 +33,7 @@ const Payment = ({ setCart }) => {
             .then(data => {
                 if (data.code == 200) {
                     openNotificationWithIcon('success');
-                         navigate("shop");
+                         navigate("/shop");
                 }
 
             });
@@ -84,7 +84,7 @@ const Payment = ({ setCart }) => {
                                     state.data.products.map((item, index) => {
                                         return (
                                             <tr key={index} style={{ height: "80px" }}>
-                                                <td className="text-start left-data"><img src={item.iamge_url} alt="product image" style={{maxWidth: "8%"}}></img> &nbsp; {item.name}</td>
+                                                <td className="text-start left-data"><img src={item.iamge_url} alt="product image"></img> &nbsp; {item.name}</td>
                                                 <td>₫{item.price}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>₫{item.price * item.quantity}</td>
