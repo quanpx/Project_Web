@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, Container, Spinner, ProgressBar } from 'react-bootstrap';
-import { MdOutlineSupportAgent, MdFastfood } from 'react-icons/md';
+import { MdOutlineSupportAgent, MdManageAccounts } from 'react-icons/md';
 import { FaShippingFast, FaAward, FaShoppingCart } from 'react-icons/fa';
-import { BsFillSuitHeartFill, BsList } from 'react-icons/bs';
+import { BsFillSuitHeartFill, BsTools } from 'react-icons/bs';
 import "./Home.css";
 import FertilizerItem from '../FertilizerItem/FertilizerItem';
 
@@ -84,7 +84,7 @@ const Home = (props) => {
                                     
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h2>Mang mọi người đến gần nhau hơn</h2>
+                                            <h3>Mang mọi người đến gần nhau hơn</h3>
                                             <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
@@ -97,8 +97,8 @@ const Home = (props) => {
                                     />
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            <button className="btn btn-primary">View Details</button>
+                                            <h3>Chia sẻ, giúp đỡ nhau trong công việc</h3>
+                                            <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -111,8 +111,8 @@ const Home = (props) => {
 
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                            <button className="btn btn-primary">View Details</button>
+                                            <h3>Những sản phẩm chất lượng cao, thân thiện với mọi người</h3>
+                                            <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -129,19 +129,19 @@ const Home = (props) => {
                                                 <FaShippingFast />
                                             </div>
                                             <div className='media-body'>
-                                                <h3>free shipping</h3>
-                                                <span>on order over $100</span>
+                                                <h3>Giao hàng miễn phí</h3>
+                                                <span>Nhanh chóng</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6 text-center'>
                                         <div className='media'>
                                             <div className='media-icon bg-color-2 d-flex justify-content-center align-items-center mb-3'>
-                                                <MdFastfood />
+                                                <BsTools />
                                             </div>
                                             <div className='media-body'>
-                                                <h3>always fresh</h3>
-                                                <span>product well package</span>
+                                                <h3>Công cụ chất lượng</h3>
+                                                <span>Thân thiện</span>
                                             </div>
                                         </div>
                                     </div>
@@ -151,19 +151,19 @@ const Home = (props) => {
                                                 <FaAward />
                                             </div>
                                             <div className='media-body'>
-                                                <h3>superior quality</h3>
-                                                <span>quality products</span>
+                                                <h3>Làm việc uy tín</h3>
+                                                <span>Chất lượng</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6 text-center'>
                                         <div className='media'>
                                             <div className='media-icon bg-color-4 d-flex justify-content-center align-items-center mb-3'>
-                                                <MdOutlineSupportAgent />
+                                                <MdManageAccounts />
                                             </div>
                                             <div className='media-body'>
-                                                <h3>support</h3>
-                                                <span>24/7 support</span>
+                                                <h3>Quản lý công việc</h3>
+                                                <span>Tiện ích</span>
                                             </div>
                                         </div>
                                     </div>
@@ -178,8 +178,8 @@ const Home = (props) => {
                                             <div className='vegetable-main col-md-6 order-md-last align-items-stretch d-flex'>
                                                 <img src="./images/vegetable.jpg" alt="img" />
                                                 <div className='text text-center'>
-                                                    <h2>Vegetables</h2>
-                                                    <p>Protect the health of every home</p>
+                                                    <h2>Rau, củ, quả</h2>
+                                                    <p>Một số sản phẩm nông nghiệp</p>
                                                     <a href="/Shop" className='btn btn-primary'>Shop now</a>
                                                 </div>
                                             </div>
@@ -187,13 +187,13 @@ const Home = (props) => {
                                                 <div className='vegetable-item mt-4  d-flex'>
                                                     <img src="./images/vegetable-1.jpg" alt="img" />
                                                     <div className='text px-3 py-1'>
-                                                        <h2 className='mb-0'>name</h2>
+                                                        <p className='mb-0'>Rau, củ</p>
                                                     </div>
                                                 </div>
                                                 <div className='vegetable-item mt-4 d-flex'>
                                                     <img src="./images/vegetable-2.jpg" alt="img" />
                                                     <div className='text px-3 py-1'>
-                                                        <h2 className='mb-0'>name</h2>
+                                                        <p className='mb-0'>Quả</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,13 +203,13 @@ const Home = (props) => {
                                         <div className='vegetable-item mt-4  d-flex'>
                                             <img src="./images/vegetable-3.jpg" alt="img" />
                                             <div className='text px-3 py-1'>
-                                                <h2 className='mb-0'>name</h2>
+                                                <p className='mb-0'>Nước ép</p>
                                             </div>
                                         </div>
                                         <div className='vegetable-item mt-4 d-flex'>
                                             <img src="./images/vegetable-4.jpg" alt="img" />
                                             <div className='text px-3 py-1'>
-                                                <h2 className='mb-0'>name</h2>
+                                                <p className='mb-0'>Hạt</p>
                                             </div>
                                         </div>
                                     </div>
@@ -220,15 +220,15 @@ const Home = (props) => {
                             <div className='agricultural-product'>
                                 <div className='separator-line'></div>
                                 <div className='text-title text-center' data-aos="fade-up" data-aos-duration="1000">
-                                    <h1>Agricultural Products</h1>
-                                    <h3>Our Products</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                                    <h1>Nông cụ</h1>
+                                    <h3>Một số sản phẩm của chúng tôi</h3>
+                                    <p>Sở hữu ngay bộ nông cụ chất lượng cao, năng suất lao động cũng tăng cao</p>
                                 </div>
                                 <div className='row list-agri'>
                                     {
                                         Items.map((element, i) => {
                                             const { id, image_url, sale, category, discount, name, price, sale_price } = element;
-                                            if (i < 8) {
+                                            if ((category == 'Dụng cụ lao động' || category == 'Hạt giống') && i < 8) {
                                                 return (
                                                     <div key={id} className='col-md-6 col-lg-3' data-aos="fade-up" data-aos-duration="1000">
                                                         <div className='agri-item'>
@@ -266,9 +266,9 @@ const Home = (props) => {
                             <div className='separator-line'></div>
                             <div className='fertilizer'>
                                 <div className='text-title text-center' data-aos="fade-up" data-aos-duration="1000">
-                                    <h1>Fertilizer</h1>
-                                    <h3>Fertilizer for agriculture</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                                    <h1>Phân bón</h1>
+                                    <h3>Một số loại phân bón của chúng tôi</h3>
+                                    <p>Không chỉ chỉ cung cấp sản phẩm, chúng tôi còn giới thiệu cho bà con về vai trò của các loại phân bón</p>
                                 </div>
                                 <div className='row fertilizer-list'>
                                     {

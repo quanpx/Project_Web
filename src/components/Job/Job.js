@@ -117,10 +117,10 @@ function Job() {
         <>
             <PageContent content={jobContent} />
             <Container>
-                <div className="search col-4 mx-auto mb-2">
+                <div className="search col-4 mx-auto " style={{margin: "6em 0 2em 0"}}>
                     <Search
                         type="text"
-                        placeholder="Search for..."
+                        placeholder="Tìm kiếm công việc, địa điểm,..."
                         // enterButton 
                         value={filterData}
                         onChange={searchJob}

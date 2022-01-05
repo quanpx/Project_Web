@@ -101,10 +101,10 @@ const JobDetail = () => {
     // job detail content
     const jobDetailContent = {
         img: "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-        line1: "Job detail",
-        line2: "Job detail",
-        line3: "Job detail",
-        line4: "Job detail",
+        // line1: "Job detail",
+        line2: "Chi tiết công việc",
+        line3: "Happy Farmer",
+        line4: "Mang hạnh phúc đến mọi người!",
     }
 
     return (
