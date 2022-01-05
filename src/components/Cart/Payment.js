@@ -18,7 +18,6 @@ const Payment = ({ setCart }) => {
         line4: "Mang hạnh phúc đến mọi người!"
     }
     const state = useLocation().state;
-    //  console.log(state);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const confirmPayment = async () => {
         let headers = {
@@ -27,18 +26,19 @@ const Payment = ({ setCart }) => {
             'Accept': 'application/json'
         };
         await axios.get(base_url + "/cart/removeAll", { headers })
-            .then(res => res.data)
-            .then(data => {
-                if (data.code == 200) {
-                    openNotificationWithIcon('success');
-                            navigate("/home");
-
-                }
-
-            });
-
-
+        .then(res => res.data)
+        .then(data => {
+            if (data.code == 200) {
+                openNotificationWithIcon('success');
+                navigate("/home");
+                
+            }
+            
+        });
+        
+        
     }
+    //  console.log(state);
 
     const openNotificationWithIcon = type => {
         notification[type]({
@@ -82,7 +82,7 @@ const Payment = ({ setCart }) => {
                                     state.data.products.map((item, index) => {
                                         return (
                                             <tr key={index} style={{ height: "80px" }}>
-                                                <td className="text-start left-data">image : {item.name}</td>
+                                                <td className="text-start left-data"><img src={item.iamge_url} alt="product image"></img> : {item.name}</td>
                                                 <td>₫{item.price}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>₫{item.price * item.quantity}</td>
