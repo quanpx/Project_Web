@@ -20,7 +20,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = ({ cart, authenticated, handleLogout }) => {
 
-
     const [navColor, setNavColor] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const navigate=useNavigate();
