@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Container } from 'react-bootstrap';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate,useHistory } from "react-router-dom";
 import { GiPositionMarker } from 'react-icons/gi';
 import { notification } from 'antd';
 import PageContent from "../PageContent/PageContent";
@@ -10,6 +10,7 @@ import axios from "axios";
 const Payment = ({ setCart }) => {
     const navigate = useNavigate();
 
+
     const paymentContent = {
         img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
         // line1: "Cart",
@@ -18,7 +19,8 @@ const Payment = ({ setCart }) => {
         line4: "Mang hạnh phúc đến mọi người!"
     }
     const state = useLocation().state;
-    //  console.log(state);
+
+     console.log(state.data);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const confirmPayment = async () => {
         let headers = {
@@ -31,7 +33,10 @@ const Payment = ({ setCart }) => {
             .then(data => {
                 if (data.code == 200) {
                     openNotificationWithIcon('success');
-                            navigate("/home");
+
+                    
+                         navigate("home");
+                    
 
                 }
 
