@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useLocation, useNavigate } from "react-router-dom";
 import { GiPositionMarker } from 'react-icons/gi';
 import { notification } from 'antd';
@@ -7,6 +7,8 @@ import PageContent from "../PageContent/PageContent";
 import "./Payment.css";
 
 const Payment = () => {
+    const navigate = useNavigate();
+
     const paymentContent = {
         img: "https://static.tapchitaichinh.vn/w800/images/upload/phammaihanh/06222021/tmdt.jpg",
         line1: "Cart",
@@ -19,8 +21,6 @@ const Payment = () => {
 
     console.log(state);
 
-    const navigate = useNavigate();
-
     const openNotificationWithIcon = type => {
         notification[type]({
           message: 'Đặt hàng thành công',
@@ -32,6 +32,9 @@ const Payment = () => {
         <>
             <PageContent content={paymentContent}/>
             <Container>
+                <div>
+                    <Button className="ant-btn" onClick={() => navigate("/cart")}>Trở về</Button>
+                </div>
                 <div className="payment-form">
                     <div>
                         <div className="top-line"></div>
@@ -57,9 +60,9 @@ const Payment = () => {
                             </thead>
                             <tbody>
                                 {
-                                    state.products.map( item => {
+                                    state.products.map( (item, index) => {
                                         return (
-                                            <tr style={{height: "80px"}}>
+                                            <tr key={index} style={{height: "80px"}}>
                                                 <td className="text-start left-data">image : {item.name}</td>
                                                 <td>₫{item.price}</td>
                                                 <td>{item.quantity}</td>
@@ -74,7 +77,7 @@ const Payment = () => {
                             <h4>
                                 Tổng thanh toán: <span className="total">₫{state.total_amount} </span>
                             </h4>
-                            <div type="button" className="order-btn btn btn-primary" onClick={() => openNotificationWithIcon('success')}>Đặt hàng</div>
+                            <Button className="order-btn ant-btn" onClick={() => openNotificationWithIcon('success')} style={{height: "36px"}}>Đặt hàng</Button>
                         </div>
                     </div>
                 </div>

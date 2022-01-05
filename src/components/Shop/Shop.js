@@ -172,7 +172,7 @@ function Shop(props) {
                                                                 <div><MdProductionQuantityLimits /> Quantity: {element.quantity}</div>
                                                             </div>
                                                             <div className="col-md-6">
-                                                                <div><MdOutlineDescription /> Description: {element.description}</div>
+                                                                <div className="des"><MdOutlineDescription /> Description: {element.description}</div>
                                                             </div>
                                                         </div>
                                                     </Modal.Body>

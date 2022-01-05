@@ -45,13 +45,13 @@ const Login = (props) => {
      const openNotificationSuccess = (message) => {
         notification.success({
             message: message,
-            duration: 2
+            duration: 1.5
         });
     }
      const openNotificationWarning = (message) => {
         notification.warning({
             message: message,
-            duration: 2
+            duration: 1.5
         });
     }
     // login notification

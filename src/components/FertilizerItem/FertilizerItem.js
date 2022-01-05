@@ -1,7 +1,9 @@
 import React from "react";
 import "./FertilizerItem.css";
+import { useNavigate } from "react-router-dom";
 
 function FertilizerItem(props){
+    const navigate = useNavigate();
     return(
         <div className='row fertilizer-item justify-content-around'  data-aos="fade-up" data-aos-duration="1000">
             <div className='fertilizer-img col-md-4 '>
@@ -14,7 +16,7 @@ function FertilizerItem(props){
                     <p>{props.value.description}</p>
                 </div>
                 <h5 className='fertilizer-cost'>{props.value.price} 000 VND</h5>
-                <button type="button" className="btn btn-success">Mua ngay</button>
+                <button type="button" className="btn btn-success" onClick={() => navigate("/shop")}>Mua ngay</button>
             </div>
         </div>
     )

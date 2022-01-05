@@ -166,6 +166,9 @@
     opacity: 1;
 }
 
+.detail .des{
+    vertical-align: middle;
+}
 
 /* load more btn */
 .load-more-btn{
