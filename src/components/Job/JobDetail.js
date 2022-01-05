@@ -144,7 +144,7 @@ const JobDetail = () => {
                                 <td>: {job.contact}.  Số điện thoại: {job.contact_number}</td>
                             </tr>
                         </table>
-                        {console.log(job)}
+                
                         {
                             authenticated != null && job.contact === authenticated.user.name ?
                                                         <p style={{ color: "#82ae46", marginTop: "8px" }}> Công việc bạn tạo </p> :
