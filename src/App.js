@@ -196,9 +196,9 @@ function App() {
                             </ul>
                         </div>
                         <div className="footer-contact col-sm-6 col-md-3">
-                            <h3>Have a question?</h3>
+                            <h3>Liên hệ</h3>
                             <ul>
-                                <li><BsGeoAltFill />Đại học Bách Khoa Hà Nội</li>
+                                {/* <li><BsGeoAltFill />Đại học Bách Khoa Hà Nội</li> */}
                                 <li><BsEnvelopeFill /> quanbka00@gmail.com</li>
                                 <li><BsEnvelopeFill /> luudong271@gmail.com</li>
                                 <li><BsEnvelopeFill /> duykhanhctb@gmail.com</li>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel, Container, Spinner ,ProgressBar} from 'react-bootstrap';
+import { Carousel, Container, Spinner, ProgressBar } from 'react-bootstrap';
 import { MdOutlineSupportAgent, MdFastfood } from 'react-icons/md';
 import { FaShippingFast, FaAward, FaShoppingCart } from 'react-icons/fa';
 import { BsFillSuitHeartFill, BsList } from 'react-icons/bs';
@@ -11,7 +11,7 @@ import { notification } from 'antd';
 import axios from 'axios';
 
 
-const Home=(props)=> {
+const Home = (props) => {
     const navigate = useNavigate();
     const [Items, setItems] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
@@ -49,8 +49,8 @@ const Home=(props)=> {
                         openNotificationSuccess(product.name);
                     }
                 }).catch(err => { throw new Error(err) });
-            }
-            props.handleIncreaseCart();
+        }
+        props.handleIncreaseCart();
 
     }
 
@@ -75,17 +75,17 @@ const Home=(props)=> {
                     <div>
                         <div className="slider">
                             <Carousel fade>
-                                <Carousel.Item interval={1500}>
+                                <Carousel.Item interval={15000}>
                                     <img
                                         className="d-block "
                                         src="https://images.unsplash.com/photo-1632153380265-d1f815db5a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
                                         alt="First slide"
                                     />
+                                    
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h1>First slide label</h1>
-                                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                            <button className="btn btn-primary">View Details</button>
+                                            <h2>Mang mọi người đến gần nhau hơn</h2>
+                                            <button className="btn btn-primary"><a href="/shop">Đến cửa hàng</a></button>
                                         </div>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -97,7 +97,6 @@ const Home=(props)=> {
                                     />
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h1>Second slide label</h1>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                             <button className="btn btn-primary">View Details</button>
                                         </div>
@@ -112,7 +111,6 @@ const Home=(props)=> {
 
                                     <Carousel.Caption>
                                         <div data-aos="fade-up" data-aos-duration="1000">
-                                            <h1>Third slide label</h1>
                                             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                             <button className="btn btn-primary">View Details</button>
                                         </div>
@@ -246,7 +244,7 @@ const Home=(props)=> {
                                                                 </div>
                                                                 <div className='bottom-area d-flex px-3'>
                                                                     <div className='m-auto d-flex'>
-                                                                        <a onClick={()=>addToCart(id)} className='buy-now d-flex justify-content-center align-items-center text-center'>
+                                                                        <a onClick={() => addToCart(id)} className='buy-now d-flex justify-content-center align-items-center text-center'>
                                                                             <FaShoppingCart />
                                                                         </a>
                                                                         <a href="#" className='like d-flex justify-content-center align-items-center text-center'>
@@ -274,9 +272,9 @@ const Home=(props)=> {
                                 </div>
                                 <div className='row fertilizer-list'>
                                     {
-                                        Items.map((item,index) => {
+                                        Items.map((item, index) => {
                                             if (item.category == "Phân bón") {
-                                                return <FertilizerItem value={item} key={index}/>
+                                                return <FertilizerItem value={item} key={index} />
                                             }
                                         })
 
@@ -286,7 +284,7 @@ const Home=(props)=> {
                             </div>
                         </Container>
                     </div> :
-                     <ProgressBar animated variant="success" now={85} />
+                    <ProgressBar animated variant="success" now={85} />
             }
 
         </div>

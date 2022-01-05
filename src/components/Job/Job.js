@@ -18,7 +18,7 @@ function Job() {
     // list jobs
     const [Items, setItems] = useState([]);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
 
@@ -108,10 +108,9 @@ function Job() {
     // job content
     const jobContent = {
         img: "https://images.unsplash.com/photo-1601737786679-f6883570cfb5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        line1: "Job",
-        line2: "Job nè",
-        line3: "Job nữa nè",
-        line4: "Job tiếp nè"
+        line2: "Công việc",
+        line3: "Happy Farmer",
+        line4: "Mang hạnh phúc đến mọi người!"
     }
 
     return (
@@ -139,15 +138,15 @@ function Job() {
                                             <Card.Body>
                                                 <Card.Title>{element.name}</Card.Title>
                                                 <Card.Text>
-                                                    <GiPositionMarker style={{marginBottom: "4px", fontSize: "16px"}}/>Địa điểm: {element.address}<br />
-                                                    <MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'}/><br />
-                                                    <MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {element.due}<br />
-                                                    <AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái: {convertToVNese(element.status)}
+                                                    <GiPositionMarker style={{ marginBottom: "4px", fontSize: "16px" }} />Địa điểm: {element.address}<br />
+                                                    <MdAttachMoney style={{ marginBottom: "4px", fontSize: "16px" }} />Lương: <NumberFormat value={element.salary} displayType={'text'} thousandSeparator={true} suffix={' VND'} /><br />
+                                                    <MdDateRange style={{ marginBottom: "4px", fontSize: "16px" }} />Ngày làm: {element.due}<br />
+                                                    <AiOutlineBulb style={{ marginBottom: "4px", fontSize: "16px" }} />Trạng thái: {convertToVNese(element.status)}
                                                 </Card.Text>
                                                 <Button className="detail-btn ant-btn" href={`./job-detail/${element.id}`}>Chi tiết</Button>
                                                 {
                                                     authenticated != null && element.username === authenticated.user.username ?
-                                                        <p style={{color: "#82ae46", marginTop: "8px"}}> Công việc bạn tạo </p> :
+                                                        <p style={{ color: "#82ae46", marginTop: "8px" }}> Công việc bạn tạo </p> :
                                                         element.status == "PENDING" || element.status == "COMPLETED" ? <Button className="getJob-btn ant-btn" disabled>Nhận việc</Button> :
                                                             <Button className="getJob-btn ant-btn" onClick={(e) => clickHandler(e, index)}>Nhận việc</Button>
                                                 }

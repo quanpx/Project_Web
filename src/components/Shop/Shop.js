@@ -10,7 +10,7 @@ import PageContent from "../PageContent/PageContent";
 import { useNavigate } from "react-router-dom";
 
 function Shop(props) {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     // list product
     const [data, setData] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
@@ -78,28 +78,26 @@ function Shop(props) {
     }
 
     const addToCard = async (id) => {
-        if(authenticated==null)
-        {
+        if (authenticated == null) {
             openNotificationWarning("Bạn cần đăng nhập trước nhé !")
             navigate("/login");
-        }else
-        {
+        } else {
             let headers = {
-            'Authorization': 'Bearer '+ authenticated.token,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        };
-        let product = getProductById(id);
-        await axios.post(base_url + "/cart", { product_id: id }, { headers })
-            .then(res => {
-                if (res.status == 200) {
-                   
-                    openNotificationSuccess(product.name);
-                }
-            }).catch(err=>{throw new Error(err)});
-        props.handleIncreaseCart();
+                'Authorization': 'Bearer ' + authenticated.token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
+            let product = getProductById(id);
+            await axios.post(base_url + "/cart", { product_id: id }, { headers })
+                .then(res => {
+                    if (res.status == 200) {
+
+                        openNotificationSuccess(product.name);
+                    }
+                }).catch(err => { throw new Error(err) });
+            props.handleIncreaseCart();
         }
-        
+
     }
 
     // notification add to cart success
@@ -109,7 +107,7 @@ function Shop(props) {
             duration: 1
         });
     }
-     const openNotificationWarning = (message) => {
+    const openNotificationWarning = (message) => {
         notification.warning({
             message: message,
             duration: 1
@@ -120,16 +118,15 @@ function Shop(props) {
     // shop content
     const shopContent = {
         img: "https://images.unsplash.com/photo-1626139576127-f02f74c10298?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        line1: "Shop",
-        line2: "Shop nè",
-        line3: "Shop nữa nè",
-        line4: "Shop tiếp nè"
+        line2: "Cửa hàng",
+        line3: "Happy Farmer",
+        line4: "Mang hạnh phúc đến mọi người!"
     }
 
     return (
-      
+
         <div>
-            <PageContent content={shopContent}/>
+            <PageContent content={shopContent} />
             <Container>
                 <div className="shop-content" >
                     <div className="row justify-content-center">
