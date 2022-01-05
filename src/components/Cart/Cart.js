@@ -14,9 +14,9 @@ import { useNavigate } from "react-router-dom";
 const Cart = ({cart,setCart}) => {
     const navigate = useNavigate();
     // refresh component
-    const [value, setValue] = useState();
     //const [cart, setCart] = useState(null);
     const [authenticated, setAuthenticated] = useState(JSON.parse(localStorage.getItem("authenticated")));
+    const [value, setValue] = useState();
     const refresh = () => {
         setValue({});
     }

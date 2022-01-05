@@ -191,7 +191,7 @@ function App() {
                                 <li>Phùng Xuân Quân</li>
                                 <li>Lưu Văn Đông</li>
                                 <li>Nguyễn Duy Khánh</li>
-                                <li>Trần Việt Hoàng</li>
+                                <li>Trần Hoàng Việt</li>
                             </ul>
                         </div>
                         <div className="footer-contact col-sm-6 col-md-3">
