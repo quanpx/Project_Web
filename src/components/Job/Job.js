@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Modal, Button } from 'react-bootstrap';
-import { Form, Input, InputNumber } from 'antd';
+import { Form, Input, InputNumber, notification } from 'antd';
 import { AiOutlineBulb } from "react-icons/ai";
 import { GiPositionMarker } from "react-icons/gi";
 import { MdAttachMoney, MdDateRange } from "react-icons/md";
@@ -11,7 +11,6 @@ import NumberFormat from "react-number-format";
 
 import "./Job.css";
 import axios from "axios";
-import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
 
 
@@ -52,7 +51,6 @@ function Job() {
         });
     }
     const handleGetjob = async (id) => {
-
         handleClose();
         let headers = {
             'Authorization': 'Bearer ' + authenticated.token,
@@ -74,22 +72,19 @@ function Job() {
                     openNotificationSuccess("Đã gửi yêu cầu nhận việc !");
                 }
             }).catch(err => openNotificationWarning(err.message));
-
-
     }
+
     console.log(Items);
     const [activeModal, setActiveModal] = useState(null);
-    const clickHandler = (e, index, username) => {
+    const clickHandler = (e, index) => {
         if(authenticated==null)
         {
             openNotificationWarning("Bạn cần đăng nhập trước!");
             navigate("/login");
         }else
         {
-
             setActiveModal(index);
         }
-
     }
 
     const layout = {
