@@ -20,7 +20,6 @@ const Payment = ({ setCart }) => {
     }
     const state = useLocation().state;
 
-     console.log(state.data);
     const base_url = "https://my-happy-farmer.herokuapp.com/api/v1";
     const confirmPayment = async () => {
         let headers = {
