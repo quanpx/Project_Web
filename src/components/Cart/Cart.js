@@ -29,7 +29,6 @@ const Cart = ({cart,setCart}) => {
             if (item.product_id === id) {
                 if (item.bought_quantity > 1) {
                     item.bought_quantity -= 1;
-                    console.log(item.bought_quantity)
                     refresh();
                 }
             }
@@ -40,7 +39,6 @@ const Cart = ({cart,setCart}) => {
         cart.find(item => {
             if (item.product_id === id)
                 item.bought_quantity += 1;
-                console.log(item.bought_quantity)
                 refresh();
             }
         )
