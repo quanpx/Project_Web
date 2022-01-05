@@ -37,7 +37,6 @@ function App() {
     const [cart, setCart] = useState([]);
 
 
-
     useEffect(() => {
 
         AOS.init();
@@ -57,7 +56,7 @@ function App() {
                     setCart(data.data);
                 });
         }
-    })
+    },[])
 
     //scroll to top
     // const [visible, setVisible] = useState(false)
