@@ -36,7 +36,6 @@ const YourJob = () => {
         await axios.get(base_url + "/job/receivedJob", { headers })
             .then(res => res.data)
             .then(data => {
-                console.log(data.data);
                 setReceivedJobs(data.data);
             }).catch(err => { throw Error(err) });
     }, [])
@@ -68,7 +67,7 @@ const YourJob = () => {
                             {
                                 createdJobs.map((job, idx) => {
                                     const { id, image_url,address ,description, created_at, contact, contact_number, due, salary, name, job_detail, area, status } = job;
-                                    console.log(job)
+                                   
                                     return (
                                         <Card key={id} className="card-active" style={{ width: "100%", height: "304px", marginBottom: "12px" }}> 
                                             <Card.Body>

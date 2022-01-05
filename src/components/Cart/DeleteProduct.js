@@ -55,7 +55,7 @@ const DeleteProduct = (props) => {
             },
             onCancel() {
                 console.log('Cancel');
-                console.log(props.record)
+               
             },
         });
     }

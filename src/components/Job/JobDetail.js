@@ -82,7 +82,6 @@ const JobDetail = () => {
             }).catch(err => openNotificationWarning(err.message));
     }
 
-    console.log(Items);
     const [activeModal, setActiveModal] = useState(null);
     const clickHandler = (e, index) => {
         if (authenticated == null) {
