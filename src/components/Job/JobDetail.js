@@ -147,7 +147,8 @@ const JobDetail = () => {
                             </tr>
                         </table>
                         {
-                            job.status == "PENDING" || job.status == "COMPLETED" ?
+                            console.log("day la job:" + job.status),
+                            job.username === authenticated.user.username || job.status == "PENDING" || job.status == "COMPLETED" ?
                                 <Button className="getJob-btn ant-btn" disabled>Nhận việc</Button> :
                                 <Button className="getJob-btn ant-btn" onClick={(e) => clickHandler(e, job.id)}>Nhận việc</Button>
                         }
