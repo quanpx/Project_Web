@@ -9,6 +9,7 @@ import { FaCommentDots } from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
 import NumberFormat from "react-number-format";
 import axios from "axios";
+import convertToVNese from "../../utils/convertToVNese";
 
 const Receiver = (props) => {
     const { image_url,worker_id, fullname, username, email, comment, deal_price, phone, status } = props.receiver;
@@ -67,7 +68,7 @@ const Receiver = (props) => {
                             <p><AiFillPhone style={{marginBottom: "4px", fontSize: "16px"}}/>SĐT: {phone}</p>
                             <p><MdAttachMoney style={{marginBottom: "4px", fontSize: "16px"}}/>Lương mong muốn: <NumberFormat value={ deal_price} displayType={'text'} thousandSeparator={true} suffix={' VND'} /></p>
                             <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Chú thích: {comment}</p>
-                            <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{receiverStatus}</p>
+                            <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>{convertToVNese(receiverStatus)}</p>
                         </div>
                     </Card.Body>
                     <Card.Footer style={{marginLeft: "16px"}}>

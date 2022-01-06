@@ -10,6 +10,7 @@ import dateFormat from "dateformat";
 import PageContent from "../PageContent/PageContent";
 import Receiver from "./Receiver";
 import NumberFormat from "react-number-format";
+import convertToVNese from "../../utils/convertToVNese";
 
 const CreatedJob = () => {
     const { id } = useParams();
@@ -77,7 +78,7 @@ const CreatedJob = () => {
                                                         </p>
                                                         <p><MdDateRange style={{marginBottom: "4px", fontSize: "16px"}}/>Ngày làm: {dateFormat(job.due, "dd/mm/yyyy")}<br /></p>
                                                         <p><MdEditNote style={{marginBottom: "4px", fontSize: "16px"}}/>Mô tả công việc: {job.description}<br /></p>
-                                                        <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái công việc: {jobStatus}</p>
+                                                        <p><AiOutlineBulb style={{marginBottom: "4px", fontSize: "16px"}}/>Trạng thái công việc: {convertToVNese(jobStatus)}</p>
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Card >
